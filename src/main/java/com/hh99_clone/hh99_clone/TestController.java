@@ -10,6 +10,6 @@ public class TestController {
 
     @GetMapping("/api/hello")
     public String hello(){
-        return "요것은 스프링에서 보낸것입니다!";
+        return "GET요청!";
     }
 }
