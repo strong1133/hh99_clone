@@ -8,7 +8,6 @@ const PostDetail = (props) => {
     <Wrapper is_column>
       <PostHeader />
       <div className="ContentContainer">
-        <div>프로젝트박스</div>
         <div>Contents</div>
       </div>
       <div className="Footer">
