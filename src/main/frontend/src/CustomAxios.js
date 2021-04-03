@@ -1,36 +1,33 @@
-import React, {Component} from "react";
+import React, {useState, useEffect} from 'react';
 import axios from "axios";
 
-class CustomAxios extends Component {    
-    constructor(props) {
-        super(props)
-        this.state = {
-            message: ""
-        }
-    }
+function CustomAxios(){
+    const [users, setUsers] = useState([]);
 
-    componentDidMount() {
-        this.getApi();
-    }
-    getApi = () => {
-    
-        axios.get("http://localhost:8080/api/hello")
-            .then(res => {
-                console.log(res);
-                this.setState({
-                    message: res.data.message
-                })
-            })
-            .catch(res => console.log(res))
-    }
+    const fetchUsers = async () => {
 
-    render() {
-        return(
-            <div >
-                {this.state.message}
-            </div>
-        )
-    }
+        const response = await axios.get(
+            'http://localhost:8080/api/articles'
+        );
+        setUsers(response.data);
+        console.log(response)
+    };
+
+    useEffect(() => {
+        fetchUsers();
+    }, []);
+
+    return (
+
+        <ul>
+            {users.map(user => (
+                <li key={user.id}>
+                    {user.title}
+                </li>
+            ))}
+        </ul>
+
+    );
 }
 
 export default CustomAxios;
