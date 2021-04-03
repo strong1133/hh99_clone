@@ -1,26 +1,19 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { ReactComponent as Ribbon } from '../static/ribbon.svg';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
+import {
+  FaArrowLeft,
+  FaArrowRight,
+  FaCaretDown,
+  FaCaretUp,
+  FaAngleLeft,
+  FaAngleRight
+} from 'react-icons/fa';
+
 import { Wrapper } from '../elements/index';
-import { makeStyles } from '@material-ui/core/styles';
 const PostProjectBox = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const useStyles = makeStyles({
-    //TODO : 버튼 색깔처리 ㅜㅜ
-    button: {
-      borderRadius: '50%',
-      backgroundColor: 'white',
-      border: '1px solid #adb5bd',
-      color: 'red',
-      fontSize: '1.25em',
-      margin: '0 1px'
-    }
-  });
-  const classes = useStyles();
+
   return (
     <Project>
       <Title>Project</Title>
@@ -54,17 +47,25 @@ const PostProjectBox = () => {
           }}
         >
           {isOpen ? (
-            <ArrowDropUpIcon style={{ marginRight: '0.25rem' }} />
+            <span>
+              <FaCaretDown style={{ marginRight: '0.25rem' }} />
+              숨기기
+            </span>
           ) : (
-            <ArrowDropDownIcon style={{ marginRight: '0.25rem' }} />
+            <span>
+              <FaCaretUp style={{ marginRight: '0.25rem' }} />
+              목록 보기
+            </span>
           )}
-          목록 보기
         </HiddenController>
         <Wrapper>
           <Page>22/22</Page>
-
-          <ChevronLeftIcon className={classes.button} />
-          <ChevronRightIcon className={classes.button} />
+          <I>
+            <FaAngleLeft />
+          </I>
+          <I>
+            <FaAngleRight />
+          </I>
         </Wrapper>
       </Wrapper>
     </Project>
@@ -132,7 +133,6 @@ const Icon = styled.div`
   right: 0;
   margin-right: 1rem;
 `;
-const Footer = styled.div``;
 
 const HiddenController = styled.div`
   padding-top: 3rem;
@@ -152,4 +152,26 @@ const Page = styled.span`
   font-size: 0.875rem;
 `;
 
+const I = styled.span`
+  background-color: white;
+  width: 1.5rem;
+  height: 1.5rem;
+  ${(props) => props.theme.flex_row}
+  justify-content:center;
+  border-radius: 50%;
+  border: 1px solid #e8e8e8;
+  margin: 0 2px;
+
+  &:hover {
+    background-color: ${(props) => props.theme.velog_green};
+
+    & * {
+      color: white;
+    }
+  }
+  & * {
+    color: ${(props) => props.theme.velog_green};
+    font-size: 0.9rem;
+  }
+`;
 export default PostProjectBox;

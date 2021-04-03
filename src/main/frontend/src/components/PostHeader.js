@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Text, Wrapper } from '../elements';
-import FavoriteIcon from '@material-ui/icons/Favorite';
+import { ReactComponent as Heart } from '../static/heart.svg';
+
 import I from '../elements/I';
 import PostProjectBox from './PostProjectBox';
 const PostHeader = () => {
@@ -19,7 +20,7 @@ const PostHeader = () => {
           <b>openhub</b> · 2021년 3월 13일{' '}
         </span>
         <Like is_like={isLike} onClick={toggleLike}>
-          <FavoriteIcon style={{ fontSize: 13 }} />
+          <Heart />
           <Text color={isLike ? 'white' : '#adb5bd'} bold size="1em">
             10000123123
           </Text>
