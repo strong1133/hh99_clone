@@ -18,7 +18,9 @@ function App() {
       <CustomAxious></CustomAxious>
 
       <AppWrap>
-        <Grid width="1376px" margin="auto">
+        <Grid margin="auto">
+          {' '}
+          {/* TODO: delete */}
           <ConnectedRouter history={history}>
             <Route path="/" exact component={PostList} />
             <Route path="/detail" exact component={PostDetail} />
