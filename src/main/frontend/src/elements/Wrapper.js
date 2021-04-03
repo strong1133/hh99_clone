@@ -9,7 +9,7 @@ const Wrapper = (props) => {
 Wrapper.propTypes = {};
 
 const Container = styled.div`
-  width: ${(props) => (props.width ? props.width : '100%')};
+  width: ${(props) => (props.width ? props.width : '')};
   display: flex;
   height: ${(props) => (props.height ? props.height : '')};
   flex-direction: ${(props) => (props.is_column ? 'column' : 'row')};
