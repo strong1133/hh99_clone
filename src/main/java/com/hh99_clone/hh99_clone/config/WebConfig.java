@@ -1,4 +1,4 @@
-package com.hh99_clone.hh99_clone;
+package com.hh99_clone.hh99_clone.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistration;
