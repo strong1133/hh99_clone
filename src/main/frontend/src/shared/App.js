@@ -18,6 +18,7 @@ function App() {
     <div className="App">
         <CustomAxious></CustomAxious>
           <AppWrap>
+          <Header/>
           <Grid width="1376px" margin="auto">
             <BrowserRouter>
               <Route path="/" exact component={PostList} />
