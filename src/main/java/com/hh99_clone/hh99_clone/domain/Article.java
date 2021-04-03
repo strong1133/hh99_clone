@@ -1,6 +1,5 @@
 package com.hh99_clone.hh99_clone.domain;
 
-import com.hh99_clone.hh99_clone.dto.ArticleLikedRequestDto;
 import com.hh99_clone.hh99_clone.dto.ArticleRequestDto;
 import lombok.AccessLevel;
 import lombok.Getter;
