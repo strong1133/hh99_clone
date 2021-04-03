@@ -11,6 +11,10 @@
   --main-color: rgb(255, 82, 82);
 }
 
+* {
+  color: #343a40;
+}
+
 .App {
   text-align: center;
 }
