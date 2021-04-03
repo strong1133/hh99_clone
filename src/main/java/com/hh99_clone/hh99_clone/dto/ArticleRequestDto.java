@@ -8,5 +8,5 @@ public class ArticleRequestDto {
     String contents;
     String image;
     String author;
-    int likes;
+    int liked;
 }
