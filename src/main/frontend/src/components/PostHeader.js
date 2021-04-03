@@ -3,15 +3,15 @@ import styled from 'styled-components';
 import { Text, Wrapper } from '../elements';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import I from '../elements/I';
+import PostProjectBox from './PostProjectBox';
 const PostHeader = () => {
   const [isLike, setIsLike] = useState(false);
 
   const toggleLike = () => {
-    console.log(isLike);
     setIsLike(!isLike);
   };
   return (
-    <Wrapper bg="white" is_column ai="flex-start">
+    <Header bg="white" is_column ai="flex-start">
       <Title>웹 개발 작업을 더 쉽고 효과적으로 만들어주는 유용한 도구들!</Title>
 
       <Infomation jc="space-between">
@@ -29,11 +29,17 @@ const PostHeader = () => {
       <Wrapper jc="flex-start">
         <HashTag> 해시태그 컴포넌트</HashTag>
       </Wrapper>
-      <div>프로젝트박스</div>
-    </Wrapper>
+      <PostProjectBox />
+    </Header>
   );
 };
 
+const Header = styled.div`
+  max-width: 768px;
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
+`;
 const Title = styled.h1`
   text-align: left;
 `;
@@ -44,7 +50,7 @@ const Like = styled.div`
   height: 1.5rem;
   border-radius: 0.75rem;
   font-size: 12px;
-  width: 30px;
+  width: 33px;
   ${(props) => props.theme.flex_row};
   justify-content: space-between;
   ${(props) =>

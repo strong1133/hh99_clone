@@ -5,7 +5,7 @@ import { Grid, Text, Image, Button, Wrapper } from '../elements';
 
 const PostDetail = (props) => {
   return (
-    <Wrapper is_column>
+    <Wrapper is_column bg="white">
       <PostHeader />
       <div className="ContentContainer">
         <div>Contents</div>
