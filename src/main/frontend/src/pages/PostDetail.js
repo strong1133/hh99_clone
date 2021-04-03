@@ -1,23 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
-
-import { Grid, Text, Image, Button } from '../elements';
+import PostHeader from '../components/PostHeader';
+import { Grid, Text, Image, Button, Wrapper } from '../elements';
 
 const PostDetail = (props) => {
   return (
-    <React.Fragment>
-      <div className="header">
-        <div>웹 개발 작업을 더 쉽고 효과적으로 마들어주는 유용한 도구들!</div>
-        <div>
-          <b>openhub</b>· 2021년 3월 13일{' '}
-        </div>
-        <div>하트 좋아요 개수</div>
-        <div>해시태그 컴포넌트</div>
+    <Wrapper is_column>
+      <PostHeader />
+      <div className="ContentContainer">
+        <div>프로젝트박스</div>
+        <div>Contents</div>
       </div>
-
-      <div>프로젝트박스</div>
-      <div>Contents</div>
-    </React.Fragment>
+      <div className="Footer">
+        <div className="user">
+          <div>사진|유저이름</div>
+          <hr />
+          <div>깃 트위터 메일</div>
+        </div>
+        <div>이전포스트 다음포스트</div>
+      </div>
+    </Wrapper>
   );
 };
 
