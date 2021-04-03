@@ -1,1 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 48"><defs><style>.cls-1{fill:#12af7b;}</style></defs><g id="레이어_2" data-name="레이어 2"><g id="레이어_1-2" data-name="레이어 1"><polygon class="cls-1" points="32 48 16 32.45 0 48 0 0 32 0 32 48"/></g></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" 
+    width='2rem' 
+    height='2rem'
+viewBox="0 0 32 48"
+>
+
+<defs>
+<style>.cls-1{fill:#12af7b;}</style></defs><g id="레이어_2" data-name="레이어 2"><g id="레이어_1-2" data-name="레이어 1"><polygon class="cls-1" points="32 48 16 32.45 0 48 0 0 32 0 32 48"/></g></g>
+</svg>
+
+<!--  -->

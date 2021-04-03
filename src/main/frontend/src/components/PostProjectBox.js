@@ -1,10 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { ReactComponent as Ribbon } from '../static/ribbon.svg';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
+import { Wrapper } from '../elements/index';
+import { makeStyles } from '@material-ui/core/styles';
 const PostProjectBox = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const useStyles = makeStyles({
+    //TODO : 버튼 색깔처리 ㅜㅜ
+    button: {
+      borderRadius: '50%',
+      backgroundColor: 'white',
+      border: '1px solid #adb5bd',
+      color: 'red',
+      fontSize: '1.25em',
+      margin: '0 1px'
+    }
+  });
+  const classes = useStyles();
   return (
     <Project>
       <Title>Project</Title>
-      <List>
+      <Icon>
+        <Ribbon />
+      </Icon>
+
+      <List is_open={isOpen}>
         <ol>
           <li>
             <a href="#">My trello - trello clone coding</a>
@@ -23,6 +47,26 @@ const PostProjectBox = () => {
           </li>
         </ol>
       </List>
+      <Wrapper jc="space-between">
+        <HiddenController
+          onClick={() => {
+            setIsOpen(!isOpen);
+          }}
+        >
+          {isOpen ? (
+            <ArrowDropUpIcon style={{ marginRight: '0.25rem' }} />
+          ) : (
+            <ArrowDropDownIcon style={{ marginRight: '0.25rem' }} />
+          )}
+          목록 보기
+        </HiddenController>
+        <Wrapper>
+          <Page>22/22</Page>
+
+          <ChevronLeftIcon className={classes.button} />
+          <ChevronRightIcon className={classes.button} />
+        </Wrapper>
+      </Wrapper>
     </Project>
   );
 };
@@ -78,5 +122,34 @@ const Title = styled.h2`
   font-weight: 700;
 `;
 
-const List = styled.div``;
+const List = styled.div`
+  display: ${(props) => (props.is_open ? 'block' : 'none')};
+`;
+
+const Icon = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 1rem;
+`;
+const Footer = styled.div``;
+
+const HiddenController = styled.div`
+  padding-top: 3rem;
+  ${(props) => props.theme.flex_row}
+  justify-content:flex-start;
+  margin: 0;
+  padding: 0;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+const Page = styled.span`
+  color: ${(props) => props.theme.gray};
+  margin-right: 1.125rem;
+  font-size: 0.875rem;
+`;
+
 export default PostProjectBox;
