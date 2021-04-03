@@ -26,8 +26,8 @@ const Card = (props) => {
       {
         users.map(user =>(
         <Box key={user.id}>
-          <Box_1 src={user.image} />
-          <Box_2>
+          <Box1 src={user.image} />
+          <Box2>
             <Grid padding="12px" left>
               <Text bold size="16px">
               {user.title}
@@ -35,8 +35,8 @@ const Card = (props) => {
               <Text size="14px">{user.contents}</Text>
               <Text size="6px" color="grey">{user.createAt}</Text>
             </Grid>
-          </Box_2>
-          <Box_3>
+          </Box2>
+          <Box3>
             <Grid is_flex padding="12px">
               <Grid is_flex width="auto">
                 <Image
@@ -44,14 +44,13 @@ const Card = (props) => {
                   src="https://media.vlpt.us/images/dongyi/profile/1d42f7e3-42c3-4b65-8c64-e6169c437565/cm-fb-profile.png?w=120"
                 />
                 <Text size="8pt">by</Text>{" "}
-                <Text bold size="8pt">
-                  {" "}
-                  {" " +user.author}
+                <Text bold size="8pt" margin="0 0 0 5px">
+                  {user.author}
                 </Text>
               </Grid>
               <Text size="8pt">하트 201 </Text>
             </Grid>
-          </Box_3>
+          </Box3>
         </Box>
         ))
       }
@@ -69,14 +68,15 @@ const Box = styled.div`
   background-size: cover;
 `;
 
-const Box_1 = styled.img`
+const Box1 = styled.img`
   width: 320px;
   height: 167px;
   object-fit: cover;
+  border-radius: 5px 5px 0 0;
   background-image: url("${(props) => props.src}");
 `;
 
-const Box_2 = styled.div`
+const Box2 = styled.div`
   width: 320px;
   height: 165px;
   border-radius: 5px;
@@ -85,10 +85,10 @@ const Box_2 = styled.div`
   background-size: cover;
 `;
 
-const Box_3 = styled.div`
+const Box3 = styled.div`
   width: 320px;
   height: 45px;
-  border-radius: 5px;
+  border-radius: 0px 0px 5px 5px;
   box-shadow: 0 4px 6px #eee;
   background-color: ${props=>props.theme.main_white};
   background-size: cover;
