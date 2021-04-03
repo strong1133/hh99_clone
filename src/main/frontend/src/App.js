@@ -11,10 +11,10 @@ function App () {
         <div className="App">
           <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
-            
+                <h1>아티클 제목 넘겨받기</h1>
             
                 <CustomAxious></CustomAxious>
-                과연?
+            
           
         </header>
           
