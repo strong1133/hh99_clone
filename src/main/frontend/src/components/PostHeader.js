@@ -20,9 +20,11 @@ const PostHeader = () => {
           <b>openhub</b> · 2021년 3월 13일{' '}
         </span>
         <Like is_like={isLike} onClick={toggleLike}>
-          <Heart />
+          <Icon>
+            <Heart fill="red" />
+          </Icon>
           <Text color={isLike ? 'white' : '#adb5bd'} bold size="1em">
-            10000123123
+            113
           </Text>
         </Like>
       </Infomation>
@@ -73,6 +75,7 @@ const HashTag = styled.div`
   border-radius: 0.75rem;
   font-size: 12px;
   margin: 0.5rem 0;
+  cursor: pointer;
 `;
 
 const Infomation = styled.div`
@@ -81,4 +84,9 @@ const Infomation = styled.div`
   justify-content:space-between;
   width: 100%;
 `;
+
+const Icon = styled.div`
+  margin-right: 0.7rem;
+`;
+
 export default PostHeader;

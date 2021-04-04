@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import PostContents from '../components/PostContents';
 import PostHeader from '../components/PostHeader';
 import { Grid, Text, Image, Button, Wrapper } from '../elements';
+
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 const PostDetail = (props) => {
   return (
