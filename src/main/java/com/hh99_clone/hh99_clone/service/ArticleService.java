@@ -27,7 +27,6 @@ public class ArticleService {
     }
 
 
-
     // 아티클 작성
     @Transactional
     public Article createArticle(ArticleRequestDto articleRequestDto) {
