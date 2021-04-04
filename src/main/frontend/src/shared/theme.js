@@ -9,9 +9,10 @@ const theme = {
   main_white: '#fffcfc',
   main_bg_color: '#f7f8f9',
   velog_green: '#12b886',
-  post_gray: '#adb5bd',
+  gray: '#adb5bd',
   post_bg: '#f1f3f5',
-
+  black: '#343a40',
+  max_width: '768px',
   mobile: `(max-width: ${size.mobile})`,
   tablet: `(max-width: ${size.tablet})`,
   desktop: `(min-width: ${size.desktop})`,

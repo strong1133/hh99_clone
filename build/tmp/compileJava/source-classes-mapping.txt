@@ -2,17 +2,34 @@ com/hh99_clone/hh99_clone/dto/ArticleRequestDto.java
  com.hh99_clone.hh99_clone.dto.ArticleRequestDto
 com/hh99_clone/hh99_clone/config/WebConfig.java
  com.hh99_clone.hh99_clone.config.WebConfig
+<<<<<<< HEAD
 com/hh99_clone/hh99_clone/Hh99CloneApplication.java
  com.hh99_clone.hh99_clone.Hh99CloneApplication
+=======
+com/hh99_clone/hh99_clone/controller/ArticleRestController.java
+ com.hh99_clone.hh99_clone.controller.ArticleRestController
+>>>>>>> 69c7f9ebc2a374ff0128566d84cee847ab492a43
 com/hh99_clone/hh99_clone/repository/ArticleRepository.java
  com.hh99_clone.hh99_clone.repository.ArticleRepository
 com/hh99_clone/hh99_clone/domain/Timestamped.java
  com.hh99_clone.hh99_clone.domain.Timestamped
+<<<<<<< HEAD
+=======
+com/hh99_clone/hh99_clone/security/kakao/KakaoUserInfo.java
+ com.hh99_clone.hh99_clone.security.kakao.KakaoUserInfo
+>>>>>>> 69c7f9ebc2a374ff0128566d84cee847ab492a43
 com/hh99_clone/hh99_clone/service/ArticleService.java
  com.hh99_clone.hh99_clone.service.ArticleService
 com/hh99_clone/hh99_clone/dto/ArticleLikedDto.java
  com.hh99_clone.hh99_clone.dto.ArticleLikedDto
 com/hh99_clone/hh99_clone/domain/Article.java
  com.hh99_clone.hh99_clone.domain.Article
+<<<<<<< HEAD
 com/hh99_clone/hh99_clone/controller/ArticleRestController.java
  com.hh99_clone.hh99_clone.controller.ArticleRestController
+=======
+com/hh99_clone/hh99_clone/security/kakao/KakaoOAuth.java
+ com.hh99_clone.hh99_clone.security.kakao.KakaoOAuth
+com/hh99_clone/hh99_clone/Hh99CloneApplication.java
+ com.hh99_clone.hh99_clone.Hh99CloneApplication
+>>>>>>> 69c7f9ebc2a374ff0128566d84cee847ab492a43

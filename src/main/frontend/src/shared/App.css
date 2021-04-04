@@ -1,16 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Nanum+Gothic+Coding&family=Baloo+Paaji&family=Gothic+A1:wght@500&family=Do+Hyeon&family=Jua&family=Noto+Serif+KR:wght@400&family=Fredoka+One&display=swap');
-
-:root {
-  --roboto: 'Roboto', sans-serif;
-  --dohyeon: 'Do Hyeon', sans-serif;
-  --jua: 'Jua', sans-serif;
-  --noto: 'Noto Serif KR', serif;
-  --ballo: 'Baloo Paaji', cursive;
-  --nanum: 'Nanum Gothic Coding', monospace;
-
-  --main-color: rgb(255, 82, 82);
-}
-
 .App {
   text-align: center;
 }
