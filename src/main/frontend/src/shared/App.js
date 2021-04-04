@@ -10,35 +10,26 @@ import { Grid } from '../elements';
 import { Route } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 import { PostList, PostDetail } from '../pages';
+import Header from '../components/Header';
 import { history } from '../redux/configureStore';
 
 function App() {
   return (
-    <div className="App">
-      <CustomAxious></CustomAxious>
-
-      <AppWrap>
-        <Grid margin="auto">
-          {' '}
-          {/* TODO: delete */}
-          <ConnectedRouter history={history}>
-            <Route path="/" exact component={PostList} />
-            <Route path="/detail" exact component={PostDetail} />
-          </ConnectedRouter>
-        </Grid>
-      </AppWrap>
-    </div>
+    <React.Fragment>
+    <AppWrap>
+      <Header/>
+      <ConnectedRouter history={history}>
+        <Route path="/" exact component={PostList} />
+        <Route path="/detail" exact component={PostDetail} />
+      </ConnectedRouter>
+    </AppWrap>
+  </React.Fragment>
   );
 }
 
 const AppWrap = styled.div`
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background-color: ${(props) => props.theme.main_bg_color};
 `;
 

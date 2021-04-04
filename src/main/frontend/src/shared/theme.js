@@ -7,6 +7,7 @@ const size = {
 const theme = {
   main_color: 'rgb(255, 82, 82)',
   main_white: '#fffcfc',
+  main_black: '#343a40',
   main_bg_color: '#f7f8f9',
   velog_green: '#12b886',
   gray: '#adb5bd',
