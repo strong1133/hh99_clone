@@ -61,7 +61,7 @@ public class ArticleRestController {
         return articleService.addLiked(id, articleLikedDto);
     }
 
-    // 좋아요 카운트 감
+    // 좋아요 카운트 감소
     @PutMapping("/api/liked/sub/{id}")
     public Long subLiked(@PathVariable Long id, @RequestBody ArticleLikedDto articleLikedDto){
         return articleService.subLiked(id, articleLikedDto);
