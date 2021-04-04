@@ -1,6 +1,5 @@
-import styled from "styled-components";
-import React from "react";
-
+import styled from 'styled-components';
+import React from 'react';
 
 const Image = (props) => {
   const { shape, src, size, width, height } = props;
@@ -9,14 +8,14 @@ const Image = (props) => {
     src: src,
     size: size,
     width: width,
-    height: height,
+    height: height
   };
 
-  if (shape === "circle") {
+  if (shape === 'circle') {
     return <ImageCircle {...styles}></ImageCircle>;
   }
 
-  if (shape === "rectangle") {
+  if (shape === 'rectangle') {
     return (
       <AspectOutter>
         <AspectInner {...styles}></AspectInner>
@@ -32,16 +31,22 @@ const Image = (props) => {
 };
 
 Image.defaultProps = {
+<<<<<<< HEAD
   shape: "circle",
   src: "https://mean0images.s3.ap-northeast-2.amazonaws.com/4.jpeg",
   size: 24,
+=======
+  shape: 'circle',
+  src: 'https://mean0images.s3.ap-northeast-2.amazonaws.com/4.jpeg',
+  size: '30px'
+>>>>>>> 69c7f9ebc2a374ff0128566d84cee847ab492a43
 };
 
 const ImageDefault = styled.div`
-  --size: ${(props) => props.size}px;
+  --size: ${(props) => props.size};
   width: var(--size);
   height: var(--size);
-  background-image: url("${(props) => props.src}");
+  background-image: url('${(props) => props.src}');
   background-size: cover;
 `;
 
@@ -55,16 +60,16 @@ const AspectInner = styled.div`
   height: ${(props) => props.height};
   position: center;
   padding-top: 75%;
-  background-image: url("${(props) => props.src}");
+  background-image: url('${(props) => props.src}');
   background-size: cover;
 `;
 
 const ImageCircle = styled.div`
-  --size: ${(props) => props.size}px;
+  --size: ${(props) => props.size};
   width: var(--size);
   height: var(--size);
   border-radius: var(--size);
-  background-image: url("${(props) => props.src}");
+  background-image: url('${(props) => props.src}');
   background-size: cover;
   margin: 4px;
 `;

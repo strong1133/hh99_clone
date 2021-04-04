@@ -16,7 +16,8 @@ I.defaultProps = {
   color: 'white',
   size: '1em',
   _onClick: () => {},
-  border: '1px solid white'
+  border: '1px solid white',
+  radius: '5px'
 };
 
 const Ic = styled.span`
@@ -24,11 +25,12 @@ const Ic = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 5px;
+  border-radius: ${(props) => props.radius};
   margin: 2px;
   cursor: pointer;
   &:hover {
-    background-color: rgb(223, 223, 223, 0.5);
+    background-color: ${(props) =>
+      props.is_hover ? 'rgb(223, 223, 223, 0.5)' : ''};
   }
   & > * {
     color: ${(props) => props.color};

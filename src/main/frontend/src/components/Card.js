@@ -2,8 +2,10 @@
 import styled from "styled-components";
 import React, {useState, useEffect} from 'react';
 import axios from "axios";
+import {BrowserRouter as Router, Route} from "react-router-dom";
 
 import { Grid, Text, Image, Button } from "../elements";
+import {PostDetail} from "../pages";
 
 import Heart_Black from "../static/Heart_Black.png"
 
