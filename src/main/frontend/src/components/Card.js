@@ -5,6 +5,9 @@ import axios from "axios";
 
 import { Grid, Text, Image, Button } from "../elements";
 
+import Heart_Black from "../static/Heart_Black.png"
+
+
 const Card = (props) => {
   const [users, setUsers] = useState([]);
 
@@ -48,7 +51,7 @@ const Card = (props) => {
                   {user.author}
                 </Text>
               </Grid>
-              <Text size="8pt">하트 201 </Text>
+              <Grid is_flex width="auto"><img width="12px" src={Heart_Black} /><Text blod size="8pt" margin="0px 5px 0px 5px">201 </Text></Grid>
             </Grid>
           </Box3>
         </Box>
@@ -69,7 +72,7 @@ const Box = styled.div`
 `;
 
 const Box1 = styled.img`
-  width: 320px;
+  width: 100%;
   height: 167px;
   object-fit: cover;
   border-radius: 5px 5px 0 0;
@@ -77,7 +80,7 @@ const Box1 = styled.img`
 `;
 
 const Box2 = styled.div`
-  width: 320px;
+  width: 100%;
   height: 165px;
   border-radius: 5px;
   box-shadow: 0 4px 6px #eee;
@@ -86,7 +89,7 @@ const Box2 = styled.div`
 `;
 
 const Box3 = styled.div`
-  width: 320px;
+  width: 100%;
   height: 45px;
   border-radius: 0px 0px 5px 5px;
   box-shadow: 0 4px 6px #eee;
