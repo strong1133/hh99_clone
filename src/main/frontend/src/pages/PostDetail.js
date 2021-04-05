@@ -3,14 +3,15 @@ import styled from 'styled-components';
 import PostContents from '../components/PostContents';
 import PostHeader from '../components/PostHeader';
 import { Grid, Text, Image, Button, Wrapper } from '../elements';
-
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import Comment from '../components/Comment';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionCreators as postActions } from '../redux/modules/post';
+
 const PostDetail = (props) => {
   const dispatch = useDispatch();
   const postId = props.match.params.id;
+
   const detailPost = useSelector((state) => state.post.detailPost);
   const { author, image } = detailPost;
   useEffect(() => {
@@ -55,7 +56,7 @@ const PostDetail = (props) => {
           </NextPrev>
         </Wrapper>
       </Footer>
-      <Comment />
+      <Comment id={postId} />
     </Wrapper>
   );
 };

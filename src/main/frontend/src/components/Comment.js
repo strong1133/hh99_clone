@@ -4,12 +4,15 @@ import styled from 'styled-components';
 import { Image, Input, Text, Wrapper } from '../elements';
 import useInput from '../shared/useInput';
 import CommentItem from './CommentItem';
+import { actionCreators as commentActions } from '../redux/modules/comment';
+
 const Comment = (props) => {
   const [comment, onChagneComnent] = useInput('');
-  const postId = props.match.params.id;
+
+  const postId = props.id;
   const dispatch = useDispatch();
   useEffect(() => {
-    //dis
+    dispatch(commentActions.readComment(postId));
   }, []);
   const registComment = (e) => {
     console.log(comment);
@@ -51,7 +54,7 @@ const CommentWrite = styled.div`
   ${(props) => props.theme.max_width}
 
   align-items: flex-start;
-  //padding: 0 1rem;
+
   & * {
     margin: 0.5rem 0;
   }
