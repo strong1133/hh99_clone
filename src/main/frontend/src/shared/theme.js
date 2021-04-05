@@ -13,7 +13,7 @@ const theme = {
   gray: '#adb5bd',
   post_bg: '#f1f3f5',
   black: '#343a40',
-  max_width: '768px',
+  max_width: `max-width:768px`,
   mobile: `(max-width: ${size.mobile})`,
   tablet: `(max-width: ${size.tablet})`,
   desktop: `(min-width: ${size.desktop})`,

@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { ReactComponent as Ribbon } from '../static/ribbon.svg';
 import {
-  FaArrowLeft,
-  FaArrowRight,
   FaCaretDown,
   FaCaretUp,
   FaAngleLeft,
@@ -13,7 +11,22 @@ import {
 import { Wrapper } from '../elements/index';
 const PostProjectBox = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const list = [
+    'Security policy',
+    'DocType',
+    'LocalStorage',
+    ' cookie',
+    ' sessionStorage',
+    'Script',
+    'async',
+    'defer',
+    'svg, canvas의 차이',
+    '[Javascript]OOP vs FP',
+    'Stack vs Queue',
+    ' Hoisting',
+    'SPA, CSR, SSR',
+    'Event loop, call stack, task queue'
+  ];
   return (
     <Project>
       <Title>Project</Title>
@@ -23,21 +36,13 @@ const PostProjectBox = () => {
 
       <List is_open={isOpen}>
         <ol>
-          <li>
-            <a href="#">My trello - trello clone coding</a>
-          </li>
-          <li>
-            <a href="#">vanillaJS 도서검색창</a>
-          </li>
-          <li>
-            <a href="#">my-taste project</a>
-          </li>
-          <li>
-            <a href="#">뉴편함</a>
-          </li>
-          <li>
-            <a href="#">React-calendar</a>
-          </li>
+          {list.map((i, idx) => {
+            return (
+              <li key={idx}>
+                <a href="#">{i}</a>
+              </li>
+            );
+          })}
         </ol>
       </List>
       <Wrapper jc="space-between">
