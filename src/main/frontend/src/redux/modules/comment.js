@@ -19,7 +19,7 @@ const EDIT_COMMENT = 'EDIT_COMMENT';
 // action creators
 const setComment = createAction(SET_COMMENT, (comments) => ({ comments }));
 const addComment = createAction(ADD_COMMENT, (comment) => ({ comment }));
-const removeComment = createAction(REMOVE_COMMENT, (comment) => ({
+const removeComment = createAction(REMOVE_COMMENT, (commentId) => ({
   commentId
 }));
 const editComment = createAction(EDIT_COMMENT, (post) => ({ post }));
@@ -31,6 +31,7 @@ const editComment = createAction(EDIT_COMMENT, (post) => ({ post }));
 
 //thunk
 const readComment = (articleId) => {
+  console.log('readComment', articleId);
   return function (dispatch, getState, { history }) {
     axios.get(`/api/comments/${articleId}`).then((res) => {
       dispatch(setComment(res.data));
