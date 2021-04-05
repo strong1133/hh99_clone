@@ -13,14 +13,15 @@ const theme = {
   gray: '#adb5bd',
   post_bg: '#f1f3f5',
   black: '#343a40',
-  max_width: `max-width:768px`,
+
   mobile: `(max-width: ${size.mobile})`,
   tablet: `(max-width: ${size.tablet})`,
   desktop: `(min-width: ${size.desktop})`,
   flex_column:
     'display: flex; flex-direction:column; align-items: center; justify-content: space-between; ',
   flex_row:
-    'display: flex; align-items: center; justify-content: space-between;'
+    'display: flex; align-items: center; justify-content: space-between;',
+  default_width: 'width:98vw; max-width:768px'
 };
 
 /*
