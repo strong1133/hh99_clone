@@ -25,12 +25,9 @@ const addPostFB = (contents, phraseList) => {
 
 const fetchPostById = (postId) => {
   return function (dispatch, getState, { history }) {
-    axios
-      .get('http://localhost:8080/api/articles')
-      .then((res) => console.log(res));
-    /* axios.get(`/api/post/${postId}`).then((res) => {
+    axios.get(`/api/post/${postId}`).then((res) => {
       console.log(res);
-    }); */
+    });
   };
 };
 
