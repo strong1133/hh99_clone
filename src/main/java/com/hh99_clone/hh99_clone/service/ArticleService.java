@@ -32,7 +32,6 @@ public class ArticleService {
     public Article createArticle(ArticleRequestDto articleRequestDto) {
         Article article = new Article(articleRequestDto);
         articleRepository.save(article);
-
         return article;
     }
 
@@ -73,7 +72,6 @@ public class ArticleService {
         articleLikedDto.setLiked(new_liked);
         article.updateLiked(articleLikedDto);
         return article.getId();
-
     }
 
     //싫어요

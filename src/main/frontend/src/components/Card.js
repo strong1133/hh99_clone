@@ -28,7 +28,7 @@ const Card = (props) => {
           <Box1
             src={user.image}
             onClick={() => {
-              history.push("/detail");
+              history.push(`/post/${user.id}`);
             }}
           />
           <Box2>
