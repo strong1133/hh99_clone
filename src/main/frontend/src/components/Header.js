@@ -34,7 +34,7 @@ const Header = (props) => {
 
 const HeaderContainer = styled.div`
 @media (max-width: 768px) {
-    width: 650px;
+    width: 70vw;
   }
   @media all and (min-width: 768px) and (max-width: 1024px) {
     width: 1024px;

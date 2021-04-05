@@ -43,7 +43,7 @@ public class  Article extends Timestamped {
         this.contents = articleRequestDto.getContents();
         this.image = articleRequestDto.getImage();
         this.author = articleRequestDto.getAuthor();
-        this.liked = articleRequestDto.getLiked();
+        this.liked = 0;
     }
 
     // Article 업데이트

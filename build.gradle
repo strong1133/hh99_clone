@@ -28,9 +28,8 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     // Json
     implementation group: 'org.json', name: 'json', version: '20160810'
-//    // 스프링 시큐리티
+    // 스프링 시큐리티
 //    implementation 'org.springframework.boot:spring-boot-starter-security'
-
 
 }
 
@@ -73,7 +72,7 @@ task installReact(type: Exec) {
         commandLine 'npm', 'install'
     }
 }
-
+//
 
 test {
     useJUnitPlatform()

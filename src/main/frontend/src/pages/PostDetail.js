@@ -46,10 +46,10 @@ const PostDetail = (props) => {
 };
 
 const Footer = styled.div`
+  ${(props) => props.theme.default_width};
   ${(props) => props.theme.flex_column}
-  width: 100%;
+
   padding: 0 1rem;
-  max-width: ${(props) => props.theme.max_width};
 `;
 const UserInfo = styled.div`
   width: 100%;
