@@ -12,7 +12,7 @@ const Header = (props) => {
       <Grid>
       <Grid is_flex margin="16px">
           <HeaderText bold size="21pt">
-            Velog
+            velog
           </HeaderText>
         
         <Grid is_flex width="auto" margin="16px">
@@ -32,8 +32,8 @@ const Header = (props) => {
 };
 
 const HeaderContainer = styled.div`
-  width:70vw;
-  height: 64px;
+  width:90vw;
+  height: 48px;
   margin: auto;
   display: flex;
   /* @media (max-width: 1376px){
@@ -65,8 +65,9 @@ const HeaderButton = styled.button`
   background-color:#ffffff;
   border: 1.5px solid;
   border-color: ${props=>props.theme.main_black};
+  outline: none;
   &:hover {
-    background-color: ${props=>props.theme.main_black, 0.9};
+    background-color: ${props=>props.theme.main_black};
     color: ${props=>props.theme.main_white};
   }
 `;
