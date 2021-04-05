@@ -29,9 +29,10 @@ dependencies {
     // Json
     implementation group: 'org.json', name: 'json', version: '20160810'
     // 스프링 시큐리티
-//    implementation 'org.springframework.boot:spring-boot-starter-security'
+    // implementation 'org.springframework.boot:spring-boot-starter-security'
 
 }
+
 
 
 def webappDir = "$projectDir/src/main/frontend"
@@ -72,7 +73,9 @@ task installReact(type: Exec) {
         commandLine 'npm', 'install'
     }
 }
-//
+////
+
+
 
 test {
     useJUnitPlatform()

@@ -36,5 +36,15 @@ const Background = styled.div`
   height: 100vh;
   background-color: ${(props) => props.theme.main_bg_color};
 `;
+const AppWrap = styled.div`
+  position:absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: ${props=>props.theme.main_bg_color};
+`;
 
 export default App;

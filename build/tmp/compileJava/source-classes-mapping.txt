@@ -18,8 +18,8 @@ com/hh99_clone/hh99_clone/service/ArticleService.java
  com.hh99_clone.hh99_clone.service.ArticleService
 com/hh99_clone/hh99_clone/domain/Article.java
  com.hh99_clone.hh99_clone.domain.Article
-com/hh99_clone/hh99_clone/service/CommentService.java
- com.hh99_clone.hh99_clone.service.CommentService
+com/hh99_clone/hh99_clone/util/CommentSpecs.java
+ com.hh99_clone.hh99_clone.util.CommentSpecs
 com/hh99_clone/hh99_clone/domain/Comment.java
  com.hh99_clone.hh99_clone.domain.Comment
 com/hh99_clone/hh99_clone/dto/CommentRequestDto.java
@@ -28,7 +28,7 @@ com/hh99_clone/hh99_clone/repository/CommentRepository.java
  com.hh99_clone.hh99_clone.repository.CommentRepository
 com/hh99_clone/hh99_clone/controller/ArticleRestController.java
  com.hh99_clone.hh99_clone.controller.ArticleRestController
-com/hh99_clone/hh99_clone/util/CommentSpecs.java
- com.hh99_clone.hh99_clone.util.CommentSpecs
 com/hh99_clone/hh99_clone/controller/CommentController.java
  com.hh99_clone.hh99_clone.controller.CommentController
+com/hh99_clone/hh99_clone/service/CommentService.java
+ com.hh99_clone.hh99_clone.service.CommentService

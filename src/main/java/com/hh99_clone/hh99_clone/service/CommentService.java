@@ -29,6 +29,7 @@ public class CommentService {
         return commentRepository.findAll();
     }
 
+    // 특정 게시물 댓글 조회
     @Transactional
     public List<Comment> getCommentForArticleId(Long articleId){
         return commentRepository.findAll(CommentSpecs.withArticle_id(articleId));
