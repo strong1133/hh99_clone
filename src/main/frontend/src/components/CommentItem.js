@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Image, Text, Wrapper } from '../elements';
 import { AiOutlinePlusSquare, AiOutlineMinusSquare } from 'react-icons/ai';
-const CommentItem = () => {
+const CommentItem = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <Container>

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Image, Input, Text, Wrapper } from '../elements';
 import useInput from '../shared/useInput';
@@ -8,6 +8,7 @@ import { actionCreators as commentActions } from '../redux/modules/comment';
 
 const Comment = (props) => {
   const [comment, onChagneComnent] = useInput('');
+  const commentList = useSelector((state) => state.comment.commentList);
 
   const postId = props.id;
   const dispatch = useDispatch();

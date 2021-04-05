@@ -31,16 +31,15 @@ const editComment = createAction(EDIT_COMMENT, (post) => ({ post }));
 
 //thunk
 const readComment = (articleId) => {
-  console.log('readComment', articleId);
   return function (dispatch, getState, { history }) {
     axios.get(`/api/comments/${articleId}`).then((res) => {
+      console.log(res.data);
       dispatch(setComment(res.data));
     });
   };
 };
 
 const createComment = (comment) => {
-  console.log(comment);
   return function (dispatch, getState, { history }) {
     axios.post(`/api/comments`, comment).then((res) => {
       dispatch(addComment(res.data));
@@ -69,7 +68,8 @@ export default handleActions(
   {
     [SET_COMMENT]: (state, action) =>
       produce(state, (draft) => {
-        draft.commentList = action.payload.comment;
+        console.log(action);
+        draft.commentList = action.payload.comments;
       }),
     [ADD_COMMENT]: (state, action) =>
       produce(state, (draft) => {
