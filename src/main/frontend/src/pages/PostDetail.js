@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import PostContents from '../components/PostContents';
 import PostHeader from '../components/PostHeader';
@@ -6,7 +6,16 @@ import { Grid, Text, Image, Button, Wrapper } from '../elements';
 
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import Comment from '../components/Comment';
+import { useDispatch } from 'react-redux';
+import { actionCreators as postActions } from '../redux/modules/post';
 const PostDetail = (props) => {
+  const dispatch = useDispatch();
+  const postId = props.match.params.id;
+
+  useEffect(() => {
+    dispatch(postActions.fetchPostById(postId));
+  }, []);
+
   return (
     <Wrapper is_column bg="white">
       <PostHeader />

@@ -1,5 +1,8 @@
 import { createAction, handleActions } from 'redux-actions';
 import { produce } from 'immer';
+import axios from 'axios';
+
+axios.defaults.baseURL = 'http://localhost:8080';
 /* import 'moment';
 import moment from 'moment'; */
 
@@ -16,9 +19,19 @@ const ADD_POST = 'ADD_POST';
 const addPost = createAction(ADD_POST, (post) => ({ post }));
 
 // middleware actions
-
 const addPostFB = (contents, phraseList) => {
   return function (dispatch, getState, { history }) {};
+};
+
+const fetchPostById = (postId) => {
+  return function (dispatch, getState, { history }) {
+    axios
+      .get('http://localhost:8080/api/articles')
+      .then((res) => console.log(res));
+    /* axios.get(`/api/post/${postId}`).then((res) => {
+      console.log(res);
+    }); */
+  };
 };
 
 // reducer
@@ -33,7 +46,8 @@ export default handleActions(
 );
 // action creator export
 const actionCreators = {
-  addPost
+  addPost,
+  fetchPostById
 };
 
 export { actionCreators };
