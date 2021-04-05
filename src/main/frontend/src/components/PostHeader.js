@@ -2,35 +2,42 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Text, Wrapper } from '../elements';
 import { ReactComponent as Heart } from '../static/heart.svg';
-
-import I from '../elements/I';
+import moment from 'moment';
+import 'moment/locale/ko';
 import PostProjectBox from './PostProjectBox';
+import { useSelector } from 'react-redux';
 const PostHeader = () => {
   const [isLike, setIsLike] = useState(false);
-
+  const detailPost = useSelector((state) => state.post.detailPost);
+  const { createdAt, author, modifiedAt, image, liked, title } = detailPost;
   const toggleLike = () => {
     setIsLike(!isLike);
   };
+
+  console.log();
   return (
     <Header bg="white" is_column ai="flex-start">
-      <Title>웹 개발 작업을 더 쉽고 효과적으로 만들어주는 유용한 도구들!</Title>
+      <Title>{title}</Title>
 
       <Infomation jc="space-between">
         <span>
-          <b>openhub</b> · 2021년 3월 13일{' '}
+          <b>{author}</b> ·{' '}
+          {modifiedAt
+            ? moment(modifiedAt).format('YYYY년 MM월 DD일')
+            : moment(createdAt).format('YYYY년 MM월 DD일')}
         </span>
         <Like is_like={isLike} onClick={toggleLike}>
           <Icon>
             <Heart fill="red" />
           </Icon>
           <Text color={isLike ? 'white' : '#adb5bd'} bold size="1em">
-            113
+            {liked}
           </Text>
         </Like>
       </Infomation>
 
       <Wrapper jc="flex-start">
-        <HashTag> 해시태그 컴포넌트</HashTag>
+        <HashTag> 해시태그</HashTag>
       </Wrapper>
       <PostProjectBox />
     </Header>

@@ -1,15 +1,21 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { Image, Input, Text, Wrapper } from '../elements';
 import useInput from '../shared/useInput';
 import CommentItem from './CommentItem';
 const Comment = (props) => {
   const [comment, onChagneComnent] = useInput('');
-  const textRef = useRef();
+  const postId = props.match.params.id;
+  const dispatch = useDispatch();
+  useEffect(() => {
+    //dis
+  }, []);
   const registComment = (e) => {
     console.log(comment);
-    // axios
+    // axios username, contents, articleId
   };
+
   const resize = (e) => {
     console.log(e.target.style.height);
   };
@@ -18,7 +24,6 @@ const Comment = (props) => {
       <CommentWrite>
         <h3>6개의 댓글</h3>
         <textarea
-          ref={textRef}
           onKeyDown={resize}
           placeholder="댓글을 작성하세요"
           value={comment}
