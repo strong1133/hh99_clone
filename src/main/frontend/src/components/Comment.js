@@ -41,12 +41,12 @@ const CommentContainer = styled.div`
 `;
 
 const CommentWrite = styled.div`
-  border: 1px solid black;
   ${(props) => props.theme.flex_column};
   ${(props) => props.theme.default_width};
   ${(props) => props.theme.max_width}
-  align-items: flex-start;
 
+  align-items: flex-start;
+  //padding: 0 1rem;
   & * {
     margin: 0.5rem 0;
   }

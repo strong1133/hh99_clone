@@ -53,12 +53,12 @@ const PostProjectBox = () => {
         >
           {isOpen ? (
             <span>
-              <FaCaretDown style={{ marginRight: '0.25rem' }} />
+              <FaCaretUp style={{ marginRight: '0.25rem' }} />
               숨기기
             </span>
           ) : (
             <span>
-              <FaCaretUp style={{ marginRight: '0.25rem' }} />
+              <FaCaretDown style={{ marginRight: '0.25rem' }} />
               목록 보기
             </span>
           )}
