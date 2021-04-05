@@ -16,14 +16,14 @@ import { history } from '../redux/configureStore';
 function App() {
   return (
     <React.Fragment>
-    <AppWrap>
-      <Header/>
-      <ConnectedRouter history={history}>
-        <Route path="/" exact component={PostList} />
-        <Route path="/detail" exact component={PostDetail} />
-      </ConnectedRouter>
-    </AppWrap>
-  </React.Fragment>
+      <AppWrap>
+        <Header />
+        <ConnectedRouter history={history}>
+          <Route path="/" exact component={PostList} />
+          <Route path="/post/:id" exact component={PostDetail} />
+        </ConnectedRouter>
+      </AppWrap>
+    </React.Fragment>
   );
 }
 
