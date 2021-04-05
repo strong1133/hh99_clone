@@ -5,6 +5,7 @@ import PostHeader from '../components/PostHeader';
 import { Grid, Text, Image, Button, Wrapper } from '../elements';
 
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import Comment from '../components/Comment';
 const PostDetail = (props) => {
   return (
     <Wrapper is_column bg="white">
@@ -39,6 +40,7 @@ const PostDetail = (props) => {
           </NextPrev>
         </Wrapper>
       </Footer>
+      <Comment />
     </Wrapper>
   );
 };

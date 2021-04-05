@@ -36,9 +36,9 @@ const PostProjectBox = () => {
 
       <List is_open={isOpen}>
         <ol>
-          {list.map((i) => {
+          {list.map((i, idx) => {
             return (
-              <li>
+              <li key={idx}>
                 <a href="#">{i}</a>
               </li>
             );
