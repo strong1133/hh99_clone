@@ -24,6 +24,12 @@ public class CommentController {
         return commentService.getComments();
     }
 
+    // 게시글 아이디에 해당하는 댓글 조회
+    @GetMapping("/api/comments/{articleId}")
+    public List<Comment> getCommentForArticleId(@PathVariable Long articleId){
+        return commentService.getCommentForArticleId(articleId);
+    }
+
     // 댓글 작성
     @PostMapping ("/api/comments")
     public Comment createComment(@RequestBody CommentRequestDto commentRequestDto){

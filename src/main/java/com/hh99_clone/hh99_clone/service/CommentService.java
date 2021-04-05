@@ -3,8 +3,11 @@ package com.hh99_clone.hh99_clone.service;
 import com.hh99_clone.hh99_clone.domain.Comment;
 import com.hh99_clone.hh99_clone.dto.CommentRequestDto;
 import com.hh99_clone.hh99_clone.repository.CommentRepository;
+import com.hh99_clone.hh99_clone.util.CommentSpecs;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -24,6 +27,11 @@ public class CommentService {
     @Transactional
     public List<Comment> getComments() {
         return commentRepository.findAll();
+    }
+
+    @Transactional
+    public List<Comment> getCommentForArticleId(Long articleId){
+        return commentRepository.findAll(CommentSpecs.withArticle_id(articleId));
     }
 
     // 댓글 작성

@@ -7,4 +7,4 @@ public class CommentRequestDto {
     private String username;
     private String contents;
     private Long articleId;
-}
+} 
