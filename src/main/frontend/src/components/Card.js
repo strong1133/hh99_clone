@@ -28,7 +28,7 @@ const Card = (props) => {
           <Box1
             src={user.image}
             onClick={() => {
-              history.push("/detail");
+              history.push("/article");
             }}
           />
           <Box2>
@@ -69,8 +69,8 @@ const Card = (props) => {
 };
 
 const CardContainer = styled.div`
-  width: 290px;
-  max-width: 330px;
+  width: 320px;
+  max-width: 335px;
   min-height: 0;
   overflow: hidden;
   padding-bottom: 5%;
@@ -100,6 +100,8 @@ const Box2 = styled.div`
   width: 100%;
   height: 180px;
   overflow: hidden;
+  padding: 10px;
+  margin:auto;
   background-color: ${(props) => props.theme.main_white};
   background-size: cover;
 `;

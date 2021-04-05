@@ -9,8 +9,9 @@ const Header = (props) => {
 
     <React.Fragment>
       <HeaderContainer>
+      
       <Grid>
-      <Grid is_flex margin="16px">
+      <Grid is_flex padding="16px">
           <HeaderText bold size="21pt">
             velog
           </HeaderText>
@@ -32,17 +33,26 @@ const Header = (props) => {
 };
 
 const HeaderContainer = styled.div`
-  width:90vw;
-  height: 48px;
-  margin: auto;
-  display: flex;
-  /* @media (max-width: 1376px){
+@media (max-width: 768px) {
+    width: 650px;
+  }
+  @media all and (min-width: 768px) and (max-width: 1024px) {
     width: 1024px;
-  }@media (max-width: 1024px){
-    width: 768px;
-  } @media (max-width: 768px){
-    width: 100%;
+  }
+/* @media (max-width: 768px) {
+    width: 95vw;
+  }
+  @media all and (min-width: 768px) and (max-width: 1024px) {
+    width: 95w;
   } */
+  width:100vw;
+  max-width: 1444px;
+  margin: auto;
+  height: 48px;
+  padding: 16px;
+  display: flex;
+ 
+  background-color: ${(props) => props.theme.main_bg_color};
 `;
 
 const HeaderText = styled.text`
@@ -50,19 +60,17 @@ const HeaderText = styled.text`
   font-size: 18pt;
 `;
 
-
-
 const HeaderButton = styled.button`
   min-width: "150px";
-  height: 35px;
-  border-radius: 35px;
+  height: 33px;
+  border-radius: 33px;
   margin: 0px 10px 0px 15px;
   padding: 1px 16px;
   box-sizing: border-box;
   font-size: 16px;
   font-weight: bold;
   color: ${props=>props.theme.main_black};
-  background-color:#ffffff;
+  background-color: #ffffff;
   border: 1.5px solid;
   border-color: ${props=>props.theme.main_black};
   outline: none;
@@ -72,14 +80,12 @@ const HeaderButton = styled.button`
   }
 `;
 
-
 const ProfileImg = styled.div`
-  width: 38px;
-  height: 38px;
-  border-radius: 40px;
+  width: 36px;
+  height: 36px;
+  border-radius: 30px;
   background-image: url("${(props) => props.src}");
   background-size: cover;
-  margin: 4px;
 `;
 
 export default Header;
