@@ -6,12 +6,13 @@ import { Grid, Text, Image, Button, Wrapper } from '../elements';
 
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import Comment from '../components/Comment';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { actionCreators as postActions } from '../redux/modules/post';
 const PostDetail = (props) => {
   const dispatch = useDispatch();
   const postId = props.match.params.id;
-
+  const detailPost = useSelector((state) => state.post.detailPost);
+  const { author, image } = detailPost;
   useEffect(() => {
     dispatch(postActions.fetchPostById(postId));
   }, []);
@@ -22,10 +23,15 @@ const PostDetail = (props) => {
       <PostContents />
       <Footer>
         <UserInfo>
-          <Image shape="circle" size="5rem" margin="0 4px 0 0"></Image>
+          <Image
+            src={image}
+            shape="circle"
+            size="5rem"
+            margin="0 4px 0 0"
+          ></Image>
           <div>
-            <b>Hello</b>
-            <Text>world react</Text>
+            <b>{author}</b>
+            <Text>User 소개글같은거</Text>
           </div>
         </UserInfo>
         <Wrapper width="100%" jc="space-between">

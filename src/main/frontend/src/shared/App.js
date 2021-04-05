@@ -20,7 +20,7 @@ function App() {
         <Header />
         <ConnectedRouter history={history}>
           <Route path="/" exact component={PostList} />
-          <Route path="/post/:id" exact component={PostDetail} />
+          <Route path="/article/:id" exact component={PostDetail} />
         </ConnectedRouter>
       </AppWrap>
     </React.Fragment>
