@@ -50,7 +50,7 @@ public class ArticleRestController {
     }
 
     // 특정 게시글 조회
-    @GetMapping("api/detail/{id}")
+    @GetMapping("/api/post/{id}")
     public Article getDetail(@PathVariable Long id){
         return articleService.getDetail(id);
     }
