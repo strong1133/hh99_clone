@@ -62,6 +62,7 @@ const Box = styled.div`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   margin: ${(props) => props.margin};
+  align-items: center;
 `;
 /* @media (max-width: 1376px){
     width: 1024px;
