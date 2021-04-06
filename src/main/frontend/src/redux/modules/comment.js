@@ -22,7 +22,10 @@ const addComment = createAction(ADD_COMMENT, (comment) => ({ comment }));
 const removeComment = createAction(REMOVE_COMMENT, (commentId) => ({
   commentId
 }));
-const editComment = createAction(EDIT_COMMENT, (post) => ({ post }));
+const editComment = createAction(EDIT_COMMENT, (commentId, comment) => ({
+  commentId,
+  comment
+}));
 
 //게시글 아이디에 해당하는 댓글 조회  "GET"
 // 댓글 작성  "POST"  /api/comments
@@ -31,7 +34,6 @@ const editComment = createAction(EDIT_COMMENT, (post) => ({ post }));
 
 //thunk
 const readComment = (articleId) => {
-  console.log('readComment', articleId);
   return function (dispatch, getState, { history }) {
     axios.get(`/api/comments/${articleId}`).then((res) => {
       dispatch(setComment(res.data));
@@ -40,27 +42,46 @@ const readComment = (articleId) => {
 };
 
 const createComment = (comment) => {
-  console.log(comment);
   return function (dispatch, getState, { history }) {
-    axios.post(`/api/comments`, comment).then((res) => {
-      dispatch(addComment(res.data));
-    });
+    axios
+      .post(`/api/comments`, comment)
+      .then((res) => {
+        dispatch(addComment(res.data));
+      })
+      .catch((e) => {
+        console.error(e);
+        alert('게시글을 등록하지 못했습니다');
+      });
   };
 };
 
 const updateComment = (id, comment) => {
+  console.log('updateComment', id, comment);
   return function (dispatch, getState, { history }) {
-    axios.put(`/api/comments/${id}`, comment).then((res) => {
-      dispatch(editComment(res.data));
-    });
+    axios
+      .put(`/api/comments/${id}`, { contents: comment })
+      .then((res) => {
+        dispatch(editComment(id, comment));
+      })
+      .catch((e) => {
+        console.error(e);
+        alert('게시글을 수정하지 못했습니다');
+      });
   };
 };
 
 const deleteComment = (id) => {
+  console.log('delete', id);
   return function (dispatch, getState, { history }) {
-    axios.delete(`/api/comments/${id}`).then((res) => {
-      dispatch(removeComment(res.data));
-    });
+    axios
+      .delete(`/api/comments/${id}`)
+      .then((res) => {
+        dispatch(removeComment(res.data));
+      })
+      .catch((e) => {
+        console.error(e);
+        alert('게시글을 삭제하지 못했습니다');
+      });
   };
 };
 
@@ -69,7 +90,8 @@ export default handleActions(
   {
     [SET_COMMENT]: (state, action) =>
       produce(state, (draft) => {
-        draft.commentList = action.payload.comment;
+        console.log(action);
+        draft.commentList = action.payload.comments;
       }),
     [ADD_COMMENT]: (state, action) =>
       produce(state, (draft) => {
@@ -77,13 +99,23 @@ export default handleActions(
       }),
     [REMOVE_COMMENT]: (state, action) =>
       produce(state, (draft) => {
-        draft.detailPost = action.payload.post;
+        const id = action.payload.commentId;
+        draft.commentList = draft.commentList.fillter((c) => {
+          return c.id !== id;
+        });
+
         //draft.list.unshift(action.payload.post);
       }),
     [EDIT_COMMENT]: (state, action) =>
       produce(state, (draft) => {
-        draft.detailPost = action.payload.post;
-        //draft.list.unshift(action.payload.post);
+        let idx = draft.commentList.findIndex(
+          (c) => c.id === action.payload.commentId
+        );
+
+        draft.commentList[idx] = {
+          ...draft.commentList[idx],
+          ...action.payload.comment
+        };
       })
   },
   initialState
