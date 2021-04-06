@@ -17,11 +17,12 @@ function App() {
   return (
     <React.Fragment>
       <Background>
-          <Header></Header>
-          <ConnectedRouter history={history}>
-            <Route path="/" exact component={PostList} />
-            <Route path="/article" exact component={PostDetail} />
-          </ConnectedRouter>
+        <Header></Header>
+        <ConnectedRouter history={history}>
+          <Route path="/" exact component={PostList} />
+          <Route path="/article/:id" exact component={PostDetail} />
+        </ConnectedRouter>
+        <Header />
       </Background>
     </React.Fragment>
   );

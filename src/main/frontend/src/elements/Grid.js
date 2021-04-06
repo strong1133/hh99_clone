@@ -43,6 +43,10 @@ Grid.defaultProps = {
   bg: false,
   center: false,
   left: false,
+<<<<<<< HEAD
+=======
+  align_items_center: false,
+>>>>>>> 066cf937b2fbe5ab8a951b7c3e63f55f94fb0832
   _onClick: () => {}
 };
 

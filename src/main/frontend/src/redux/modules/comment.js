@@ -55,13 +55,12 @@ const createComment = (comment) => {
   };
 };
 
-const updateComment = (id, comment) => {
-  console.log('updateComment', id, comment);
+const updateComment = (id, data) => {
   return function (dispatch, getState, { history }) {
     axios
-      .put(`/api/comments/${id}`, { contents: comment })
+      .put(`/api/comments/${id}`, data)
       .then((res) => {
-        dispatch(editComment(id, comment));
+        dispatch(editComment(id, res.data));
       })
       .catch((e) => {
         console.error(e);
@@ -79,7 +78,6 @@ const deleteComment = (id) => {
         dispatch(removeComment(res.data));
       })
       .catch((e) => {
-        console.error(e);
         alert('게시글을 삭제하지 못했습니다');
       });
   };
@@ -90,7 +88,6 @@ export default handleActions(
   {
     [SET_COMMENT]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action);
         draft.commentList = action.payload.comments;
       }),
     [ADD_COMMENT]: (state, action) =>
@@ -100,20 +97,18 @@ export default handleActions(
     [REMOVE_COMMENT]: (state, action) =>
       produce(state, (draft) => {
         const id = action.payload.commentId;
-        draft.commentList = draft.commentList.fillter((c) => {
+        draft.commentList = draft.commentList.filter((c) => {
           return c.id !== id;
         });
-
-        //draft.list.unshift(action.payload.post);
       }),
     [EDIT_COMMENT]: (state, action) =>
       produce(state, (draft) => {
         let idx = draft.commentList.findIndex(
           (c) => c.id === action.payload.commentId
         );
+        console.log(action.payload.comment);
 
         draft.commentList[idx] = {
-          ...draft.commentList[idx],
           ...action.payload.comment
         };
       })
