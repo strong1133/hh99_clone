@@ -38,7 +38,6 @@ const PostHeader = () => {
       <Wrapper jc="flex-start">
         <HashTag> 해시태그</HashTag>
       </Wrapper>
-      <PostProjectBox />
     </Header>
   );
 };
@@ -51,6 +50,14 @@ const Header = styled.div`
 `;
 const Title = styled.h1`
   text-align: left;
+  font-size: 3rem;
+  line-height: 1.5;
+  letter-spacing: -0.004em;
+  margin-top: 0px;
+  font-weight: 800;
+  color: rgb(52, 58, 64);
+  margin-bottom: 2rem;
+  word-break: keep-all;
 `;
 
 const Like = styled.div`

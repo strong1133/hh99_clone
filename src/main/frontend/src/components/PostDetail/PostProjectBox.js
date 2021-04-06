@@ -29,10 +29,10 @@ const PostProjectBox = () => {
   ];
   return (
     <Project>
-      <Title>Project</Title>
       <Icon>
         <Ribbon />
       </Icon>
+      <Title>Project</Title>
 
       <List is_open={isOpen}>
         <ol>
@@ -78,13 +78,14 @@ const PostProjectBox = () => {
 };
 
 const Project = styled.div`
+  margin-top: 2rem;
+  padding: 2rem 1.5rem;
   text-align: left;
   margin-top: 2rem;
-  padding: 1rem;
   background: rgb(248, 249, 250);
   border-radius: 8px;
   box-shadow: rgb(0 0 0 / 6%) 0px 0px 4px 0px;
-  position: relative;
+  ${(props) => props.theme.default_width};
 
   & ol {
     padding: 0;
@@ -124,8 +125,10 @@ const Project = styled.div`
 `;
 
 const Title = styled.h2`
-  font-size: 1.125rem;
   font-weight: 700;
+  font-weight: bold;
+  padding-right: 2rem;
+  font-size: 1.5rem;
 `;
 
 const List = styled.div`
@@ -133,9 +136,9 @@ const List = styled.div`
 `;
 
 const Icon = styled.div`
-  position: absolute;
+  position: relative;
   top: 0;
-  right: 0;
+  right: -2px;
   margin-right: 1rem;
 `;
 

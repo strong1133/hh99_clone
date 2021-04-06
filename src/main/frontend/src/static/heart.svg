@@ -4,7 +4,7 @@ width='0.8rem'
 heigth='0.8rem'
 
 >
-<style>.cls-1{fill:red;}</style>
+<style><!-- .cls-1{fill:red;} --></style>
 <defs></defs>
 
 <g id="레이어_2" data-name="레이어 2">
