@@ -35,10 +35,12 @@ CommentWrite.defaultProps = {
 };
 
 const CommentInput = styled.div`
+  box-sizing: border-box;
+
   ${(props) => props.theme.flex_column};
   ${(props) => props.theme.default_width};
   ${(props) => props.theme.max_width}
-  width:100%;
+
   align-items: flex-start;
 
   & div.button-wrapper {

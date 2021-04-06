@@ -83,10 +83,10 @@ const CommentItem = (props) => {
           <InputWrapper>
             <CommentWrite
               type="3"
-              value={value}
-              _onChange={onChangeValue}
               _onCancle={() => setIsOpenEdit(false)}
-              _onSubmit={editComment}
+              _onSubmit={() => {
+                alert('아직 지원하지 않아요 :)');
+              }}
             />
           </InputWrapper>
         )}
@@ -140,8 +140,8 @@ const Contents = styled.div`
 `;
 
 const ReplyWrapper = styled.div`
+  box-sizing: border-box;
   ${(props) => props.theme.max_width};
-  border: 1px solid pink;
   padding: 0 0.4rem;
   cursor: pointer;
   ${(props) => props.theme.flex_column};
@@ -160,19 +160,17 @@ const ReplyWrapper = styled.div`
   }
 `;
 
-const ReplyHeader = styled.div`
-  background-color: yellow;
-`;
+const ReplyHeader = styled.div``;
 
 const InputWrapper = styled.div`
-  border: 1px solid;
   box-sizing: border-box;
-  padding: 1rem;
-  background-color: rgba(0, 0, 0, 0.016);
+  border: 1px solid rgba(0, 0, 0, 0.02);
+  background-color: rgba(0, 0, 0, 0.016); //TODO :box-sizing
   padding: 1.5rem;
   border-radius: 4px;
   margin-top: 1.3125rem;
-  border: 1px solid black;
   width: 100%;
+  ${(props) => props.theme.max_width};
+  ${(props) => props.theme.flex_column}
 `;
 export default CommentItem;
