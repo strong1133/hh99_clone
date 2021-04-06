@@ -15,20 +15,24 @@ const Comment = (props) => {
   useEffect(() => {
     dispatch(commentActions.readComment(postId));
   }, []);
+
   const registComment = (e) => {
-    console.log(comment);
-    // axios username, contents, articleId
+    const data = {
+      username: '으잉?',
+      contents: comment,
+      articleId: postId
+    };
+    dispatch(commentActions.createComment(data));
   };
 
-  const resize = (e) => {
+  /*   const resize = (e) => {
     console.log(e.target.style.height);
-  };
+  }; */
   return (
     <CommentContainer>
       <CommentWrite>
-        <h3>6개의 댓글</h3>
+        <h3>{commentList.length}개의 댓글</h3>
         <textarea
-          onKeyDown={resize}
           placeholder="댓글을 작성하세요"
           value={comment}
           onChange={onChagneComnent}
@@ -38,7 +42,9 @@ const Comment = (props) => {
         </div>
       </CommentWrite>
       <CommnetList>
-        <CommentItem />
+        {commentList.map((c) => {
+          return <CommentItem key={c.id} {...c} />;
+        })}
       </CommnetList>
     </CommentContainer>
   );
@@ -67,6 +73,7 @@ const CommentWrite = styled.div`
     justify-content: flex-end;
 
     & button {
+      cursor: pointer;
       color: white;
       background-color: ${(props) => props.theme.velog_green};
       border: none;

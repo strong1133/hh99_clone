@@ -2,27 +2,42 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Image, Text, Wrapper } from '../elements';
 import { AiOutlinePlusSquare, AiOutlineMinusSquare } from 'react-icons/ai';
+import moment from 'moment';
+import { useDispatch } from 'react-redux';
+import { actionCreators as commentActions } from '../redux/modules/comment';
+
 const CommentItem = (props) => {
+  const dispatch = useDispatch();
+  const { id, username, contents, createdAt, modifiedAt, aricleId } = props;
   const [isOpen, setIsOpen] = useState(false);
+  const editComment = () => {
+    dispatch(commentActions.updateComment(id, '하하호호'));
+  };
+
+  const deleteComment = () => {
+    dispatch(commentActions.deleteComment(id));
+  };
   return (
     <Container>
       <Header>
-        <Image shape="circle" size="2.5rem" />
-        <CommentInfo>
-          <b>jerryjnim_</b>
-          <span>2021년 3월 25일</span>
-        </CommentInfo>
-      </Header>
-      <Contents>
-        <div>
-          멋져요! 공유감사합니다! <br />
-          생각지 못해본 질문 도 있네요. 그 자리에서는 대답하기 정말 힘들 것
-          같네요 ㅠㅠ
-          <br />
-          <br /> 저는 생각에 과제의 우선순위에 1순위로 요구사항 파악이라
-          생각합니다.
+        <Wrapper is_row>
+          <Image shape="circle" size="2.5rem" />
+          <CommentInfo>
+            <b>{username}</b>
+            <span>
+              {' '}
+              {modifiedAt
+                ? moment(modifiedAt).format('YYYY년 MM월 DD일')
+                : moment(createdAt).format('YYYY년 MM월 DD일')}
+            </span>
+          </CommentInfo>
+        </Wrapper>
+        <div className="buttons">
+          <span onClick={editComment}>수정</span>
+          <span onClick={deleteComment}>삭제</span>
         </div>
-      </Contents>
+      </Header>
+      <Contents>{contents}</Contents>
 
       <Reply
         onClick={() => {
@@ -30,11 +45,6 @@ const CommentItem = (props) => {
         }}
       >
         {isOpen ? (
-          <span>
-            <AiOutlinePlusSquare />
-            <b>1개의 답글</b>
-          </span>
-        ) : (
           <span
             onClick={() => {
               setIsOpen(!isOpen);
@@ -42,6 +52,11 @@ const CommentItem = (props) => {
           >
             <AiOutlineMinusSquare />
             <b>숨기기</b>
+          </span>
+        ) : (
+          <span>
+            <AiOutlinePlusSquare />
+            <b>답글 달기</b>
           </span>
         )}
       </Reply>
@@ -59,6 +74,17 @@ const Container = styled.div`
 
 const Header = styled.div`
   ${(props) => props.theme.flex_row}
+  justify-content:space-between;
+  width: 100%;
+
+  & .buttons {
+    & span {
+      cursor: pointer;
+      margin-right: 0.5rem;
+      font-size: 0.875rem;
+      color: ${(props) => props.theme.gray};
+    }
+  }
 `;
 
 const CommentInfo = styled.div`
