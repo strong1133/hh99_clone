@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { history } from "../redux/configureStore";
 
-import { Grid, Text, Image, Button } from "../elements";
+import { Grid, Text, Image } from "../elements";
 
 import Heart_Black from "../static/Heart_Black.svg";
 

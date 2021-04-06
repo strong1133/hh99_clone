@@ -43,6 +43,7 @@ Grid.defaultProps = {
   bg: false,
   center: false,
   left: false,
+  align_items_center: false,
   _onClick: () => {},
 };
 
@@ -59,6 +60,7 @@ const GridBox = styled.div`
       : ""}
   ${(props) => (props.center ? `text-align: center;` : "")}
   ${(props) => (props.left ? `text-align: left;` : "")}
+  ${(props) => (props.align_items_center ? `align-items: center;` : "")}
 `;
 
 export default Grid;

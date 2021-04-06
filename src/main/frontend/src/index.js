@@ -4,7 +4,6 @@ import './index.css';
 import { Provider } from 'react-redux';
 import App from './shared/App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import theme from './shared/theme';
 import store from './redux/configureStore';

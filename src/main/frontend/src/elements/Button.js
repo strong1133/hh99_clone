@@ -33,7 +33,7 @@ const Button = (props) => {
 
 Button.defaultProps = {
   children: null,
-  onClick: () => {},
+  _onClick: () => {},
   is_float: false,
   margin: false,
   width: "100%",
