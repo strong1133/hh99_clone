@@ -32,3 +32,5 @@ com/hh99_clone/hh99_clone/controller/CommentController.java
  com.hh99_clone.hh99_clone.controller.CommentController
 com/hh99_clone/hh99_clone/service/CommentService.java
  com.hh99_clone.hh99_clone.service.CommentService
+com/hh99_clone/hh99_clone/controller/WebController.java
+ com.hh99_clone.hh99_clone.controller.WebController
