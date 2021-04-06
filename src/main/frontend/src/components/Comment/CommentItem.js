@@ -5,11 +5,13 @@ import { AiOutlinePlusSquare, AiOutlineMinusSquare } from 'react-icons/ai';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
 import { actionCreators as commentActions } from '../../redux/modules/comment';
+import CommentWrite from './CommentWrite';
 
 const CommentItem = (props) => {
   const dispatch = useDispatch();
   const { id, username, contents, createdAt, modifiedAt, aricleId } = props;
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenReply, setIsOpenReply] = useState(false);
+  const [isOpenEdit, setIsOpenEdit] = useState(false);
   const editComment = () => {
     dispatch(commentActions.updateComment(id, { content: '하하호호' }));
   };
@@ -39,15 +41,15 @@ const CommentItem = (props) => {
       </Header>
       <Contents>{contents}</Contents>
 
-      <Reply
+      <ReplyWrapper
         onClick={() => {
-          setIsOpen(!isOpen);
+          setIsOpenReply(!isOpenReply);
         }}
       >
-        {isOpen ? (
+        {isOpenReply ? (
           <span
             onClick={() => {
-              setIsOpen(!isOpen);
+              setIsOpenReply(!isOpenReply);
             }}
           >
             <AiOutlineMinusSquare />
@@ -59,7 +61,13 @@ const CommentItem = (props) => {
             <b>답글 달기</b>
           </span>
         )}
-      </Reply>
+
+        {isOpenReply && (
+          <InputWrapper>
+            <CommentWrite type="3" />
+          </InputWrapper>
+        )}
+      </ReplyWrapper>
     </Container>
   );
 };
@@ -108,9 +116,13 @@ const Contents = styled.div`
   margin: 1rem 0;
 `;
 
-const Reply = styled.div`
+const ReplyWrapper = styled.div`
+  ${(props) => props.theme.max_width};
+  border: 1px solid black;
   padding: 0 0.4rem;
   cursor: pointer;
+  ${(props) => props.theme.flex_column};
+  align-items: flex-start;
   & span {
     ${(props) => props.theme.flex_row};
     color: ${(props) => props.theme.velog_green};
@@ -123,5 +135,17 @@ const Reply = styled.div`
       margin-left: 0.5rem;
     }
   }
+`;
+
+const InputWrapper = styled.div`
+  box-sizing: border-box;
+  padding: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.02);
+  background-color: rgba(0, 0, 0, 0.016);
+  padding: 1.5rem;
+  border-radius: 4px;
+  margin-top: 1.3125rem;
+  border: 1px solid black;
+  width: 100%;
 `;
 export default CommentItem;

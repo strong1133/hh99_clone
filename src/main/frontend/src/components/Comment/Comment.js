@@ -8,7 +8,7 @@ import CommentWrite from './CommentWrite';
 
 const Comment = (props) => {
   const [comment, onChagneComent, setComment] = useInput('');
-  //const [comment, setComment] = useState('');
+
   const commentList = useSelector((state) => state.comment.commentList);
 
   const postId = props.id;
@@ -18,13 +18,13 @@ const Comment = (props) => {
   }, []);
 
   const registComment = (e) => {
-    console.log(comment);
     const data = {
       username: '마농바게트', //TODO : user
       contents: comment,
       articleId: postId
     };
     dispatch(commentActions.createComment(data));
+    setComment('');
   };
 
   /*   const resize = (e) => {
@@ -36,7 +36,7 @@ const Comment = (props) => {
       <CommentWrite
         value={comment}
         _onChange={onChagneComent}
-        type="insert"
+        type="1"
         _onSubmit={registComment}
       ></CommentWrite>
       <CommnetList>

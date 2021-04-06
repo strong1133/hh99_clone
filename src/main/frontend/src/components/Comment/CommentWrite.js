@@ -1,20 +1,36 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 const CommentWrite = (props) => {
   const { value, _onChange, _onCancle, _onSubmit, type } = props;
 
   return (
     <CommentInput>
-      <textarea placeholder="댓글을 작성하세요" onChange={_onChange}></textarea>
+      <textarea
+        value={value}
+        placeholder="댓글을 작성하세요"
+        onChange={_onChange}
+      ></textarea>
       <div className="button-wrapper">
-        <button onClick={_onSubmit}>댓글 작성</button>
+        {type !== '1' && (
+          <button className="cancel" onClick={_onCancle}>
+            취소
+          </button>
+        )}
+        <button className="submit" onClick={_onSubmit}>
+          {type === '3' ? '댓글 수정' : '댓글 작성'}
+        </button>
       </div>
     </CommentInput>
   );
 };
 
-CommentWrite.propTypes = {};
+CommentWrite.defaultValue = {
+  value: '',
+  _onChange: () => {},
+  _onCancle: () => {},
+  _onSubmit: () => {},
+  type: '2'
+};
 
 const CommentInput = styled.div`
   ${(props) => props.theme.flex_column};
@@ -36,15 +52,23 @@ const CommentInput = styled.div`
     & button {
       cursor: pointer;
       color: white;
-      background-color: ${(props) => props.theme.velog_green};
       border: none;
       border-radius: 4px;
       padding: 0px 1.25rem;
       height: 2rem;
       font-size: 1rem;
     }
+
+    & button.cancel {
+      background-color: gray;
+    }
+
+    & button.submit {
+      background-color: ${(props) => props.theme.velog_green};
+    }
   }
   & textarea {
+    box-sizing: border-box;
     resize: none;
     padding: 1rem 1rem 1.5rem;
     outline: none;

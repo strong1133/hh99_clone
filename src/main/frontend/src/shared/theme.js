@@ -13,7 +13,6 @@ const theme = {
   gray: '#adb5bd',
   post_bg: '#f1f3f5',
   black: '#343a40',
-
   mobile: `(max-width: ${size.mobile})`,
   tablet: `(max-width: ${size.tablet})`,
   desktop: `(min-width: ${size.desktop})`,
@@ -21,7 +20,8 @@ const theme = {
     'display: flex; flex-direction:column; align-items: center; justify-content: space-between; ',
   flex_row:
     'display: flex; align-items: center; justify-content: space-between;',
-  default_width: 'width:98vw; max-width:768px'
+  default_width: 'width:98vw; max-width:768px',
+  max_width: `max-width:768px`
 };
 
 /*
