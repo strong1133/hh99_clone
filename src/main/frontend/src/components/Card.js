@@ -1,18 +1,22 @@
 // import React from "react";
-import styled from "styled-components";
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { history } from "../redux/configureStore";
+import styled from 'styled-components';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { history } from '../redux/configureStore';
 
+<<<<<<< HEAD
 import { Grid, Text, Image } from "../elements";
+=======
+import { Grid, Text, Image, Button } from '../elements';
+>>>>>>> 7c176832f6b0752f2cad37d7010d8afa3891c949
 
-import Heart_Black from "../static/Heart_Black.svg";
+import Heart_Black from '../static/Heart_Black.svg';
 
 const Card = (props) => {
   const [users, setUsers] = useState([]);
 
   const fetchUsers = async () => {
-    const response = await axios.get("http://localhost:8080/api/articles");
+    const response = await axios.get('http://localhost:8080/api/articles');
     setUsers(response.data);
     console.log(response);
   };
@@ -28,7 +32,7 @@ const Card = (props) => {
           <Box1
             src={user.image}
             onClick={() => {
-              history.push("/article");
+              history.push(`/article/${user.id}`);
             }}
           />
           <Box2>
@@ -74,7 +78,7 @@ const CardContainer = styled.div`
   min-height: 0;
   overflow: hidden;
   padding-bottom: 5%;
-  margin:0.8rem;
+  margin: 0.8rem;
   position: relative;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 10px 0px;
@@ -93,7 +97,7 @@ const Box1 = styled.img`
   max-height: 180px;
   object-fit: cover;
   border-radius: 5px 5px 0 0;
-  background-image: url("${(props) => props.src}");
+  background-image: url('${(props) => props.src}');
 `;
 
 const Box2 = styled.div`
@@ -101,7 +105,7 @@ const Box2 = styled.div`
   height: 180px;
   overflow: hidden;
   padding: 10px;
-  margin:auto;
+  margin: auto;
   background-color: ${(props) => props.theme.main_white};
   background-size: cover;
 `;

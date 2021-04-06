@@ -26,6 +26,13 @@ public class Comment extends Timestamped{
     @Column(nullable = false)
     private Long articleId;     // 게시글 id (외래키 역)
 
+    // Comment 더미 데이터 생성자
+    public Comment(String username, String contents, Long articleId){
+        this.username = username;
+        this.contents = contents;
+        this.articleId = articleId;
+    }
+
     // Comment DTO 생성자
     public Comment(CommentRequestDto commentRequestDto){
         this.username =commentRequestDto.getUsername();
