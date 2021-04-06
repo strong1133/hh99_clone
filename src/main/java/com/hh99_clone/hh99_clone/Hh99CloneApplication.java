@@ -1,7 +1,9 @@
 package com.hh99_clone.hh99_clone;
 
 import com.hh99_clone.hh99_clone.domain.Article;
+import com.hh99_clone.hh99_clone.domain.Comment;
 import com.hh99_clone.hh99_clone.repository.ArticleRepository;
+import com.hh99_clone.hh99_clone.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
@@ -15,6 +17,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 public class Hh99CloneApplication {
 
     private final ArticleRepository articleRepository;
+    private final CommentRepository commentRepository;
 
     @Bean
     public ApplicationRunner applicationRunner() {
@@ -40,6 +43,12 @@ public class Hh99CloneApplication {
 
             articleRepository.save(new Article("마켓컬리 클론 프로젝트 후기", "1. 마켓컬리 클론 프로젝트 > \"처음으로 제대로 된 팀프로젝트를 경험하다.\" 대학에서 jsp를 활용한 웹프로젝트와 아두이노,라즈베리파이를 활용한 프로젝트를 경험했었다. > 그럼 프로젝트 경험은 있네??! 팀 프로젝트라고 하기에 부르기에 애매한 프로젝트들이 많았...", "https://media.vlpt.us/images/chyoon0512/post/70605e47-8679-47ba-a1c2-a31b44c27bd9/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-03-28%20%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB%203.52.43.png?w=640",
                     "chyoon0512", 8));
+
+            commentRepository.save(new Comment("정석진","회이팅", 8L));
+            commentRepository.save(new Comment("홍길동","퐈이어", 8L));
+            commentRepository.save(new Comment("호호빵","팥팥붕어빵", 8L));
+            commentRepository.save(new Comment("조세호","울지마 바보야!", 8L));
+            commentRepository.save(new Comment("유재석","쿄쿄쿄쿄", 8L));
         };
     }
 
