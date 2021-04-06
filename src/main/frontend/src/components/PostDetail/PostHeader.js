@@ -14,7 +14,6 @@ const PostHeader = () => {
     setIsLike(!isLike);
   };
 
-  console.log();
   return (
     <Header bg="white" is_column ai="flex-start">
       <Title>{title}</Title>
@@ -45,10 +44,10 @@ const PostHeader = () => {
 };
 
 const Header = styled.div`
+  ${(props) => props.theme.border_box};
+  width: 100%;
   max-width: 768px;
-  @media (max-width: 768px) {
-    padding: 1rem;
-  }
+  padding: 0 1rem;
 `;
 const Title = styled.h1`
   text-align: left;
