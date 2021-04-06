@@ -23,7 +23,6 @@ const CommentItem = (props) => {
     dispatch(commentActions.deleteComment(id));
   };
   const onCancle = () => {
-    console.log(value);
     setValue(contents);
     setIsOpenEdit(!isOpenEdit);
   };
