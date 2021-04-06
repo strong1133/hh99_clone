@@ -13,16 +13,20 @@ const CommentItem = (props) => {
   const { id, username, contents, createdAt, modifiedAt, aricleId } = props;
   const [isOpenReply, setIsOpenReply] = useState(false);
   const [isOpenEdit, setIsOpenEdit] = useState(false);
-  const [value, onChangeValue] = useInput(contents);
+  const [value, onChangeValue, setValue] = useInput(contents);
   const editComment = () => {
-    console.log(value);
-    //dispatch(commentActions.updateComment(id, { content: '하하호호' }));
+    dispatch(commentActions.updateComment(id, { contents: value }));
+    setIsOpenEdit(false);
   };
 
   const deleteComment = () => {
     dispatch(commentActions.deleteComment(id));
   };
-
+  const onCancle = () => {
+    console.log(value);
+    setValue(contents);
+    setIsOpenEdit(!isOpenEdit);
+  };
   return (
     <Container>
       <Header>
@@ -31,7 +35,6 @@ const CommentItem = (props) => {
           <CommentInfo>
             <b>{username}</b>
             <span>
-              {' '}
               {modifiedAt !== createdAt
                 ? moment(modifiedAt).format('YYYY년 MM월 DD일')
                 : moment(createdAt).format('YYYY년 MM월 DD일')}
@@ -39,18 +42,20 @@ const CommentItem = (props) => {
           </CommentInfo>
         </Wrapper>
         <div className="buttons">
-          <span
-            onClick={() => {
-              setIsOpenEdit(!isOpenEdit);
-            }}
-          >
-            수정
-          </span>
+          <span onClick={onCancle}>수정</span>
           <span onClick={deleteComment}>삭제</span>
         </div>
       </Header>
       {!isOpenEdit && <Contents>{contents}</Contents>}
-      {isOpenEdit && <CommentWrite value={contents} />}
+      {isOpenEdit && (
+        <CommentWrite
+          type="3"
+          value={value}
+          _onChange={onChangeValue}
+          _onCancle={onCancle}
+          _onSubmit={editComment}
+        />
+      )}
 
       <ReplyWrapper>
         <ReplyHeader

@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 const CommentWrite = (props) => {
   const { value, _onCancle, _onChange, _onSubmit, type } = props;
-  console.log(_onChange);
+
   return (
     <CommentInput>
       <textarea
-        value={value}
+        defaultValue={value}
         placeholder="댓글을 작성하세요"
         onChange={_onChange}
       ></textarea>
@@ -24,11 +24,13 @@ const CommentWrite = (props) => {
   );
 };
 
-CommentWrite.defaultValue = {
+CommentWrite.defaultProps = {
   value: '',
   _onChange: () => {},
   _onCancle: () => {},
-  _onSubmit: () => {},
+  _onSubmit: () => {
+    console.log('댓글 작성');
+  },
   type: '2'
 };
 
