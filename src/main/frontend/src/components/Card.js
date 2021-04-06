@@ -4,12 +4,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { history } from '../redux/configureStore';
 
-<<<<<<< HEAD
 import { Grid, Text, Image } from "../elements";
-=======
-import { Grid, Text, Image, Button } from '../elements';
->>>>>>> 7c176832f6b0752f2cad37d7010d8afa3891c949
-
 import Heart_Black from '../static/Heart_Black.svg';
 
 const Card = (props) => {
@@ -85,7 +80,9 @@ const CardContainer = styled.div`
   background-color: ${(props) => props.theme.main_white};
   background-size: cover;
   &:hover {
+    cursor: pointer;
     transform: translateY(-12px);
+    transform: all 200ms ease;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 10px 0px;
   }
 `;

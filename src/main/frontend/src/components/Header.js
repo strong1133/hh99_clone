@@ -1,81 +1,136 @@
 import React from "react";
 import styled from "styled-components";
-import { Grid, Text, Button, Image } from "../elements";
+import { Grid } from "../elements";
 
 import { history } from "../redux/configureStore";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 
 import search from "../static/search.svg";
-import {getCookie, deleteCookie} from "../shared/Cookie";
+import { getCookie } from "../shared/Cookie";
+
+import Login from "./Login";
+import Signup from "./Signup";
+
+import Modal from "react-modal";
+import { FaBorderAll, FaBorderNone } from "react-icons/fa";
 
 const Header = (props) => {
   const dispatch = useDispatch();
   const is_login = useSelector((state) => state.user.is_login);
 
-  if(is_login){
-  return (
-    <React.Fragment>
-      <HeaderContainer>
-        <Grid>
-          <Grid is_flex padding="16px">
-            <HeaderText bold size="21pt">
-              velog
-            </HeaderText>
+  const [modalIsOpen, setModalIsOpen] = React.useState(false);
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
 
-        <Grid is_flex width="auto" margin="16px">
-        <LoginButton onClick={()=>{dispatch(userActions.logOut({}));}}>로그아웃</LoginButton>
-          <img width="18px" src={search} />
-          <LoginButton>새 글 작성</LoginButton>
-          <ProfileImg 
-            shape="circle"
-            src="https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX5559055.jpg"
-          />
-        </Grid>
+  const [isLoginMode, setIsLoginMode] = React.useState(true);
 
+  const onClickModal = () => {
+    setIsLoginMode(!isLoginMode);
+  };
+
+  if (is_login) {
+    return (
+      <React.Fragment>
+        <HeaderContainer>
+          <Grid>
+            <Grid is_flex padding="16px">
+              <TextLogo size="21pt" onClick={()=>{
+              history.push('/')}}>
+                velog
+              </TextLogo>
+
+              <Grid is_flex width="auto" margin="16px">
+                <LoginButton
+                  onClick={() => {
+                    dispatch(userActions.logOut({}));
+                  }}
+                >
+                  로그아웃
+                </LoginButton>
+                <img width="18px" src={search} />
+                <LoginButton>새 글 작성</LoginButton>
+                <ProfileImg
+                  shape="circle"
+                  src="https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX5559055.jpg"
+                />
+              </Grid>
+            </Grid>
           </Grid>
-        </Grid>
-      </HeaderContainer>
-    </React.Fragment>
-  );
+        </HeaderContainer>
+      </React.Fragment>
+    );
   }
 
-   //  로그인 전
+  //  로그인 전
 
   return (
     <React.Fragment>
       <HeaderContainer>
         <Grid>
           <Grid is_flex padding="16px">
-            <HeaderText bold size="21pt">
+            <TextLogo bold size="21pt" onClick={()=>{
+              history.push('/');
+            }}>
               velog
-            </HeaderText>
+            </TextLogo>
 
             <Grid is_flex width="auto" margin="16px">
               <img width="18px" src={search} />
-              <LoginButton
-                onClick={() => {
-                  history.push("/login");
-                }}
-              >로그인
+              <LoginButton onClick={() => setModalIsOpen(true)}>
+                로그인
               </LoginButton>
+              <Modal isOpen={modalIsOpen} close={closeModal} style={modalStyle}>
+                {isLoginMode ? (
+                  <Login onClickModal={onClickModal} />
+                ) : (
+                  <Signup onClickModal={onClickModal} />
+                )}{" "}
+                <CloseButton
+                  src="https://image.flaticon.com/icons/png/512/458/458595.png"
+                  onClick={closeModal}
+                />
+              </Modal>
             </Grid>
-
-            {/* 로그인 후
-        <Grid is_flex width="auto" margin="16px">
-          <img width="18px" src={search} />
-          <LoginButton>새 글 작성</LoginButton>
-          <ProfileImg 
-            shape="circle"
-            src="https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX5559055.jpg"
-          />
-        </Grid> */}
           </Grid>
         </Grid>
       </HeaderContainer>
     </React.Fragment>
   );
 };
+
+const modalStyle = {
+  overlay: {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: "rgba(247, 247, 247, 0.8)",
+    transition: "opacity 2000ms ease-in-out",
+  },
+  content: {
+    width: "650px",
+    height: "510px",
+    margin: "auto",
+    border: "none",
+    boxShadow: "0 2px 12px 0 rgba(0, 0, 0, 0.1)",
+  },
+};
+
+const CloseButton = styled.img`
+  width: 11px;
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  &:hover {
+    cursor: pointer;
+  }
+`;
 
 const HeaderContainer = styled.div`
   @media (max-width: 768px) {
@@ -100,9 +155,12 @@ const HeaderContainer = styled.div`
   background-color: ${(props) => props.theme.main_bg_color};
 `;
 
-const HeaderText = styled.text`
+const TextLogo = styled.text`
   font-family: "Fira Mono", monospace;
   font-size: 18pt;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const WriteButton = styled.button`
@@ -140,7 +198,7 @@ const LoginButton = styled.button`
   border-color: ${(props) => props.theme.main_black};
   outline: none;
   &:hover {
-    opacity:0.3;
+    opacity: 0.3;
   }
 `;
 
