@@ -5,6 +5,7 @@ import com.hh99_clone.hh99_clone.dto.CommentRequestDto;
 import com.hh99_clone.hh99_clone.repository.CommentRepository;
 import com.hh99_clone.hh99_clone.util.CommentSpecs;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,7 +33,7 @@ public class CommentService {
     // 특정 게시물 댓글 조회
     @Transactional
     public List<Comment> getCommentForArticleId(Long articleId){
-        return commentRepository.findAll(CommentSpecs.withArticle_id(articleId));
+        return commentRepository.findAll(CommentSpecs.withArticle_id(articleId), Sort.by(Sort.Direction.DESC, "modifiedAt"));
     }
 
     // 댓글 작성
@@ -45,12 +46,12 @@ public class CommentService {
 
     // 댓글 수정
     @Transactional
-    public Long updateComment(Long id, CommentRequestDto commentRequestDto) {
+    public Comment updateComment(Long id, CommentRequestDto commentRequestDto) {
         Comment comment = commentRepository.findById(id).orElseThrow(
                 () -> new NullPointerException("해당 아이디가 존재하지 않습니다.")
         );
         comment.update(commentRequestDto);
-        return comment.getId();
+        return comment;
     }
 
     // 댓글 삭제
