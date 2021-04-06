@@ -55,13 +55,12 @@ const createComment = (comment) => {
   };
 };
 
-const updateComment = (id, comment) => {
-  console.log('updateComment', id, comment);
+const updateComment = (id, data) => {
   return function (dispatch, getState, { history }) {
     axios
-      .put(`/api/comments/${id}`, { contents: comment })
+      .put(`/api/comments/${id}`, { contents: '하하호호' })
       .then((res) => {
-        dispatch(editComment(id, comment));
+        dispatch(editComment(id, data));
       })
       .catch((e) => {
         console.error(e);

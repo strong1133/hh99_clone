@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { Image, Input, Text, Wrapper } from '../elements';
-import useInput from '../shared/useInput';
+import useInput from '../../shared/useInput';
 import CommentItem from './CommentItem';
-import { actionCreators as commentActions } from '../redux/modules/comment';
+import { actionCreators as commentActions } from '../../redux/modules/comment';
 
 const Comment = (props) => {
   const [comment, onChagneComnent] = useInput('');

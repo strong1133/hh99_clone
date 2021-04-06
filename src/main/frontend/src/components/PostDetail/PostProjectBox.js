@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { ReactComponent as Ribbon } from '../static/ribbon.svg';
+import { ReactComponent as Ribbon } from '../../static/ribbon.svg';
 import {
   FaCaretDown,
   FaCaretUp,
@@ -8,7 +8,7 @@ import {
   FaAngleRight
 } from 'react-icons/fa';
 
-import { Wrapper } from '../elements/index';
+import { Wrapper } from '../../elements/index';
 const PostProjectBox = () => {
   const [isOpen, setIsOpen] = useState(false);
   const list = [

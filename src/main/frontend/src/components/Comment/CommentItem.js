@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Image, Text, Wrapper } from '../elements';
+import { Image, Text, Wrapper } from '../../elements';
 import { AiOutlinePlusSquare, AiOutlineMinusSquare } from 'react-icons/ai';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
-import { actionCreators as commentActions } from '../redux/modules/comment';
+import { actionCreators as commentActions } from '../../redux/modules/comment';
 
 const CommentItem = (props) => {
   const dispatch = useDispatch();
   const { id, username, contents, createdAt, modifiedAt, aricleId } = props;
   const [isOpen, setIsOpen] = useState(false);
   const editComment = () => {
-    dispatch(commentActions.updateComment(id, '하하호호'));
+    dispatch(commentActions.updateComment(id, { content: '하하호호' }));
   };
 
   const deleteComment = () => {
@@ -26,7 +26,7 @@ const CommentItem = (props) => {
             <b>{username}</b>
             <span>
               {' '}
-              {modifiedAt
+              {modifiedAt !== createdAt
                 ? moment(modifiedAt).format('YYYY년 MM월 DD일')
                 : moment(createdAt).format('YYYY년 MM월 DD일')}
             </span>

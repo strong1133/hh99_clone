@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Text, Wrapper } from '../elements';
-import { ReactComponent as Heart } from '../static/heart.svg';
+import { ReactComponent as Heart } from '../../static/heart.svg';
 import moment from 'moment';
 import 'moment/locale/ko';
-import PostProjectBox from './PostProjectBox';
 import { useSelector } from 'react-redux';
+import { Text, Wrapper } from '../../elements';
+import PostProjectBox from './PostProjectBox';
 const PostHeader = () => {
   const [isLike, setIsLike] = useState(false);
   const detailPost = useSelector((state) => state.post.detailPost);
