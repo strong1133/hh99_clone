@@ -50,6 +50,7 @@ const Comment = (props) => {
 
 const CommentContainer = styled.div`
   ${(props) => props.theme.flex_column};
+  align-items: flex-start;
   ${(props) => props.theme.default_width};
 `;
 

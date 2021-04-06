@@ -99,7 +99,8 @@ export default handleActions(
     [REMOVE_COMMENT]: (state, action) =>
       produce(state, (draft) => {
         const id = action.payload.commentId;
-        draft.commentList = draft.commentList.fillter((c) => {
+        console.log('remove comment', id);
+        draft.commentList = draft.commentList.filter((c) => {
           return c.id !== id;
         });
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 const CommentWrite = (props) => {
-  const { value, _onChange, _onCancle, _onSubmit, type } = props;
-
+  const { value, _onCancle, _onChange, _onSubmit, type } = props;
+  console.log(_onChange);
   return (
     <CommentInput>
       <textarea
@@ -36,12 +36,8 @@ const CommentInput = styled.div`
   ${(props) => props.theme.flex_column};
   ${(props) => props.theme.default_width};
   ${(props) => props.theme.max_width}
-
+  width:100%;
   align-items: flex-start;
-
-  & * {
-    margin: 0.5rem 0;
-  }
 
   & div.button-wrapper {
     width: 100%;
@@ -61,6 +57,7 @@ const CommentInput = styled.div`
 
     & button.cancel {
       background-color: gray;
+      margin-right: 0.5rem;
     }
 
     & button.submit {
@@ -69,12 +66,12 @@ const CommentInput = styled.div`
   }
   & textarea {
     box-sizing: border-box;
+    width: 100%;
     resize: none;
     padding: 1rem 1rem 1.5rem;
     outline: none;
     border: 1px solid ${(props) => props.theme.gray};
-    margin-bottom: 1.5rem;
-    width: 96%;
+    margin-bottom: 1rem;
     border-radius: 4px;
     min-height: 6.125rem;
     font-size: 1rem;

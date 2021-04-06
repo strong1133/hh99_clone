@@ -6,19 +6,23 @@ import moment from 'moment';
 import { useDispatch } from 'react-redux';
 import { actionCreators as commentActions } from '../../redux/modules/comment';
 import CommentWrite from './CommentWrite';
+import useInput from '../../shared/useInput';
 
 const CommentItem = (props) => {
   const dispatch = useDispatch();
   const { id, username, contents, createdAt, modifiedAt, aricleId } = props;
   const [isOpenReply, setIsOpenReply] = useState(false);
   const [isOpenEdit, setIsOpenEdit] = useState(false);
+  const [value, onChangeValue] = useInput(contents);
   const editComment = () => {
-    dispatch(commentActions.updateComment(id, { content: '하하호호' }));
+    console.log(value);
+    //dispatch(commentActions.updateComment(id, { content: '하하호호' }));
   };
 
   const deleteComment = () => {
     dispatch(commentActions.deleteComment(id));
   };
+
   return (
     <Container>
       <Header>
@@ -35,36 +39,50 @@ const CommentItem = (props) => {
           </CommentInfo>
         </Wrapper>
         <div className="buttons">
-          <span onClick={editComment}>수정</span>
+          <span
+            onClick={() => {
+              setIsOpenEdit(!isOpenEdit);
+            }}
+          >
+            수정
+          </span>
           <span onClick={deleteComment}>삭제</span>
         </div>
       </Header>
-      <Contents>{contents}</Contents>
+      {!isOpenEdit && <Contents>{contents}</Contents>}
+      {isOpenEdit && <CommentWrite value={contents} />}
 
-      <ReplyWrapper
-        onClick={() => {
-          setIsOpenReply(!isOpenReply);
-        }}
-      >
-        {isOpenReply ? (
-          <span
-            onClick={() => {
-              setIsOpenReply(!isOpenReply);
-            }}
-          >
-            <AiOutlineMinusSquare />
-            <b>숨기기</b>
-          </span>
-        ) : (
-          <span>
-            <AiOutlinePlusSquare />
-            <b>답글 달기</b>
-          </span>
-        )}
-
+      <ReplyWrapper>
+        <ReplyHeader
+          onClick={() => {
+            setIsOpenReply(!isOpenReply);
+          }}
+        >
+          {isOpenReply ? (
+            <span
+              onClick={() => {
+                setIsOpenReply(!isOpenReply);
+              }}
+            >
+              <AiOutlineMinusSquare />
+              <b>숨기기</b>
+            </span>
+          ) : (
+            <span>
+              <AiOutlinePlusSquare />
+              <b>답글 달기</b>
+            </span>
+          )}
+        </ReplyHeader>
         {isOpenReply && (
           <InputWrapper>
-            <CommentWrite type="3" />
+            <CommentWrite
+              type="3"
+              value={value}
+              _onChange={onChangeValue}
+              _onCancle={() => setIsOpenEdit(false)}
+              _onSubmit={editComment}
+            />
           </InputWrapper>
         )}
       </ReplyWrapper>
@@ -118,7 +136,7 @@ const Contents = styled.div`
 
 const ReplyWrapper = styled.div`
   ${(props) => props.theme.max_width};
-  border: 1px solid black;
+  border: 1px solid pink;
   padding: 0 0.4rem;
   cursor: pointer;
   ${(props) => props.theme.flex_column};
@@ -137,10 +155,14 @@ const ReplyWrapper = styled.div`
   }
 `;
 
+const ReplyHeader = styled.div`
+  background-color: yellow;
+`;
+
 const InputWrapper = styled.div`
+  border: 1px solid;
   box-sizing: border-box;
   padding: 1rem;
-  border: 1px solid rgba(0, 0, 0, 0.02);
   background-color: rgba(0, 0, 0, 0.016);
   padding: 1.5rem;
   border-radius: 4px;
