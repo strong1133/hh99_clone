@@ -57,7 +57,6 @@ const FilterBox = styled.div`
 `;
 
 const Box = styled.div`
-  top: 180px;
   display: flex;
   width: ${(props) => props.width};
   height: ${(props) => props.height};
