@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import useInput from '../../shared/useInput';
+import HashTag from '../../elements/HashTag';
+
 const PostWriteHeader = (props) => {
   const { title, _onChange } = props;
-
+  const [hashTagList, setHashTagList] = useState([]);
+  const [value, onChangeValue] = useInput('');
   return (
     <Wrapper>
       <Title
@@ -11,6 +15,14 @@ const PostWriteHeader = (props) => {
         value={title || ''}
       ></Title>
       <Line />
+
+      <HashTagWrapper>
+        <HashTag>dsdf</HashTag>
+        <HashTag>dsdf</HashTag>
+        <HashTag>dsdf</HashTag>
+        <HashTag>dsdf</HashTag>
+        <Input type="text" placeholder="태그를 입력하세요" />
+      </HashTagWrapper>
     </Wrapper>
   );
 };
@@ -41,4 +53,16 @@ const Title = styled.input`
   ${(props) => props.theme.border_box}
 `;
 
+const HashTagWrapper = styled.div`
+  background-color: pink;
+  ${(props) => props.theme.flex_row};
+  justify-content: flex-start;
+`;
+
+const Input = styled.input`
+  outline: none;
+  border: none;
+  line-height: 1.5rem;
+  font-size: 0.75rem;
+`;
 export default PostWriteHeader;

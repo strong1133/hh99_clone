@@ -6,6 +6,7 @@ import 'moment/locale/ko';
 import { useDispatch, useSelector } from 'react-redux';
 import { Text, Wrapper } from '../../elements';
 import { actionCreators as postActions } from '../../redux/modules/post';
+import HashTag from '../../elements/HashTag';
 
 const PostHeader = (props) => {
   const dispatch = useDispatch();
@@ -100,7 +101,7 @@ const Like = styled.div`
   // 사이즈 줄어들면 안보이게 처리
 `;
 
-const HashTag = styled.div`
+/* const HashTag = styled.div`
   ${(props) => props.theme.flex_row};
   color: ${(props) => props.theme.velog_green};
   background-color: ${(props) => props.theme.post_bg};
@@ -110,7 +111,7 @@ const HashTag = styled.div`
   font-size: 12px;
   margin: 0.5rem 0;
   cursor: pointer;
-`;
+`; */
 
 const Infomation = styled.div`
   font-size: 0.875rem;
