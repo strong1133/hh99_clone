@@ -3,22 +3,24 @@ import styled from 'styled-components';
 import { ReactComponent as Heart } from '../../static/heart.svg';
 import moment from 'moment';
 import 'moment/locale/ko';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Text, Wrapper } from '../../elements';
-import PostProjectBox from './PostProjectBox';
-const PostHeader = () => {
+import { actionCreators as postActions } from '../../redux/modules/post';
+
+const PostHeader = (props) => {
+  const dispatch = useDispatch();
   const [isLike, setIsLike] = useState(false);
   const detailPost = useSelector((state) => state.post.detailPost);
-  const { createdAt, author, modifiedAt, image, liked, title } = detailPost;
+  const { createdAt, author, modifiedAt, image, liked, title, id } = detailPost;
   const toggleLike = () => {
     setIsLike(!isLike);
   };
-  const onEdit = () => {
-    console.log('수정');
+  const onEdit = (e) => {
+    props.history.push(`/write/${id}`);
   };
 
   const onDelete = () => {
-    console.log('수정');
+    dispatch(postActions.deletePost(id));
   };
   return (
     <Header bg="white" is_column ai="flex-start">

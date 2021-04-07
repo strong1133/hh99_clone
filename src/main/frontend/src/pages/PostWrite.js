@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import { actionCreators as postActions } from '../redux/modules/post';
 
 const PostWrite = (props) => {
-  console.log('id', props.match.param.id);
+  const articleId = props.match.params.id;
   const dispatch = useDispatch();
 
   const editorRef = useRef();
@@ -43,7 +43,12 @@ const PostWrite = (props) => {
         ></Editor>
       </Container>
       <Footer>
-        <button className="exit">
+        <button
+          className="exit"
+          onClick={() => {
+            props.history.push('/');
+          }}
+        >
           <AiOutlineArrowLeft />
           <span>나가기</span>
         </button>

@@ -20,7 +20,7 @@ const PostDetail = (props) => {
 
   return (
     <Wrapper is_column bg="white">
-      <PostHeader />
+      <PostHeader history={props.history} />
       <PostContents />
       <Footer>
         <UserInfo>
