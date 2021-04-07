@@ -10,7 +10,6 @@ import Header from "../components/Header";
 const PostList = (props) => {
 
   const [isRecentMode, setIsRecentMode] =React.useState(false);
-  const recentMode =  setIsRecentMode(true);
 
   console.log(isRecentMode);
   // console.log(props.match);
@@ -40,7 +39,7 @@ const PostList = (props) => {
         </FilterBox>
         <Grid>
           <ListContainer>
-            <Card recentMode={recentMode} />
+            <Card recentMode={isRecentMode} />
           </ListContainer>
         </Grid>
       </Responsive>
