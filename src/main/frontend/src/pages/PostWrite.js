@@ -18,10 +18,12 @@ const PostWrite = (props) => {
   const [title, onChangeTitle] = useInput(articleId && detailPost.title);
 
   const submit = () => {
-    const contents = editorRef.current
+    /* const contents = editorRef.current
       .getInstance()
       .getTextObject()
-      .setRange(20);
+      .setRange(20); */
+
+    const contents = '프리뷰가 들어가야하넌디...';
 
     const contentsHtml = editorRef.current.getInstance().getHtml();
     const contentsMd = editorRef.current.getInstance().getMarkdown();
@@ -36,16 +38,15 @@ const PostWrite = (props) => {
       contentsHtml,
       contentsMd,
       author: '나다',
+      hashTag: hashTagList,
       image
     };
 
-    console.log('post', post);
-    //editorRef.current.getInstance().insertText(post.contentsMd);
-    /*  if (articleId) {
+    if (articleId) {
       dispatch(postActions.updatePost(articleId, post));
     } else {
       dispatch(postActions.createPost(post));
-    } */
+    }
   };
   return (
     <React.Fragment>
