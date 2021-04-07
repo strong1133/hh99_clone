@@ -29,7 +29,7 @@ const PostHeader = (props) => {
 
       <Infomation jc="space-between">
         <span>
-          <b>{author}</b>
+          <b>{author}</b> &nbsp;·&nbsp;
           {modifiedAt
             ? moment(modifiedAt).format('YYYY년 MM월 DD일')
             : moment(createdAt).format('YYYY년 MM월 DD일')}
@@ -95,10 +95,17 @@ const Like = styled.div`
   ${(props) =>
     props.is_like
       ? `background-color:${props.theme.velog_green}; border-color:${props.theme.velog_green}; color:white;`
-      : `background-color: #ffffff; border-color:${props.theme.gray}; border-color:${props.theme.gray}; color:${props.theme.gray};`}; /* background-color: ${(
-    props
-  ) => (props.is_like ? props.theme.velog_green : props.theme.gray)}; */
+      : `background-color: #ffffff; border-color:${props.theme.gray}; border-color:${props.theme.gray}; color:${props.theme.gray};`};
+  background-color: ${(props) =>
+    props.is_like ? props.theme.velog_green : ''};
+
+  & svg {
+    fill: red;
+  }
   // 사이즈 줄어들면 안보이게 처리
+  @media ${(props) => props.theme.desktop} {
+    display: none;
+  }
 `;
 
 /* const HashTag = styled.div`
