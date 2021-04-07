@@ -29,6 +29,32 @@ const loginAction = (user) => {
 }
 
 
+
+const signupAPI = (userName,nickname,pw) => {
+  return function (dispatch, getState, { history }) {
+    
+  const API = 'http://localhost:8080/api/signup';
+  fetch(API, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'applicaon/json',
+      },
+      body: JSON.stringify({
+        username: userName,
+        password: pw,
+        nickname: nickname
+    })
+  })
+    .then((response) => response)
+    .then((result) => {
+
+      window.alert('회원가입이 되었습니다!');
+      history.push('/login');
+  });
+  }
+};
+
+
 // reducer: handleActions(immer를 통한 불변성 유지)
 export default handleActions(
   {

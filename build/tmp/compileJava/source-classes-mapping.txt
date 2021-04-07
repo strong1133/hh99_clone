@@ -65,15 +65,17 @@ com/hh99_clone/hh99_clone/repository/CommentRepository.java
  com.hh99_clone.hh99_clone.repository.CommentRepository
 com/hh99_clone/hh99_clone/controller/CommentController.java
  com.hh99_clone.hh99_clone.controller.CommentController
-com/hh99_clone/hh99_clone/controller/UserController.java
- com.hh99_clone.hh99_clone.controller.UserController
+com/hh99_clone/hh99_clone/controller/ArticleRestController.java
+ com.hh99_clone.hh99_clone.controller.ArticleRestController
 com/hh99_clone/hh99_clone/Hh99CloneApplication.java
  com.hh99_clone.hh99_clone.Hh99CloneApplication
 com/hh99_clone/hh99_clone/service/CommentService.java
  com.hh99_clone.hh99_clone.service.CommentService
 com/hh99_clone/hh99_clone/service/CustomUserDetailsService.java
  com.hh99_clone.hh99_clone.service.CustomUserDetailsService
-com/hh99_clone/hh99_clone/controller/ArticleRestController.java
- com.hh99_clone.hh99_clone.controller.ArticleRestController
+com/hh99_clone/hh99_clone/controller/UserController.java
+ com.hh99_clone.hh99_clone.controller.UserController
+com/hh99_clone/hh99_clone/util/SignupValidator.java
+ com.hh99_clone.hh99_clone.util.SignupValidator
 com/hh99_clone/hh99_clone/service/UserService.java
  com.hh99_clone.hh99_clone.service.UserService
