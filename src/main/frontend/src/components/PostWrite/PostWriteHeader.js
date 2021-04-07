@@ -4,9 +4,26 @@ import useInput from '../../shared/useInput';
 import HashTag from '../../elements/HashTag';
 
 const PostWriteHeader = (props) => {
-  const { title, _onChange } = props;
-  const [hashTagList, setHashTagList] = useState([]);
-  const [value, onChangeValue] = useInput('');
+  const { title, _onChange, hashTagList, setHashTagList } = props;
+
+  const [value, onChangeValue, setValue] = useInput('');
+
+  const onEnter = (e) => {
+    if (e.key === 'Enter') {
+      if (hashTagList.indexOf(value) < 0) {
+        setHashTagList([...hashTagList, value]);
+      }
+      setValue('');
+    }
+  };
+  const removeHashTag = (e) => {
+    const idx = hashTagList.indexOf(e.target.innerHTML);
+
+    hashTagList.splice(idx, 1);
+
+    setHashTagList([...hashTagList]);
+  };
+
   return (
     <Wrapper>
       <Title
@@ -17,11 +34,20 @@ const PostWriteHeader = (props) => {
       <Line />
 
       <HashTagWrapper>
-        <HashTag>dsdf</HashTag>
-        <HashTag>dsdf</HashTag>
-        <HashTag>dsdf</HashTag>
-        <HashTag>dsdf</HashTag>
-        <Input type="text" placeholder="태그를 입력하세요" />
+        {hashTagList.map((h, idx) => {
+          return (
+            <HashTag key={idx} idx={idx} _onClick={removeHashTag}>
+              {h}
+            </HashTag>
+          );
+        })}
+        <Input
+          type="text"
+          onKeyPress={onEnter}
+          onChange={onChangeValue}
+          value={value || ''}
+          placeholder="태그를 입력하세요"
+        />
       </HashTagWrapper>
     </Wrapper>
   );
@@ -54,8 +80,8 @@ const Title = styled.input`
 `;
 
 const HashTagWrapper = styled.div`
-  background-color: pink;
   ${(props) => props.theme.flex_row};
+  flex-wrap: wrap;
   justify-content: flex-start;
 `;
 

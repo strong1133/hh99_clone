@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import 'codemirror/lib/codemirror.css';
 import '@toast-ui/editor/dist/toastui-editor.css';
@@ -13,7 +13,7 @@ const PostWrite = (props) => {
   const articleId = props.match.params.id;
   const dispatch = useDispatch();
   const detailPost = useSelector((state) => state.post.detailPost);
-
+  const [hashTagList, setHashTagList] = useState([]); //articleId?detailPost.hashTag:[]
   const editorRef = useRef();
   const [title, onChangeTitle] = useInput(articleId && detailPost.title);
 
@@ -50,7 +50,12 @@ const PostWrite = (props) => {
   return (
     <React.Fragment>
       <Container>
-        <PostWriteHeader title={title} _onChange={onChangeTitle} />
+        <PostWriteHeader
+          hashTagList={hashTagList}
+          setHashTagList={setHashTagList}
+          title={title}
+          _onChange={onChangeTitle}
+        />
         <Editor
           ref={editorRef}
           previewStyle="vertical"
