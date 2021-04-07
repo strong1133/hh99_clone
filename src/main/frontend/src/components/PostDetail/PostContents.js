@@ -9,7 +9,7 @@ import PostProjectBox from './PostProjectBox';
 import { Wrapper } from '../../elements';
 
 const PostContents = (props) => {
-  const contents = useSelector((state) => state.post.detailPost.contents);
+  const contents = useSelector((state) => state.post.detailPost.contentsHtml);
   const navRef = useRef(null);
 
   const handleScroll = (e) => {
