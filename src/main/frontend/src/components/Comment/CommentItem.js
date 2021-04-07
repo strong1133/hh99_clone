@@ -20,6 +20,8 @@ const CommentItem = (props) => {
   };
 
   const deleteComment = () => {
+    const isConfirmed = window.confirm('정말로 댓글을 삭제하시겠습니까?');
+    if (!isConfirmed) return;
     dispatch(commentActions.deleteComment(id));
   };
   const onCancle = () => {

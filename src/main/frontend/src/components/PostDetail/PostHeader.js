@@ -21,6 +21,8 @@ const PostHeader = (props) => {
   };
 
   const onDelete = () => {
+    const isConfirmed = window.confirm('정말로 게시물을 삭제하시겠습니까?');
+    if (!isConfirmed) return;
     dispatch(postActions.deletePost(id));
   };
   return (

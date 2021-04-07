@@ -73,6 +73,9 @@ const Container = styled.div`
 
 const Navbar = styled.div`
   position: fixed;
+  top: 0;
+  left: 5%;
+
   width: 4rem;
   margin: 2rem 0;
   background: rgb(248, 249, 250);
