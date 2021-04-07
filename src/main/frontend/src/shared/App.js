@@ -18,7 +18,6 @@ function App() {
   return (
     <React.Fragment>
       <Background>
-        <Header></Header>
         <ConnectedRouter history={history}>
           <Route path="/" exact component={PostList} />
           <Route path="/article/:id" exact component={PostDetail} />
