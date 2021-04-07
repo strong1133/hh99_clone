@@ -46,12 +46,13 @@ String author; // 게시글 작성자
 게시글 삭제는 삭제할 게시글 id */
 
 const createPost = (post) => {
-  console.log(post);
-  /* return function (dispatch, getState, { history }) {
-    axios.post(`/api/articles`).then((res) => {
+  return function (dispatch, getState, { history }) {
+    axios.post(`/api/articles`, post).then((res) => {
+      console.log(res);
+      history.push('/');
       //dispatch(addPost(post));
     });
-  }; */
+  };
 };
 
 // reducer

@@ -5,13 +5,27 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 import { Editor } from '@toast-ui/react-editor';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import useInput from '../shared/useInput';
+import { useDispatch } from 'react-redux';
+import { actionCreators as postActions } from '../redux/modules/post';
+
 const PostWrite = (props) => {
+  const dispatch = useDispatch();
+
   const editorRef = useRef();
   const [title, onChangeTitle] = useInput('');
 
   const submit = () => {
-    //console.log(editorRef.current.getInstance().getHtml());
-    console.log(title);
+    const contents = editorRef.current.getInstance().getHtml();
+
+    if (!title || !contents) return;
+
+    const post = {
+      title,
+      contents,
+      author: '나다',
+      image: 'https://i.ytimg.com/vi/7Y_C6YyIwaI/maxresdefault.jpg'
+    };
+    dispatch(postActions.createPost(post));
   };
   return (
     <React.Fragment>
