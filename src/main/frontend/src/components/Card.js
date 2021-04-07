@@ -13,15 +13,20 @@ const Card = (props) => {
 
   const { recentMode } = props;
 
+  useEffect(() =>{
+    fetchUsers();
+
+  }, [recentMode])
+  
   const fetchUsers = async () => {
 
     if (recentMode) {
-      const response = await axios.get("http://localhost:8080/api/articles");
+      const response = await axios.get("http://localhost:8080/api/articles/pop");
       setUsers(response.data);
       console.log(response);
     } else {
       const response = await axios.get(
-        "http://localhost:8080/api/articles/pop"
+        "http://localhost:8080/api/articles/"
       );
       setUsers(response.data);
       console.log(response);
