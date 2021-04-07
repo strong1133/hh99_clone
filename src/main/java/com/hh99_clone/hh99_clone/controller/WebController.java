@@ -11,6 +11,11 @@ class WebController implements ErrorController {
         return "index.html";
     }
 
+    @GetMapping("/login/kakao/callback")
+    public String kakaoLogin(String code){
+        return "redirect:/";
+    }
+
     @Override
     public String getErrorPath() {
         return "/error";
