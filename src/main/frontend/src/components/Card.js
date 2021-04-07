@@ -1,36 +1,19 @@
 // import React from "react";
-import styled from "styled-components";
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { history } from "../redux/configureStore";
+import styled from 'styled-components';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { history } from '../redux/configureStore';
 
-import { useSelector, useDispatch } from "react-redux";
 import { Grid, Text, Image } from "../elements";
-import Heart_Black from "../static/Heart_Black.svg";
+import Heart_Black from '../static/Heart_Black.svg';
 
 const Card = (props) => {
   const [users, setUsers] = useState([]);
 
-  const { recentMode } = props;
-
-  useEffect(() =>{
-    fetchUsers();
-
-  }, [recentMode])
-  
   const fetchUsers = async () => {
-
-    if (recentMode) {
-      const response = await axios.get("http://localhost:8080/api/articles/pop");
-      setUsers(response.data);
-      console.log(response);
-    } else {
-      const response = await axios.get(
-        "http://localhost:8080/api/articles/"
-      );
-      setUsers(response.data);
-      console.log(response);
-    }
+    const response = await axios.get('http://localhost:8080/api/articles');
+    setUsers(response.data);
+    console.log(response);
   };
 
   useEffect(() => {
@@ -111,7 +94,7 @@ const Box1 = styled.img`
   max-height: 180px;
   object-fit: cover;
   border-radius: 5px 5px 0 0;
-  background-image: url("${(props) => props.src}");
+  background-image: url('${(props) => props.src}');
 `;
 
 const Box2 = styled.div`

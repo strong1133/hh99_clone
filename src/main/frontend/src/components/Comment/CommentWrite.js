@@ -6,6 +6,7 @@ const CommentWrite = (props) => {
   return (
     <CommentInput>
       <textarea
+        defaultValue={value}
         value={value}
         placeholder="댓글을 작성하세요"
         onChange={_onChange}

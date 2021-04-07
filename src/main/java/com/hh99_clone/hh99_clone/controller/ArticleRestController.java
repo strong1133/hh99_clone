@@ -30,7 +30,6 @@ public class ArticleRestController {
     // 게시글 작성
     @PostMapping("/api/articles")
     public Article createArticle(@RequestBody ArticleRequestDto articleRequestDto){
-        Article article = new Article(articleRequestDto);
         return articleService.createArticle(articleRequestDto);
     }
 

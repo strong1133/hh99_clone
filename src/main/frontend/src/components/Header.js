@@ -4,7 +4,7 @@ import { Grid } from "../elements";
 
 import { history } from "../redux/configureStore";
 import { useSelector, useDispatch } from "react-redux";
-import user, { actionCreators as userActions } from "../redux/modules/user";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 import search from "../static/search.svg";
 import { getCookie } from "../shared/Cookie";
@@ -15,12 +15,7 @@ import Signup from "./Signup";
 import Modal from "react-modal";
 import { FaBorderAll, FaBorderNone } from "react-icons/fa";
 
-import v_logo from "../static/v_logo.svg";
-
 const Header = (props) => {
-
-  const { author } = props;
-
   const dispatch = useDispatch();
   const is_login = useSelector((state) => state.user.is_login);
 
@@ -38,51 +33,52 @@ const Header = (props) => {
     setIsLoginMode(!isLoginMode);
   };
 
+  if (is_login) {
+    return (
+      <React.Fragment>
+        <HeaderContainer>
+          <Grid>
+            <Grid is_flex padding="16px">
+              <TextLogo size="21pt" onClick={()=>{
+              history.push('/')}}>
+                velog
+              </TextLogo>
+
+              <Grid is_flex width="auto" margin="16px">
+                <LoginButton
+                  onClick={() => {
+                    dispatch(userActions.logOut({}));
+                  }}
+                >
+                  로그아웃
+                </LoginButton>
+                <img width="18px" src={search} />
+                <LoginButton>새 글 작성</LoginButton>
+                <ProfileImg
+                  shape="circle"
+                  src="https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX5559055.jpg"
+                />
+              </Grid>
+            </Grid>
+          </Grid>
+        </HeaderContainer>
+      </React.Fragment>
+    );
+  }
+
+  //  로그인 전
+
   return (
     <React.Fragment>
       <HeaderContainer>
-        <Grid is_flex padding="16px">
-
-          { author ? (
-            <Grid>
-              <img
-                width="24px"
-                margin="8px 16px 0px 8px"
-                src={v_logo}
-                onClick={() => {
-                  history.push("/");
-                }}
-              />
-              <TextLogo size="21pt">{author}.log</TextLogo>
-            </Grid>
-          ) : (
-            <TextLogo
-              size="21pt"
-              onClick={() => {
-                history.push("/");
-              }}
-            >
+        <Grid>
+          <Grid is_flex padding="16px">
+            <TextLogo bold size="21pt" onClick={()=>{
+              history.push('/');
+            }}>
               velog
             </TextLogo>
-          )}
 
-          {is_login ? (
-            <Grid is_flex width="auto" margin="16px">
-              <LoginButton
-                onClick={() => {
-                  dispatch(userActions.logOut({}));
-                }}
-              >
-                로그아웃
-              </LoginButton>
-              <img width="18px" src={search} />
-              <LoginButton>새 글 작성</LoginButton>
-              <ProfileImg
-                shape="circle"
-                src="https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX5559055.jpg"
-              />
-            </Grid>
-          ) : (
             <Grid is_flex width="auto" margin="16px">
               <img width="18px" src={search} />
               <LoginButton onClick={() => setModalIsOpen(true)}>
@@ -93,14 +89,14 @@ const Header = (props) => {
                   <Login onClickModal={onClickModal} />
                 ) : (
                   <Signup onClickModal={onClickModal} />
-                )}
+                )}{" "}
                 <CloseButton
                   src="https://image.flaticon.com/icons/png/512/458/458595.png"
                   onClick={closeModal}
                 />
               </Modal>
             </Grid>
-          )}
+          </Grid>
         </Grid>
       </HeaderContainer>
     </React.Fragment>
@@ -138,10 +134,10 @@ const CloseButton = styled.img`
 
 const HeaderContainer = styled.div`
   @media (max-width: 768px) {
-    width: 100vw;
+    width: 70vw;
   }
   @media all and (min-width: 768px) and (max-width: 1024px) {
-    width: 768px;
+    width: 1024px;
   }
   /* @media (max-width: 768px) {
     width: 95vw;
@@ -162,7 +158,6 @@ const HeaderContainer = styled.div`
 const TextLogo = styled.text`
   font-family: "Fira Mono", monospace;
   font-size: 18pt;
-  margin-left: 8px;
   &:hover {
     cursor: pointer;
   }
