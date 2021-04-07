@@ -22,8 +22,6 @@ function App() {
         <ConnectedRouter history={history}>
           <Route path="/" exact component={PostList} />
           <Route path="/article/:id" exact component={PostDetail} />
-          <Route path="/login" exact component={Login} />
-          <Route path="/signup" exact component={Signup} />
           <Route path="/write" exact component={PostWrite} />
         </ConnectedRouter>
       </Background>
@@ -38,16 +36,6 @@ const Background = styled.div`
   bottom: 0;
   width: 100vw;
   height: 100vh;
-  background-color: ${(props) => props.theme.main_bg_color};
-`;
-const AppWrap = styled.div`
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
   background-color: ${(props) => props.theme.main_bg_color};
 `;
 

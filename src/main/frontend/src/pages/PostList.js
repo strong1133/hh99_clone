@@ -63,6 +63,9 @@ const Box = styled.div`
   height: ${(props) => props.height};
   margin: ${(props) => props.margin};
   align-items: center;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 /* @media (max-width: 1376px){
     width: 1024px;
