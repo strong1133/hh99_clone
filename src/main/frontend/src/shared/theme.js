@@ -10,6 +10,7 @@ const theme = {
   main_black: '#343a40',
   main_bg_color: '#f7f8f9',
   velog_green: '#12b886',
+  velog_green_h: 'rgb(18,184,134,0.7)',
   gray: '#adb5bd',
   post_bg: '#f1f3f5',
   black: '#343a40',

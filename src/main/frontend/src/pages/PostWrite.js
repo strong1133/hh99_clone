@@ -126,6 +126,10 @@ const Footer = styled.div`
     outline: none;
     font-size: 1.125rem;
 
+    &:hover {
+      background-color: rgb(233, 236, 239);
+    }
+
     & span {
       margin-left: 0.5rem;
       font-weight: 450;
@@ -147,16 +151,24 @@ const Buttons = styled.div`
     height: 2.5rem;
     font-size: 1.125rem;
     font-weight: bold;
+    outline: none;
   }
 
   & button.cancle {
     margin-right: 0.75rem;
     background: rgb(233, 236, 239);
     color: rgb(73, 80, 87);
+
+    &:hover {
+      background-color: rgb(233, 236, 239, 0.7);
+    }
   }
 
   & button.submit {
     background-color: ${(props) => props.theme.velog_green};
+    &:hover {
+      background-color: ${(props) => props.theme.velog_green_h};
+    }
   }
 `;
 
