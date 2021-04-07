@@ -7,6 +7,7 @@ import { actionCreators as postActions } from '../redux/modules/post';
 import Comment from '../components/Comment/Comment';
 import PostHeader from '../components/PostDetail/PostHeader';
 import PostContents from '../components/PostDetail/PostContents';
+import Header from '../components/Header';
 
 const PostDetail = (props) => {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const PostDetail = (props) => {
 
   return (
     <Wrapper is_column bg="white">
+      <Header author={author} />
       <PostHeader />
       <PostContents />
       <Footer>
