@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { actionCreators as postActions } from '../redux/modules/post';
 
 const PostWrite = (props) => {
+  console.log('id', props.match.param.id);
   const dispatch = useDispatch();
 
   const editorRef = useRef();
