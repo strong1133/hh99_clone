@@ -21,7 +21,7 @@ const PostDetail = (props) => {
 
   return (
     <Wrapper is_column bg="white">
-      <Header author={author} />
+      {/* <Header author={author} /> */}
       <PostHeader history={props.history} />
       <PostContents />
       <Footer>

@@ -59,21 +59,28 @@ const PostHeader = (props) => {
 };
 
 const Header = styled.div`
-  ${(props) => props.theme.border_box};
-  width: 100%;
-  max-width: 768px;
+  ${(props) => props.theme.default_width};
   padding: 0 1rem;
+  margin-top: 1rem;
+
+  @media ${(props) => props.theme.desktop} {
+    margin-top: 3rem;
+  }
 `;
 const Title = styled.h1`
   text-align: left;
-  font-size: 3rem;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  font-family: var(--roboto);
   line-height: 1.5;
   letter-spacing: -0.004em;
-  margin-top: 0px;
   font-weight: 800;
   color: rgb(52, 58, 64);
-  margin-bottom: 2rem;
   word-break: keep-all;
+
+  @media ${(props) => props.theme.desktop} {
+    font-size: 3rem;
+  }
 `;
 
 const Buttons = styled.div`
@@ -83,9 +90,12 @@ const Buttons = styled.div`
 
   & span {
     cursor: pointer;
-    margin-right: 0.5rem;
+
     font-size: 1rem;
     color: ${(props) => props.theme.gray};
+    &:first-child {
+      margin-right: 0.5rem;
+    }
   }
   @media ${(props) => props.theme.desktop} {
     width: 50%;

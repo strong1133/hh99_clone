@@ -22,7 +22,7 @@ const theme = {
   flex_row:
     'display: flex; align-items: center; justify-content: space-between;',
   default_width:
-    'width:100%; max-width:768px; box-sizing:border-box; padding:0 1rem',
+    'width:100vw; max-width:768px; box-sizing:border-box; padding:0 1rem',
   max_width: `max-width:768px`,
   border_box: `box-sizing:border-box`
 };
