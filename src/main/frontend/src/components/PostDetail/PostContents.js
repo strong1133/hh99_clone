@@ -11,8 +11,9 @@ import { Wrapper } from '../../elements';
 const PostContents = (props) => {
   const contents = useSelector((state) => state.post.detailPost.contents);
   const navRef = useRef(null);
-  useEffect(() => {
-    window.onscroll = function () {
+
+  const handleScroll = (e) => {
+    if (navRef.current) {
       console.log(navRef.current.getBoundingClientRect());
       if (navRef.current.getBoundingClientRect().top < 0) {
         navRef.current.style.position = 'relative';
@@ -23,8 +24,14 @@ const PostContents = (props) => {
       if (window.scrollY < 250) {
         navRef.current.style.position = '';
       }
+    }
+  };
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
     };
-    return () => {};
   }, []);
   return (
     <Container>
