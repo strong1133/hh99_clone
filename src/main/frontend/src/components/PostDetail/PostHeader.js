@@ -27,26 +27,28 @@ const PostHeader = (props) => {
     <Header bg="white" is_column ai="flex-start">
       <Title>{title}</Title>
 
-      <Infomation jc="space-between">
-        <span>
-          <b>{author}</b> &nbsp;·&nbsp;
-          {modifiedAt
-            ? moment(modifiedAt).format('YYYY년 MM월 DD일')
-            : moment(createdAt).format('YYYY년 MM월 DD일')}
-        </span>
+      <Infomation>
+        <div className="line">
+          <span>
+            <b>{author}</b> &nbsp;·&nbsp;
+            {modifiedAt
+              ? moment(modifiedAt).format('YYYY년 MM월 DD일')
+              : moment(createdAt).format('YYYY년 MM월 DD일')}
+          </span>
+
+          <Like is_like={isLike} onClick={toggleLike}>
+            <Icon>
+              <Heart fill="red" />
+            </Icon>
+            <Text color={isLike ? 'white' : '#adb5bd'} bold size="1em">
+              {liked}
+            </Text>
+          </Like>
+        </div>
         <Buttons>
           <span onClick={onEdit}>수정</span>
           <span onClick={onDelete}>삭제</span>
         </Buttons>
-
-        <Like is_like={isLike} onClick={toggleLike}>
-          <Icon>
-            <Heart fill="red" />
-          </Icon>
-          <Text color={isLike ? 'white' : '#adb5bd'} bold size="1em">
-            {liked}
-          </Text>
-        </Like>
       </Infomation>
 
       <Wrapper jc="flex-start">
@@ -75,11 +77,18 @@ const Title = styled.h1`
 `;
 
 const Buttons = styled.div`
+  ${(props) => props.theme.flex_row};
+  justify-content: flex-end;
+  margin: 1rem 0;
+
   & span {
     cursor: pointer;
     margin-right: 0.5rem;
-    font-size: 0.875rem;
+    font-size: 1rem;
     color: ${(props) => props.theme.gray};
+  }
+  @media ${(props) => props.theme.desktop} {
+    width: 50%;
   }
 `;
 const Like = styled.div`
@@ -108,23 +117,27 @@ const Like = styled.div`
   }
 `;
 
-/* const HashTag = styled.div`
-  ${(props) => props.theme.flex_row};
-  color: ${(props) => props.theme.velog_green};
-  background-color: ${(props) => props.theme.post_bg};
-  padding: 0 0.75rem;
-  height: 1.5rem;
-  border-radius: 0.75rem;
-  font-size: 12px;
-  margin: 0.5rem 0;
-  cursor: pointer;
-`; */
-
 const Infomation = styled.div`
   font-size: 0.875rem;
-  ${(props) => props.theme.flex_row}
-  justify-content:space-between;
   width: 100%;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column-reverse;
+
+  & div.line {
+    ${(props) => props.theme.flex_row};
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    @media ${(props) => props.theme.desktop} {
+      width: 50%;
+    }
+  }
+
+  @media ${(props) => props.theme.desktop} {
+    flex-direction: row;
+  }
 `;
 
 const Icon = styled.div`

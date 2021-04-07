@@ -8,7 +8,7 @@ import useInput from '../shared/useInput';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionCreators as postActions } from '../redux/modules/post';
 import PostWriteHeader from '../components/PostWrite/PostWriteHeader';
-// hashtag cnrk
+
 const PostWrite = (props) => {
   const articleId = props.match.params.id;
   const dispatch = useDispatch();
@@ -31,7 +31,7 @@ const PostWrite = (props) => {
 
     if (!title || !contentsMd) return;
     // TODO : preview 처리
-    // TODO : image
+
     const post = {
       title,
       contents,

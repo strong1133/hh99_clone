@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import useInput from '../../shared/useInput';
 import HashTag from '../../elements/HashTag';
-//??
+
 const PostWriteHeader = (props) => {
   const { title, _onChange, hashTagList, setHashTagList } = props;
 
