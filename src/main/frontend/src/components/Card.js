@@ -82,7 +82,7 @@ const CardContainer = styled.div`
   &:hover {
     cursor: pointer;
     transform: translateY(-12px);
-    transform: all 200ms ease;
+    transition: all 200ms ease;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 10px 0px;
   }
 `;
