@@ -12,28 +12,29 @@ import { emailCheck } from "../shared/common";
 const Login = (props) => {
   const dispatch = useDispatch();
 
-  const [email, setEmail] = React.useState("");
-  const [pwd, setPwd] = React.useState("");
+  const [userName, setUserName] = React.useState("");
+  const [pw, setPw] = React.useState("");
 
-  const changeEmail = (e) => {
-    setEmail(e.target.value);
+  const changeUserName = (e) => {
+    setUserName(e.target.value);
   };
-  const changePwd = (e) => {
-    setPwd(e.target.value);
+  const changePw = (e) => {
+    setPw(e.target.value);
   };
   const { onClickModal } = props;
 
   const login = () => {
-    dispatch(userActions.loginAction());
+    // dispatch(userActions.loginAction());
 
-    if (email === "" || pwd === "") {
+    if (userName === "" || pw === "") {
       window.alert("이메일 혹은 비밀번호를 입력하지 않으셨습니다.");
       return;
     }
-    if (!emailCheck(email)) {
+    if (!emailCheck(userName)) {
       window.alert("잘못된 이메일 형식입니다.");
       return;
     }
+    dispatch(userActions.loginAPI(userName, pw));
   };
   return (
     <React.Fragment>
@@ -55,13 +56,13 @@ const Login = (props) => {
           </Text>
 
           <LoginInput
-            value={email}
-            onChange={changeEmail}
+            value={userName}
+            onChange={changeUserName}
             placeholder="이메일을 입력하세요"
           />
           <LoginInput
-            value={pwd}
-            onChange={changePwd}
+            value={pw}
+            onChange={changePw}
             placeholder="비밀번호를 입력하세요"
             type="password"
           />

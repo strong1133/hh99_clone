@@ -3,12 +3,10 @@ package com.hh99_clone.hh99_clone.controller;
 import com.hh99_clone.hh99_clone.domain.Article;
 import com.hh99_clone.hh99_clone.dto.ArticleLikedDto;
 import com.hh99_clone.hh99_clone.dto.ArticleRequestDto;
-import com.hh99_clone.hh99_clone.repository.ArticleRepository;
 import com.hh99_clone.hh99_clone.service.ArticleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
 
 @RequiredArgsConstructor
