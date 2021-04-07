@@ -28,6 +28,31 @@ const fetchPostById = (postId) => {
     });
   };
 };
+/* String title; // 게시글 제목
+String contents; // 게시글 내용
+String image; // 게시글 사진링크
+String author; // 게시글 작성자
+
+@GetMapping("/api/articles")
+// 게시글 작성
+@PostMapping("/api/articles")
+//게시글 수정
+@PutMapping("/api/articles/{id}")
+//게시글 삭제
+@DeleteMapping("/api/articles/{id}")
+
+게시글 작성은 title, contents, image, author
+게시글 수정은 title, contents, image, author + 수정할 게시글 id
+게시글 삭제는 삭제할 게시글 id */
+
+const createPost = (post) => {
+  console.log(post);
+  /* return function (dispatch, getState, { history }) {
+    axios.post(`/api/articles`).then((res) => {
+      //dispatch(addPost(post));
+    });
+  }; */
+};
 
 // reducer
 export default handleActions(
@@ -47,7 +72,8 @@ export default handleActions(
 // action creator export
 const actionCreators = {
   addPost,
-  fetchPostById
+  fetchPostById,
+  createPost
 };
 
 export { actionCreators };
