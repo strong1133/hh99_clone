@@ -37,7 +37,7 @@ const PostWrite = (props) => {
       contents,
       contentsHtml,
       contentsMd,
-      author: '나다',
+      author: 'ouo_',
       hashTag: hashTagList,
       image
     };
@@ -61,7 +61,7 @@ const PostWrite = (props) => {
           ref={editorRef}
           previewStyle="vertical"
           initialEditType="markdown"
-          initialValue={articleId && detailPost.contents}
+          initialValue={articleId && detailPost.contentsMd}
           previewHighlight={false}
           placeholder="당신의 이야기를 적어보세요...."
           height="75vh"
