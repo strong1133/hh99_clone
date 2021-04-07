@@ -43,9 +43,9 @@ const PostContents = (props) => {
     }
   };
   useEffect(() => {
+    // window.addEventListener('scroll', handleScroll);
     window.addEventListener('scroll', handleScroll);
 
-    // return () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
