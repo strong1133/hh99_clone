@@ -11,22 +11,6 @@ import { Wrapper } from '../../elements';
 const PostContents = (props) => {
   const contents = useSelector((state) => state.post.detailPost.contents);
   const navRef = useRef(null);
-  useEffect(() => {
-    window.onscroll = function () {
-      console.log(navRef.current.getBoundingClientRect());
-      if (navRef.current.getBoundingClientRect().top < 0) {
-        navRef.current.style.position = 'relative';
-        navRef.current.style.top = window.scrollY + 'px';
-        navRef.current.style.left = navRef.current.getBoundingClientRect().left;
-      }
-
-      if (window.scrollY < 250) {
-        navRef.current.style.position = '';
-      }
-    };
-    return () => {};
-  }, []);
-
 
   const handleScroll = (e) => {
     if (navRef.current) {
@@ -44,7 +28,6 @@ const PostContents = (props) => {
   };
   useEffect(() => {
     // window.addEventListener('scroll', handleScroll);
-
     // return () => {
     //   window.removeEventListener('scroll', handleScroll);
     // };
