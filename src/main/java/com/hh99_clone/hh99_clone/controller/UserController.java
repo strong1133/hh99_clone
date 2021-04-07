@@ -19,10 +19,6 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/hello")
-    public ResponseEntity<String> hello() {
-        return ResponseEntity.ok("hello");
-    }
 
     @PostMapping("/signup")
     public ResponseEntity<User> signup(

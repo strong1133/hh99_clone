@@ -7,8 +7,8 @@ com/hh99_clone/hh99_clone/dto/LoginDto.java
  com.hh99_clone.hh99_clone.dto.LoginDto$LoginDtoBuilder
 com/hh99_clone/hh99_clone/util/SecurityUtil.java
  com.hh99_clone.hh99_clone.util.SecurityUtil
-com/hh99_clone/hh99_clone/service/UserService.java
- com.hh99_clone.hh99_clone.service.UserService
+com/hh99_clone/hh99_clone/Hh99CloneApplication.java
+ com.hh99_clone.hh99_clone.Hh99CloneApplication
 com/hh99_clone/hh99_clone/jwt/JwtSecurityConfig.java
  com.hh99_clone.hh99_clone.jwt.JwtSecurityConfig
 com/hh99_clone/hh99_clone/dto/ArticleLikedDto.java
@@ -29,8 +29,8 @@ com/hh99_clone/hh99_clone/security/SecurityConfig.java
  com.hh99_clone.hh99_clone.security.SecurityConfig
 com/hh99_clone/hh99_clone/security/kakao/KakaoUserInfo.java
  com.hh99_clone.hh99_clone.security.kakao.KakaoUserInfo
-com/hh99_clone/hh99_clone/service/CustomUserDetailsService.java
- com.hh99_clone.hh99_clone.service.CustomUserDetailsService
+com/hh99_clone/hh99_clone/service/ArticleService.java
+ com.hh99_clone.hh99_clone.service.ArticleService
 com/hh99_clone/hh99_clone/dto/TokenDto.java
  com.hh99_clone.hh99_clone.dto.TokenDto
  com.hh99_clone.hh99_clone.dto.TokenDto$TokenDtoBuilder
@@ -52,11 +52,10 @@ com/hh99_clone/hh99_clone/util/CommentSpecs.java
  com.hh99_clone.hh99_clone.util.CommentSpecs
 com/hh99_clone/hh99_clone/jwt/JwtFilter.java
  com.hh99_clone.hh99_clone.jwt.JwtFilter
-com/hh99_clone/hh99_clone/domain/User.java
- com.hh99_clone.hh99_clone.domain.User
- com.hh99_clone.hh99_clone.domain.User$UserBuilder
-com/hh99_clone/hh99_clone/controller/UserController.java
- com.hh99_clone.hh99_clone.controller.UserController
+com/hh99_clone/hh99_clone/domain/Article.java
+ com.hh99_clone.hh99_clone.domain.Article
+com/hh99_clone/hh99_clone/controller/ArticleRestController.java
+ com.hh99_clone.hh99_clone.controller.ArticleRestController
 com/hh99_clone/hh99_clone/jwt/TokenProvider.java
  com.hh99_clone.hh99_clone.jwt.TokenProvider
 com/hh99_clone/hh99_clone/controller/WebController.java
@@ -71,11 +70,12 @@ com/hh99_clone/hh99_clone/util/SignupValidator.java
  com.hh99_clone.hh99_clone.util.SignupValidator
 com/hh99_clone/hh99_clone/dto/ArticleRequestDto.java
  com.hh99_clone.hh99_clone.dto.ArticleRequestDto
-com/hh99_clone/hh99_clone/Hh99CloneApplication.java
- com.hh99_clone.hh99_clone.Hh99CloneApplication
-com/hh99_clone/hh99_clone/service/ArticleService.java
- com.hh99_clone.hh99_clone.service.ArticleService
-com/hh99_clone/hh99_clone/domain/Article.java
- com.hh99_clone.hh99_clone.domain.Article
-com/hh99_clone/hh99_clone/controller/ArticleRestController.java
- com.hh99_clone.hh99_clone.controller.ArticleRestController
+com/hh99_clone/hh99_clone/controller/UserController.java
+ com.hh99_clone.hh99_clone.controller.UserController
+com/hh99_clone/hh99_clone/domain/User.java
+ com.hh99_clone.hh99_clone.domain.User
+ com.hh99_clone.hh99_clone.domain.User$UserBuilder
+com/hh99_clone/hh99_clone/service/CustomUserDetailsService.java
+ com.hh99_clone.hh99_clone.service.CustomUserDetailsService
+com/hh99_clone/hh99_clone/service/UserService.java
+ com.hh99_clone.hh99_clone.service.UserService
