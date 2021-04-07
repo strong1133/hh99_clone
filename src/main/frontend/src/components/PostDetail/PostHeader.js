@@ -14,7 +14,6 @@ const PostHeader = () => {
     setIsLike(!isLike);
   };
 
-  console.log();
   return (
     <Header bg="white" is_column ai="flex-start">
       <Title>{title}</Title>
@@ -39,19 +38,26 @@ const PostHeader = () => {
       <Wrapper jc="flex-start">
         <HashTag> 해시태그</HashTag>
       </Wrapper>
-      <PostProjectBox />
     </Header>
   );
 };
 
 const Header = styled.div`
+  ${(props) => props.theme.border_box};
+  width: 100%;
   max-width: 768px;
-  @media (max-width: 768px) {
-    padding: 1rem;
-  }
+  padding: 0 1rem;
 `;
 const Title = styled.h1`
   text-align: left;
+  font-size: 3rem;
+  line-height: 1.5;
+  letter-spacing: -0.004em;
+  margin-top: 0px;
+  font-weight: 800;
+  color: rgb(52, 58, 64);
+  margin-bottom: 2rem;
+  word-break: keep-all;
 `;
 
 const Like = styled.div`

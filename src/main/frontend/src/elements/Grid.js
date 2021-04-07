@@ -43,6 +43,10 @@ Grid.defaultProps = {
   bg: false,
   center: false,
   left: false,
+<<<<<<< HEAD
+=======
+  align_items_center: false,
+>>>>>>> 292d16715b3fe468e9f5bcf9d2d949edc139c1ab
   _onClick: () => {}
 };
 
@@ -56,10 +60,10 @@ const GridBox = styled.div`
   ${(props) =>
     props.is_flex
       ? `display: flex; align-items: center; justify-content: space-between; `
-      : ""}
-  ${(props) => (props.center ? `text-align: center;` : "")}
-  ${(props) => (props.left ? `text-align: left;` : "")}
-  ${(props) => (props.align_items_center ? `align-items: center;` : "")}
+      : ''}
+  ${(props) => (props.center ? `text-align: center;` : '')}
+  ${(props) => (props.left ? `text-align: left;` : '')}
+  ${(props) => (props.align_items_center ? `align-items: center;` : '')}
 `;
 
 export default Grid;

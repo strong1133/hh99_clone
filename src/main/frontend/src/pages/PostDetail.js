@@ -24,16 +24,19 @@ const PostDetail = (props) => {
       <PostContents />
       <Footer>
         <UserInfo>
-          <Image
-            src={image}
-            shape="circle"
-            size="5rem"
-            margin="0 4px 0 0"
-          ></Image>
-          <div>
-            <b>{author}</b>
-            <Text>User 소개글같은거</Text>
+          <div className="header">
+            <Image
+              src={image}
+              shape="circle"
+              size="8rem"
+              margin="0 4px 0 0"
+            ></Image>
+            <div className="meta">
+              <span className="name">{author}</span>
+              <span className="userInfo">User 소개글같은거</span>
+            </div>
           </div>
+          <div className="line"></div>
         </UserInfo>
         <Wrapper width="100%" jc="space-between">
           <NextPrev>
@@ -44,12 +47,14 @@ const PostDetail = (props) => {
               <p>이전 포스트</p>
               <h3>프론트 개발자 면접 정리</h3>
             </div>
+            <hr />
           </NextPrev>
           <NextPrev is_right>
             <div>
               <p>다음 포스트</p>
               <h3>프론트 개발자 면접 정리</h3>
             </div>
+
             <I className="icon">
               <FaArrowRight />
             </I>
@@ -68,20 +73,41 @@ const Footer = styled.div`
   padding: 0 1rem;
 `;
 const UserInfo = styled.div`
+  ${(props) => props.theme.flex_column};
+  justify-content: flex-start;
   width: 100%;
-  ${(props) => props.theme.flex_row}
-  justify-content:flex-start;
-
-  & > div {
-    background-color: pink;
-    margin-left: 1rem;
-    ${(props) => props.theme.flex_column};
+  & div.header {
+    ${(props) => props.theme.default_width};
+    ${(props) => props.theme.flex_row};
     justify-content: flex-start;
-    align-items: center;
-    width: 100%;
+    & div.meta {
+      padding-left: 1.5rem;
+      ${(props) => props.theme.flex_column};
+      justify-content: center;
+      align-items: flex-start;
+
+      & span.name {
+        font-size: 1.5rem;
+        line-height: 1.5;
+        font-weight: bold;
+      }
+
+      & span.userInfo {
+        font-size: 1.125rem;
+        line-height: 1.5;
+        margin-top: 0.25rem;
+        color: rgb(73, 80, 87);
+        letter-spacing: -0.004em;
+      }
+    }
   }
-  & b {
-    font-size: 1.125rem;
+
+  & div.line {
+    background: rgb(233, 236, 239);
+    width: 100%;
+    height: 1px;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
   }
 `;
 
