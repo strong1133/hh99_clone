@@ -13,18 +13,29 @@ const PostHeader = () => {
   const toggleLike = () => {
     setIsLike(!isLike);
   };
+  const onEdit = () => {
+    console.log('수정');
+  };
 
+  const onDelete = () => {
+    console.log('수정');
+  };
   return (
     <Header bg="white" is_column ai="flex-start">
       <Title>{title}</Title>
 
       <Infomation jc="space-between">
         <span>
-          <b>{author}</b> ·{' '}
+          <b>{author}</b>
           {modifiedAt
             ? moment(modifiedAt).format('YYYY년 MM월 DD일')
             : moment(createdAt).format('YYYY년 MM월 DD일')}
         </span>
+        <Buttons>
+          <span onClick={onEdit}>수정</span>
+          <span onClick={onDelete}>삭제</span>
+        </Buttons>
+
         <Like is_like={isLike} onClick={toggleLike}>
           <Icon>
             <Heart fill="red" />
@@ -60,6 +71,14 @@ const Title = styled.h1`
   word-break: keep-all;
 `;
 
+const Buttons = styled.div`
+  & span {
+    cursor: pointer;
+    margin-right: 0.5rem;
+    font-size: 0.875rem;
+    color: ${(props) => props.theme.gray};
+  }
+`;
 const Like = styled.div`
   border: 1px solid;
   padding: 0 0.75rem;
