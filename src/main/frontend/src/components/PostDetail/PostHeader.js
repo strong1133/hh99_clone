@@ -3,28 +3,42 @@ import styled from 'styled-components';
 import { ReactComponent as Heart } from '../../static/heart.svg';
 import moment from 'moment';
 import 'moment/locale/ko';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Text, Wrapper } from '../../elements';
-import PostProjectBox from './PostProjectBox';
-const PostHeader = () => {
+import { actionCreators as postActions } from '../../redux/modules/post';
+import HashTag from '../../elements/HashTag';
+
+const PostHeader = (props) => {
+  const dispatch = useDispatch();
   const [isLike, setIsLike] = useState(false);
   const detailPost = useSelector((state) => state.post.detailPost);
-  const { createdAt, author, modifiedAt, image, liked, title } = detailPost;
+  const { createdAt, author, modifiedAt, image, liked, title, id } = detailPost;
   const toggleLike = () => {
     setIsLike(!isLike);
   };
+  const onEdit = (e) => {
+    props.history.push(`/write/${id}`);
+  };
 
+  const onDelete = () => {
+    dispatch(postActions.deletePost(id));
+  };
   return (
     <Header bg="white" is_column ai="flex-start">
       <Title>{title}</Title>
 
       <Infomation jc="space-between">
         <span>
-          <b>{author}</b> ·{' '}
+          <b>{author}</b>
           {modifiedAt
             ? moment(modifiedAt).format('YYYY년 MM월 DD일')
             : moment(createdAt).format('YYYY년 MM월 DD일')}
         </span>
+        <Buttons>
+          <span onClick={onEdit}>수정</span>
+          <span onClick={onDelete}>삭제</span>
+        </Buttons>
+
         <Like is_like={isLike} onClick={toggleLike}>
           <Icon>
             <Heart fill="red" />
@@ -60,6 +74,14 @@ const Title = styled.h1`
   word-break: keep-all;
 `;
 
+const Buttons = styled.div`
+  & span {
+    cursor: pointer;
+    margin-right: 0.5rem;
+    font-size: 0.875rem;
+    color: ${(props) => props.theme.gray};
+  }
+`;
 const Like = styled.div`
   border: 1px solid;
   padding: 0 0.75rem;
@@ -79,7 +101,7 @@ const Like = styled.div`
   // 사이즈 줄어들면 안보이게 처리
 `;
 
-const HashTag = styled.div`
+/* const HashTag = styled.div`
   ${(props) => props.theme.flex_row};
   color: ${(props) => props.theme.velog_green};
   background-color: ${(props) => props.theme.post_bg};
@@ -89,7 +111,7 @@ const HashTag = styled.div`
   font-size: 12px;
   margin: 0.5rem 0;
   cursor: pointer;
-`;
+`; */
 
 const Infomation = styled.div`
   font-size: 0.875rem;

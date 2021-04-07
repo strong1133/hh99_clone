@@ -7,7 +7,7 @@ import { actionCreators as postActions } from '../redux/modules/post';
 import Comment from '../components/Comment/Comment';
 import PostHeader from '../components/PostDetail/PostHeader';
 import PostContents from '../components/PostDetail/PostContents';
-import Header from "../components/Header";
+import Header from '../components/Header';
 
 const PostDetail = (props) => {
   const dispatch = useDispatch();
@@ -19,11 +19,10 @@ const PostDetail = (props) => {
     dispatch(postActions.fetchPostById(postId));
   }, []);
 
-
   return (
     <Wrapper is_column bg="white">
-       <Header author={author}/>
-      <PostHeader />
+      <Header author={author} />
+      <PostHeader history={props.history} />
       <PostContents />
       <Footer>
         <UserInfo>

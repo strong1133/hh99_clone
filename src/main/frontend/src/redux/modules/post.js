@@ -28,30 +28,37 @@ const fetchPostById = (postId) => {
     });
   };
 };
-/* String title; // 게시글 제목
-String contents; // 게시글 내용
-String image; // 게시글 사진링크
-String author; // 게시글 작성자
-
-@GetMapping("/api/articles")
-// 게시글 작성
-@PostMapping("/api/articles")
-//게시글 수정
-@PutMapping("/api/articles/{id}")
-//게시글 삭제
-@DeleteMapping("/api/articles/{id}")
-
-게시글 작성은 title, contents, image, author
-게시글 수정은 title, contents, image, author + 수정할 게시글 id
-게시글 삭제는 삭제할 게시글 id */
+/* 
+private String title;           // 게시글 제목
+private String contents;        // 게시글 텍스트형태 (메인 미리보기용)
+private String contentsHtml;    // 게시글 Html형태
+private String contentsMd;      // 게시글 MarkDown 형태
+private String image;           // 게시글 사진링크
+private String author;          // 게시글 작성자
+*/
 
 const createPost = (post) => {
-  console.log(post);
-  /* return function (dispatch, getState, { history }) {
-    axios.post(`/api/articles`).then((res) => {
-      //dispatch(addPost(post));
+  return function (dispatch, getState, { history }) {
+    axios.post(`/api/articles`, post).then((res) => {
+      history.push('/');
     });
-  }; */
+  };
+};
+
+const deletePost = (postId) => {
+  return function (dispatch, getState, { history }) {
+    axios.delete(`/api/articles/${postId}`).then((res) => {
+      history.push('/');
+    });
+  };
+};
+
+const updatePost = (postId, post) => {
+  return function (dispatch, getState, { history }) {
+    axios.put(`/api/articles/${postId}`, post).then((res) => {
+      history.push('/');
+    });
+  };
 };
 
 // reducer
@@ -73,7 +80,10 @@ export default handleActions(
 const actionCreators = {
   addPost,
   fetchPostById,
-  createPost
+  createPost,
+  deletePost,
+  updatePost,
+  setDetailPost
 };
 
 export { actionCreators };

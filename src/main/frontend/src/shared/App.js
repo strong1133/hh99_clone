@@ -22,6 +22,7 @@ function App() {
           <Route path="/" exact component={PostList} />
           <Route path="/article/:id" exact component={PostDetail} />
           <Route path="/write" exact component={PostWrite} />
+          <Route path="/write/:id" exact component={PostWrite} />
         </ConnectedRouter>
       </Background>
     </React.Fragment>

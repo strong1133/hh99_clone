@@ -1,41 +1,87 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import 'codemirror/lib/codemirror.css';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { Editor } from '@toast-ui/react-editor';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import useInput from '../shared/useInput';
+import { useDispatch, useSelector } from 'react-redux';
+import { actionCreators as postActions } from '../redux/modules/post';
+import PostWriteHeader from '../components/PostWrite/PostWriteHeader';
+
 const PostWrite = (props) => {
+  const articleId = props.match.params.id;
+  const dispatch = useDispatch();
+  const detailPost = useSelector((state) => state.post.detailPost);
+  const [hashTagList, setHashTagList] = useState([]); //articleId?detailPost.hashTag:[]
   const editorRef = useRef();
-  const [title, onChangeTitle] = useInput('');
+  const [title, onChangeTitle] = useInput(articleId && detailPost.title);
 
   const submit = () => {
-    //console.log(editorRef.current.getInstance().getHtml());
-    console.log(title);
+    const contents = editorRef.current
+      .getInstance()
+      .getTextObject()
+      .setRange(20);
+
+    const contentsHtml = editorRef.current.getInstance().getHtml();
+    const contentsMd = editorRef.current.getInstance().getMarkdown();
+    const image = contentsHtml.split('=')[1]?.split('"')[1];
+
+    if (!title || !contentsMd) return;
+    // TODO : preview 처리
+    // TODO : image
+    const post = {
+      title,
+      contents,
+      contentsHtml,
+      contentsMd,
+      author: '나다',
+      image
+    };
+
+    console.log('post', post);
+    //editorRef.current.getInstance().insertText(post.contentsMd);
+    /*  if (articleId) {
+      dispatch(postActions.updatePost(articleId, post));
+    } else {
+      dispatch(postActions.createPost(post));
+    } */
   };
   return (
     <React.Fragment>
       <Container>
-        <Title placeholder="제목을 입력하세요" onChange={onChangeTitle}></Title>
+        <PostWriteHeader
+          hashTagList={hashTagList}
+          setHashTagList={setHashTagList}
+          title={title}
+          _onChange={onChangeTitle}
+        />
         <Editor
           ref={editorRef}
           previewStyle="vertical"
           initialEditType="markdown"
+          initialValue={articleId && detailPost.contents}
           previewHighlight={false}
           placeholder="당신의 이야기를 적어보세요...."
-          height="85vh"
-          width="100%"
+          height="75vh"
         ></Editor>
       </Container>
       <Footer>
-        <button className="exit">
+        <button
+          className="exit"
+          onClick={() => {
+            props.history.push('/');
+          }}
+        >
           <AiOutlineArrowLeft />
           <span>나가기</span>
         </button>
-        <div className="buttons">
-          <button>임시저장</button>
-          <button onClick={submit}>출간하기</button>
-        </div>
+        <Buttons>
+          <button className="cancle">임시저장</button>
+          <button className="submit" onClick={submit}>
+            출간하기
+          </button>
+        </Buttons>
       </Footer>
     </React.Fragment>
   );
@@ -46,15 +92,15 @@ PostWrite.propTypes = {};
 const Container = styled.div`
   ${(props) => props.theme.border_box};
   padding: 0 1rem;
+  width: 100vw;
 `;
 
-const Title = styled.input``;
-
 const Footer = styled.div`
+  ${(props) => props.theme.border_box};
   padding-left: 1rem;
   padding-right: 1rem;
   height: 4rem;
-  width: 100%;
+  width: 100vw;
   box-shadow: rgb(0 0 0 / 10%) 0px 0px 8px;
   background: rgba(255, 255, 255, 0.85);
   display: flex;
@@ -62,11 +108,9 @@ const Footer = styled.div`
   justify-content: space-between;
   -webkit-box-align: center;
   align-items: center;
-
   position: fixed;
   bottom: 0;
   background-color: white;
-  width: 100vw;
 
   & button.exit {
     height: 2.5rem;
@@ -85,6 +129,33 @@ const Footer = styled.div`
       margin-left: 0.5rem;
       font-weight: 450;
     }
+  }
+`;
+
+const Buttons = styled.div`
+  display: flex;
+  -webkit-box-pack: end;
+  justify-content: flex-end;
+
+  & button {
+    cursor: pointer;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0px 1.25rem;
+    height: 2.5rem;
+    font-size: 1.125rem;
+    font-weight: bold;
+  }
+
+  & button.cancle {
+    margin-right: 0.75rem;
+    background: rgb(233, 236, 239);
+    color: rgb(73, 80, 87);
+  }
+
+  & button.submit {
+    background-color: ${(props) => props.theme.velog_green};
   }
 `;
 
