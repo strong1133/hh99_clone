@@ -4,15 +4,19 @@ import 'codemirror/lib/codemirror.css';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { Editor } from '@toast-ui/react-editor';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
+import useInput from '../shared/useInput';
 const PostWrite = (props) => {
   const editorRef = useRef();
+  const [title, onChangeTitle] = useInput('');
 
   const submit = () => {
-    console.log(editorRef.current.getInstance().getHtml());
+    //console.log(editorRef.current.getInstance().getHtml());
+    console.log(title);
   };
   return (
     <React.Fragment>
       <Container>
+        <Title placeholder="제목을 입력하세요" onChange={onChangeTitle}></Title>
         <Editor
           ref={editorRef}
           previewStyle="vertical"
@@ -22,7 +26,6 @@ const PostWrite = (props) => {
           height="85vh"
           width="100%"
         ></Editor>
-        dfd
       </Container>
       <Footer>
         <button className="exit">
@@ -44,6 +47,8 @@ const Container = styled.div`
   ${(props) => props.theme.border_box};
   padding: 0 1rem;
 `;
+
+const Title = styled.input``;
 
 const Footer = styled.div`
   padding-left: 1rem;
