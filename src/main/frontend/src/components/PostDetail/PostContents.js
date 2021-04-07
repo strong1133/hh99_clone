@@ -49,7 +49,6 @@ const PostContents = (props) => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
->>>>>>> 2dbdaa33c1e51038193d16027c38da1b0aefc2dc
   return (
     <Container>
       <Navbar ref={navRef}>
