@@ -61,7 +61,10 @@ const Container = styled.div`
   ${(props) => props.theme.border_box};
   ${(props) => props.theme.flex_row};
   align-items: flex-start;
+  justify-content: space-between;
   padding: 0 1rem;
+
+  width: 100%;
 `;
 
 const Navbar = styled.div`
@@ -103,8 +106,15 @@ const Contents = styled.div`
 `;
 
 const Main = styled.div`
+  background-color: pink;
   ${(props) => props.theme.default_width};
   margin: 0 2rem;
+
+  width: 100%;
+  ${(props) => props.theme.max_width};
+  /*  @media ${(props) => props.theme.desktop} {
+    width: 768px;
+  } */
 `;
 
 const Icon = styled.div`

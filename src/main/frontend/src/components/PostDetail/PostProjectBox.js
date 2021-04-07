@@ -32,7 +32,7 @@ const PostProjectBox = () => {
       <Icon>
         <Ribbon />
       </Icon>
-      <Title>Project</Title>
+      <Title>Series</Title>
 
       <List is_open={isOpen}>
         <ol>
@@ -78,6 +78,7 @@ const PostProjectBox = () => {
 };
 
 const Project = styled.div`
+  display: block;
   margin-top: 2rem;
   padding: 2rem 1.5rem;
   text-align: left;
