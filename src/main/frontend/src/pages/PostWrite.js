@@ -8,8 +8,9 @@ import useInput from '../shared/useInput';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionCreators as postActions } from '../redux/modules/post';
 import PostWriteHeader from '../components/PostWrite/PostWriteHeader';
-// 수정
+
 const PostWrite = (props) => {
+  // 이게원래있어야함망할자식
   const articleId = props.match.params.id;
   const dispatch = useDispatch();
   const detailPost = useSelector((state) => state.post.detailPost);
