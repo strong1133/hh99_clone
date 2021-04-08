@@ -19,6 +19,7 @@ function App() {
           <Route path="/" exact component={PostList} />
           <Route path="/article/:id" exact component={PostDetail} />
           <Route path="/write" exact component={PostWrite} />
+          <Route path="/write/:id" exact component={PostWrite} />
         </ConnectedRouter>
       </Background>
     </React.Fragment>
@@ -31,7 +32,7 @@ const Background = styled.div`
   right: 0;
   left: 0;
   bottom: 0;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   background-color: ${(props) => props.theme.main_bg_color};
 `;
