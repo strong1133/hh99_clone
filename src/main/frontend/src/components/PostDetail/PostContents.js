@@ -7,11 +7,11 @@ import { ReactComponent as Heart } from '../../static/heart.svg';
 import { ReactComponent as Share } from '../../static/share.svg';
 import PostProjectBox from './PostProjectBox';
 import { Wrapper } from '../../elements';
-
+// dfdfdf
 const PostContents = (props) => {
   const contents = useSelector((state) => state.post.detailPost.contents);
   const navRef = useRef(null);
-
+  //dfdf
   const handleScroll = (e) => {
     if (navRef.current) {
       console.log(navRef.current.getBoundingClientRect());
