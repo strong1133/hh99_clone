@@ -15,7 +15,7 @@ const PostList = (props) => {
   useEffect(() => {
     if (!localStorage.getItem('token')) return;
 
-    dispatch(userAction.getUserInfo());
+    // dispatch(userAction.getUserInfo());
   }, []);
   console.log(isRecentMode);
 

@@ -18,16 +18,7 @@ const setUser = createAction(SET_USER, (user) => ({ user }));
 // initialState
 const initialState = {
   user: null,
-  is_login: true
-};
-
-// middleware actionsCreators
-const loginAction = (user) => {
-  return function (dispatch, getState, { history }) {
-    console.log(history);
-    dispatch(setUser(user));
-    history.push('');
-  };
+  is_login: false
 };
 
 const signupAPI = (userName, nickname, pw) => {
@@ -57,54 +48,37 @@ const signupAPI = (userName, nickname, pw) => {
 const loginAPI = (id, pw) => {
   return function (dispatch, getState, { history }) {
     const API = 'http://localhost:8080/api/authenticate';
-    fetch(API, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        username: id,
-        password: pw
-      })
-    })
-      .then((response) => response)
-      .then((result) => {
-        console.log(result);
 
-        if (result.status === 200) {
-          let token = result.headers.get('Authorization');
-          let tokenken = token.split('Bearer ')[1];
-          localStorage.setItem('token', tokenken);
-        } else {
-          window.alert('로그인에 실패했습니다.');
-          // window.location.reload();
-        }
+    axios({
+      url: 'http://localhost:8080/api/authenticate',
+      method: 'post',
+      data: { username: id, password: pw },
+      withCredentials: true
+    })
+      .then((res) => {
+        console.log('로그인', res.data.token);
+        axios.defaults.headers.common[
+          'Authorization'
+        ] = `Bearer ${res.data.token}`;
+
+        dispatch(getUserInfo());
       })
-      .catch((error) => {
-        console.log(error);
+      .catch((err) => {
+        console.error(err);
+        alert('로그인에 실패했습니다');
       });
   };
 };
 
 const getUserInfo = () => {
   return function (dispatch, getState, { history }) {
-    const token = localStorage.getItem('token');
-    /* axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-
-    axios
-      .get('http://localhost:8080/api/user')
-      .then((res) => {
-        console.log('info', res);
-      })
-      .catch((error) => console.log(error)); */
-
-    fetch('http://localhost:8080/api/user', {
-      method: 'GET',
-      headers: { Authorization: `Bearer ${token}` }
-    })
-      .then((response) => response.json())
-      .then((json) => console.log(json))
-      .catch((err) => console.log(err));
+    axios.get('/api/user').then((res) => {
+      console.log('getUserInfo', res);
+      dispatch(
+        setUser({ username: res.data.username, nickname: res.data.nickname })
+      );
+      history.replace('/');
+    });
   };
 };
 
@@ -164,7 +138,6 @@ export default handleActions(
 const actionCreators = {
   logOut,
   getUser,
-  loginAction,
   signupAPI,
   loginAPI,
   isLogin,
