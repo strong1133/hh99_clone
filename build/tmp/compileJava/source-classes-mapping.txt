@@ -22,8 +22,8 @@ com/hh99_clone/hh99_clone/domain/User.java
  com.hh99_clone.hh99_clone.domain.User$UserBuilder
 com/hh99_clone/hh99_clone/controller/AuthController.java
  com.hh99_clone.hh99_clone.controller.AuthController
-com/hh99_clone/hh99_clone/service/UserService.java
- com.hh99_clone.hh99_clone.service.UserService
+com/hh99_clone/hh99_clone/security/CorsConfig.java
+ com.hh99_clone.hh99_clone.security.CorsConfig
 com/hh99_clone/hh99_clone/repository/ArticleRepository.java
  com.hh99_clone.hh99_clone.repository.ArticleRepository
 com/hh99_clone/hh99_clone/security/SecurityConfig.java
@@ -69,13 +69,13 @@ com/hh99_clone/hh99_clone/service/CommentService.java
  com.hh99_clone.hh99_clone.service.CommentService
 com/hh99_clone/hh99_clone/security/kakao/KakaoOAuth.java
  com.hh99_clone.hh99_clone.security.kakao.KakaoOAuth
+com/hh99_clone/hh99_clone/controller/UserController.java
+ com.hh99_clone.hh99_clone.controller.UserController
 com/hh99_clone/hh99_clone/repository/UserRepository.java
  com.hh99_clone.hh99_clone.repository.UserRepository
 com/hh99_clone/hh99_clone/service/CustomUserDetailsService.java
  com.hh99_clone.hh99_clone.service.CustomUserDetailsService
-com/hh99_clone/hh99_clone/controller/UserController.java
- com.hh99_clone.hh99_clone.controller.UserController
 com/hh99_clone/hh99_clone/controller/WebController.java
  com.hh99_clone.hh99_clone.controller.WebController
-com/hh99_clone/hh99_clone/security/CorsConfig.java
- com.hh99_clone.hh99_clone.security.CorsConfig
+com/hh99_clone/hh99_clone/service/UserService.java
+ com.hh99_clone.hh99_clone.service.UserService
