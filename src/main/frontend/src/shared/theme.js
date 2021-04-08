@@ -10,6 +10,7 @@ const theme = {
   main_black: '#343a40',
   main_bg_color: '#f7f8f9',
   velog_green: '#12b886',
+  velog_green_h: 'rgb(18,184,134,0.7)',
   gray: '#adb5bd',
   post_bg: '#f1f3f5',
   black: '#343a40',
@@ -21,7 +22,7 @@ const theme = {
   flex_row:
     'display: flex; align-items: center; justify-content: space-between;',
   default_width:
-    'width:100%; max-width:768px; box-sizing:border-box; padding:0 1rem',
+    'width:100vw; max-width:768px; box-sizing:border-box; padding:0 1rem',
   max_width: `max-width:768px`,
   border_box: `box-sizing:border-box`
 };

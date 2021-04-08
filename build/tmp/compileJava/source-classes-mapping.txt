@@ -15,10 +15,11 @@ com/hh99_clone/hh99_clone/dto/ArticleLikedDto.java
  com.hh99_clone.hh99_clone.dto.ArticleLikedDto
 com/hh99_clone/hh99_clone/jwt/JwtAuthenticationEntryPoint.java
  com.hh99_clone.hh99_clone.jwt.JwtAuthenticationEntryPoint
-com/hh99_clone/hh99_clone/security/kakao/KakaoOAuth.java
- com.hh99_clone.hh99_clone.security.kakao.KakaoOAuth
-com/hh99_clone/hh99_clone/repository/UserRepository.java
- com.hh99_clone.hh99_clone.repository.UserRepository
+com/hh99_clone/hh99_clone/util/SignupValidator.java
+ com.hh99_clone.hh99_clone.util.SignupValidator
+com/hh99_clone/hh99_clone/domain/User.java
+ com.hh99_clone.hh99_clone.domain.User
+ com.hh99_clone.hh99_clone.domain.User$UserBuilder
 com/hh99_clone/hh99_clone/controller/AuthController.java
  com.hh99_clone.hh99_clone.controller.AuthController
 com/hh99_clone/hh99_clone/security/CorsConfig.java
@@ -58,24 +59,23 @@ com/hh99_clone/hh99_clone/controller/ArticleRestController.java
  com.hh99_clone.hh99_clone.controller.ArticleRestController
 com/hh99_clone/hh99_clone/jwt/TokenProvider.java
  com.hh99_clone.hh99_clone.jwt.TokenProvider
-com/hh99_clone/hh99_clone/controller/WebController.java
- com.hh99_clone.hh99_clone.controller.WebController
+com/hh99_clone/hh99_clone/dto/ArticleRequestDto.java
+ com.hh99_clone.hh99_clone.dto.ArticleRequestDto
 com/hh99_clone/hh99_clone/repository/CommentRepository.java
  com.hh99_clone.hh99_clone.repository.CommentRepository
 com/hh99_clone/hh99_clone/controller/CommentController.java
  com.hh99_clone.hh99_clone.controller.CommentController
 com/hh99_clone/hh99_clone/service/CommentService.java
  com.hh99_clone.hh99_clone.service.CommentService
-com/hh99_clone/hh99_clone/util/SignupValidator.java
- com.hh99_clone.hh99_clone.util.SignupValidator
-com/hh99_clone/hh99_clone/dto/ArticleRequestDto.java
- com.hh99_clone.hh99_clone.dto.ArticleRequestDto
-com/hh99_clone/hh99_clone/controller/UserController.java
- com.hh99_clone.hh99_clone.controller.UserController
-com/hh99_clone/hh99_clone/domain/User.java
- com.hh99_clone.hh99_clone.domain.User
- com.hh99_clone.hh99_clone.domain.User$UserBuilder
+com/hh99_clone/hh99_clone/security/kakao/KakaoOAuth.java
+ com.hh99_clone.hh99_clone.security.kakao.KakaoOAuth
+com/hh99_clone/hh99_clone/repository/UserRepository.java
+ com.hh99_clone.hh99_clone.repository.UserRepository
 com/hh99_clone/hh99_clone/service/CustomUserDetailsService.java
  com.hh99_clone.hh99_clone.service.CustomUserDetailsService
+com/hh99_clone/hh99_clone/controller/UserController.java
+ com.hh99_clone.hh99_clone.controller.UserController
+com/hh99_clone/hh99_clone/controller/WebController.java
+ com.hh99_clone.hh99_clone.controller.WebController
 com/hh99_clone/hh99_clone/service/UserService.java
  com.hh99_clone.hh99_clone.service.UserService

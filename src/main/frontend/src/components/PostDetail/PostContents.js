@@ -9,7 +9,7 @@ import PostProjectBox from './PostProjectBox';
 import { Wrapper } from '../../elements';
 
 const PostContents = (props) => {
-  const contents = useSelector((state) => state.post.detailPost.contents);
+  const contents = useSelector((state) => state.post.detailPost.contentsHtml);
   const navRef = useRef(null);
 
   const handleScroll = (e) => {
@@ -34,7 +34,7 @@ const PostContents = (props) => {
   }, []);
 
   return (
-    <Container>
+    <React.Fragment>
       <Navbar ref={navRef}>
         <div className="inner">
           <Icon>
@@ -50,8 +50,8 @@ const PostContents = (props) => {
         <PostProjectBox />
         <Contents dangerouslySetInnerHTML={{ __html: contents }}></Contents>
       </Main>
-      <div>목차</div>
-    </Container>
+      <Index>목차</Index>
+    </React.Fragment>
   );
 };
 
@@ -61,10 +61,21 @@ const Container = styled.div`
   ${(props) => props.theme.border_box};
   ${(props) => props.theme.flex_row};
   align-items: flex-start;
-  padding: 0 1rem;
+  justify-content: center;
+  width: 100vw;
+  border: 1px solid black;
+
+  @media ${(props) => props.theme.desktop} {
+    justify-content: space-between;
+    width: 80vw;
+  }
 `;
 
 const Navbar = styled.div`
+  position: fixed;
+  top: 0;
+  left: 5%;
+
   width: 4rem;
   margin: 2rem 0;
   background: rgb(248, 249, 250);
@@ -76,6 +87,11 @@ const Navbar = styled.div`
   -webkit-box-align: center;
   align-items: center;
   ${(props) => props.theme.border_box};
+  display: none;
+
+  @media ${(props) => props.theme.desktop} {
+    display: block;
+  }
 
   & div.inner {
     width: 64px;
@@ -98,13 +114,22 @@ const Navbar = styled.div`
     }
   }
 `;
+
+const Index = styled.div`
+  display: none;
+  margin: 2rem 0;
+
+  @media ${(props) => props.theme.desktop} {
+    display: block;
+  }
+`;
 const Contents = styled.div`
-  ${(props) => props.theme.default_width}
+  ${(props) => props.theme.default_width};
+  margin-top: 4rem;
 `;
 
 const Main = styled.div`
   ${(props) => props.theme.default_width};
-  margin: 0 2rem;
 `;
 
 const Icon = styled.div`
