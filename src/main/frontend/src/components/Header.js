@@ -50,7 +50,7 @@ const Header = (props) => {
             <Grid>
               <img
                 width="25px"
-                margin="8px"
+                margin="16px"
                 src={v_logo}
                 onClick={() => {
                   history.push("/");
