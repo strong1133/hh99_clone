@@ -5,8 +5,6 @@ import CustomAxious from '../CustomAxios';
 import './App.css';
 import styled from 'styled-components';
 
-import { Grid } from '../elements';
-
 import { Route } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 import { PostList, PostDetail, Login, Signup } from '../pages';

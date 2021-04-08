@@ -63,16 +63,10 @@ const CommentInput = styled.div`
     & button.cancel {
       background-color: gray;
       margin-right: 0.5rem;
-      &:hover {
-        background-color: rgb(118, 118, 118, 0.7);
-      }
     }
 
     & button.submit {
       background-color: ${(props) => props.theme.velog_green};
-      &:hover {
-        background-color: ${(props) => props.theme.velog_green_h};
-      }
     }
   }
   & textarea {
