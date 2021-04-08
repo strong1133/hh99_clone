@@ -77,7 +77,7 @@ const Login = (props) => {
           <Text bold margin="20px 5px 5px 5px" size="12pt" color="#868e96">
             소셜 계정으로 로그인
           </Text>
-          <SNSLoginButton size="12pt">카카오계정으로 로그인</SNSLoginButton>
+          <SNSLoginButton size="12pt" >카카오계정으로 로그인</SNSLoginButton>
 
           <Text bold margin="10px 5px 10px 130px" color="#868e96" size="12pt">
             아직 회원이 아니신가요?{" "}

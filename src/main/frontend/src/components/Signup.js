@@ -80,11 +80,6 @@ const Signup = (props) => {
           회원가입
         </LoginButton>
 
-        <Text bold margin="20px 5px 5px 5px" size="12pt" color="#868e96">
-            소셜 계정으로 회원가입
-          </Text>
-          <SNSLoginButton size="12pt">카카오계정으로 회원가입</SNSLoginButton>
-
           <Text bold margin="10px 10px 5px 142px" color="#868e96" size="12pt">
             계정이 이미 있으신가요? {"  "}
             <TextButton size="12pt"  onClick={onClickModal}>
@@ -163,21 +158,6 @@ const LoginButton = styled.button`
   font-weight: bold;
   color: ${(props) => props.theme.main_white};
   background-color: ${(props) => props.theme.velog_green};
-`;
-
-const SNSLoginButton = styled.button`
-  width: 340px;
-  height: 48px;
-  border-radius: 0px;
-  padding: auto;
-  margin: 5px;
-  box-sizing: border-box;
-  border: none;
-  outline: none;
-  font-size: 16px;
-  font-weight: bold;
-  color: ${(props) => props.theme.main_black};
-  background-color: #ffd43b;
 `;
 
 const TextButton = styled.span`
