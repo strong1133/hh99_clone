@@ -1,43 +1,55 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
-//import { ReactComponent as Heart } from '../../static/Heart_Black.svg';
+import { useDispatch, useSelector } from 'react-redux';
 import { ReactComponent as Heart } from '../../static/heart.svg';
 import { ReactComponent as Share } from '../../static/share.svg';
 import PostProjectBox from './PostProjectBox';
-import { Wrapper } from '../../elements';
+import { actionCreators as postActions } from '../../redux/modules/post';
 
 const PostContents = (props) => {
-  const contents = useSelector((state) => state.post.detailPost.contents);
+  const dispatch = useDispatch();
+  const contents = useSelector((state) => state.post.detailPost.contentsHtml);
+  const postId = useSelector((state) => state.post.detailPost.id);
   const navRef = useRef(null);
+  const [isLike, setIsLike] = useState(false);
 
-  const handleScroll = (e) => {
-    if (navRef.current) {
-      console.log(navRef.current.getBoundingClientRect());
-      if (navRef.current.getBoundingClientRect().top < 0) {
-        navRef.current.style.position = 'relative';
-        navRef.current.style.top = window.scrollY + 'px';
-        navRef.current.style.left = navRef.current.getBoundingClientRect().left;
-      }
-
-      if (window.scrollY < 250) {
-        navRef.current.style.position = '';
-      }
-    }
-  };
   useEffect(() => {
-    // window.addEventListener('scroll', handleScroll);
-    // return () => {
-    //   window.removeEventListener('scroll', handleScroll);
-    // };
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
+  const handleScroll = () => {
+    if (!navRef.current) return;
+
+    const winScroll =
+      document.body.scrollTop || document.documentElement.scrollTop;
+    const { scrollHeight, clientHeight } = document.documentElement;
+    const scrollTop = winScroll / (scrollHeight - clientHeight);
+
+    if (scrollTop * 100 > 60) {
+      navRef.current.style.top = window.scrollY + 'px';
+    }
+  };
+
+  const onClickHeart = () => {
+    if (isLike) {
+      dispatch(postActions.likePost(postId, 'userId'));
+    } else {
+      dispatch(postActions.dislikePost(postId, 'userId'));
+    }
+
+    setIsLike(!isLike);
+  };
+
   return (
-    <Container>
+    <React.Fragment>
       <Navbar ref={navRef}>
         <div className="inner">
-          <Icon>
+          <Icon is_like={isLike} onClick={onClickHeart}>
             <Heart />
           </Icon>
           <span className="number">123</span>
@@ -50,8 +62,8 @@ const PostContents = (props) => {
         <PostProjectBox />
         <Contents dangerouslySetInnerHTML={{ __html: contents }}></Contents>
       </Main>
-      <div>목차</div>
-    </Container>
+      <Index></Index>
+    </React.Fragment>
   );
 };
 
@@ -61,21 +73,37 @@ const Container = styled.div`
   ${(props) => props.theme.border_box};
   ${(props) => props.theme.flex_row};
   align-items: flex-start;
-  padding: 0 1rem;
+  justify-content: center;
+  width: 100vw;
+  border: 1px solid black;
+
+  @media ${(props) => props.theme.desktop} {
+    justify-content: space-between;
+    width: 80vw;
+  }
 `;
 
 const Navbar = styled.div`
+  position: absolute;
+
+  top: 58%;
+  left: 15%;
   width: 4rem;
   margin: 2rem 0;
   background: rgb(248, 249, 250);
   border: 1px solid rgb(241, 243, 245);
   border-radius: 2rem;
-  padding: 0.5rem;
+  padding: 0.5rem 0;
   display: flex;
   flex-direction: column;
   -webkit-box-align: center;
   align-items: center;
   ${(props) => props.theme.border_box};
+  display: none;
+
+  @media ${(props) => props.theme.desktop} {
+    display: block;
+  }
 
   & div.inner {
     width: 64px;
@@ -98,13 +126,22 @@ const Navbar = styled.div`
     }
   }
 `;
+
+const Index = styled.div`
+  display: none;
+  margin: 2rem 0;
+
+  @media ${(props) => props.theme.desktop} {
+    display: block;
+  }
+`;
 const Contents = styled.div`
-  ${(props) => props.theme.default_width}
+  ${(props) => props.theme.default_width};
+  margin-top: 4rem;
 `;
 
 const Main = styled.div`
   ${(props) => props.theme.default_width};
-  margin: 0 2rem;
 `;
 
 const Icon = styled.div`
@@ -120,12 +157,15 @@ const Icon = styled.div`
   border-radius: 1.5rem;
   cursor: pointer;
   z-index: 5;
-  //background: rgb(32, 201, 151);
+  background: ${(props) =>
+    props.is_like ? 'pink' : 'white'}; //rgb(32, 201, 151);
   color: white;
+  &:hover {
+    border-color: black;
+  }
 
   & svg {
     width: 1.7rem;
-    fill: white;
   }
 `;
 export default PostContents;

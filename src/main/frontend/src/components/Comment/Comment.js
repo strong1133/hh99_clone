@@ -8,7 +8,7 @@ import CommentWrite from './CommentWrite';
 
 const Comment = (props) => {
   const [comment, onChagneComent, setComment] = useInput('');
-
+  const nickname = useSelector((state) => state.user.user?.nickname);
   const commentList = useSelector((state) => state.comment.commentList);
 
   const postId = props.id;
@@ -18,8 +18,11 @@ const Comment = (props) => {
   }, []);
 
   const registComment = (e) => {
+    if (!nickname) {
+      return alert('먼저 로그인해주세요');
+    }
     const data = {
-      username: '마농바게트', //TODO : user
+      username: nickname, //TODO : user
       contents: comment,
       articleId: postId
     };

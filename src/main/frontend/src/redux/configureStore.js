@@ -21,8 +21,8 @@ const middlewares = [thunk.withExtraArgument({ history: history })]; // history-
 const env = process.env.NODE_ENV;
 
 if (env === 'development') {
-  const { logger } = require('redux-logger'); // if문 안에서만 쓰려고
-  middlewares.push(logger);
+  /* const { logger } = require('redux-logger'); // if문 안에서만 쓰려고
+  middlewares.push(logger); */
 }
 
 const composeEnhancers =

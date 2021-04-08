@@ -21,7 +21,12 @@ const PostDetail = (props) => {
 
   return (
     <Wrapper is_column bg="white">
-      <Header author={author} />
+      <Header
+        toWrite={() => {
+          props.history.push('/write');
+        }}
+        author={author}
+      />
       <PostHeader history={props.history} />
       <PostContents />
       <PostFooter author={author} />
