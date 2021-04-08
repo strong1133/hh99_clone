@@ -45,7 +45,8 @@ const Header = (props) => {
             <Grid>
               <img
                 width="25px"
-                margin="8px 16px 0px 8px"
+                margin="8px"
+
                 src={v_logo}
                 onClick={() => {
                   history.push("/");
@@ -160,7 +161,6 @@ const HeaderContainer = styled.div`
 const TextLogo = styled.text`
   font-family: "Fira Mono", monospace;
   font-size: 18pt;
-  margin-left: 16px;
   position: relative;
   top: -5px;
   &:hover {
