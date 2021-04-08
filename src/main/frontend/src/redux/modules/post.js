@@ -39,6 +39,7 @@ private String author;          // 게시글 작성자
 
 const createPost = (post) => {
   return function (dispatch, getState, { history }) {
+    console.log('createPost', post);
     axios.post(`/api/articles`, post).then((res) => {
       history.push('/');
     });

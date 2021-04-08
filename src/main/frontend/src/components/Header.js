@@ -16,7 +16,7 @@ import Modal from 'react-modal';
 import v_logo from '../static/v_logo.svg';
 
 const Header = (props) => {
-  const { author } = props;
+  const { author, toWrite } = props;
 
   const dispatch = useDispatch();
   const isLogin = useSelector((state) => state.user.is_login);
@@ -72,7 +72,7 @@ const Header = (props) => {
                 로그아웃
               </LoginButton>
               <img width="18px" src={search} />
-              <LoginButton>새 글 작성</LoginButton>
+              <LoginButton onClick={toWrite}>새 글 작성</LoginButton>
               <ProfileImg
                 shape="circle"
                 src="https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX5559055.jpg"

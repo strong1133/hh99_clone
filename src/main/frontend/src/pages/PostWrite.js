@@ -16,7 +16,7 @@ const PostWrite = (props) => {
   const [hashTagList, setHashTagList] = useState([]); //articleId?detailPost.hashTag:[]
   const editorRef = useRef();
   const [title, onChangeTitle] = useInput(articleId && detailPost.title);
-
+  const nickname = useSelector((state) => state.user.user?.nickname);
   const submit = () => {
     /* const contents = editorRef.current
       .getInstance()
@@ -30,23 +30,21 @@ const PostWrite = (props) => {
     const image = contentsHtml.split('=')[1]?.split('"')[1];
 
     if (!title || !contentsMd) return;
-    // TODO : preview 처리
 
     const post = {
       title,
-      contents,
+      contents: contentsMd.replaceAll('#', ''),
       contentsHtml,
       contentsMd,
-      author: 'ouo_',
+      author: nickname,
       hashTag: hashTagList,
       image
     };
-    console.log(contentsMd.replaceAll('#', ' '));
-    /*  if (articleId) {
+    if (articleId) {
       dispatch(postActions.updatePost(articleId, post));
     } else {
       dispatch(postActions.createPost(post));
-    } */
+    }
   };
   return (
     <React.Fragment>

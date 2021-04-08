@@ -12,17 +12,15 @@ import { actionCreators as userAction } from '../redux/modules/user';
 const PostList = (props) => {
   const dispatch = useDispatch();
   const [isRecentMode, setIsRecentMode] = React.useState(false);
-  useEffect(() => {
-    if (!localStorage.getItem('token')) return;
-
-    // dispatch(userAction.getUserInfo());
-  }, []);
-  console.log(isRecentMode);
 
   return (
     <React.Fragment>
       <Responsive>
-        <Header />
+        <Header
+          toWrite={() => {
+            props.history.push('/write');
+          }}
+        />
         <Box height="20px"></Box>
         <FilterBox>
           <Box
