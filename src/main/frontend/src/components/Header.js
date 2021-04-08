@@ -64,9 +64,6 @@ const Header = (props) => {
 
           {isLogin ? (
             <Grid is_flex width="auto" margin="16px">
-              <text size="14pt" margin="5px">
-                cur_userInfo.nickname
-              </text>
               <SearchContainer to="/search">
                 <img width="18px" src={search} />
               </SearchContainer>
@@ -149,14 +146,13 @@ const HeaderContainer = styled.div`
   padding: 16px;
   display: flex;
 
-  /* background-color: ${(props) => props.theme.main_bg_color}; */
 `;
 
 const TextLogo = styled.text`
   font-family: 'Fira Mono', monospace;
-  font-size: 18pt;
+  font-size: 20pt;
   position: relative;
-  top: px;
+  top: -5px;
   margin-left: 10px;
   &:hover {
     cursor: pointer;
@@ -164,8 +160,7 @@ const TextLogo = styled.text`
 `;
 
 const WriteButton = styled.button`
-  min-width: "150px";
-  min-width: 80px;
+  width: 90px;
   height: 33px;
   border-radius: 33px;
   margin: 0px 12px 0px 0px;
