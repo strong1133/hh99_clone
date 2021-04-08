@@ -67,17 +67,19 @@ const updatePost = (postId, post) => {
 @DeleteMapping("/api/liked/delete") */
 const likePost = (postId, userId) => {
   return function (dispatch, getState, { history }) {
-    axios.post(`/api/liked/add"`, { postId, userId }).then((res) => {
+    console.log('좋아요', postId, userId);
+    /* axios.post(`/api/liked/add"`, { postId, userId }).then((res) => {
       console.log('라이크완료, 여기처리해야함');
-    });
+    }); */
   };
 };
 
 const dislikePost = (postId, userId) => {
   return function (dispatch, getState, { history }) {
-    axios.post(`/api/liked/delete"`, { postId, userId }).then((res) => {
+    console.log('좋아요 취소', postId, userId);
+    /* axios.post(`/api/liked/delete"`, { postId, userId }).then((res) => {
       console.log('디스라이크완료, 여기처리해야함');
-    });
+    }); */
   };
 };
 

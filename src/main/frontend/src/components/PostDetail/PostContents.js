@@ -1,16 +1,18 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
-//import { ReactComponent as Heart } from '../../static/Heart_Black.svg';
+import { useDispatch, useSelector } from 'react-redux';
 import { ReactComponent as Heart } from '../../static/heart.svg';
 import { ReactComponent as Share } from '../../static/share.svg';
 import PostProjectBox from './PostProjectBox';
-import { Wrapper } from '../../elements';
+import { actionCreators as postActions } from '../../redux/modules/post';
 
 const PostContents = (props) => {
+  const dispatch = useDispatch();
   const contents = useSelector((state) => state.post.detailPost.contentsHtml);
+  const postId = useSelector((state) => state.post.detailPost.id);
   const navRef = useRef(null);
+  const [isLike, setIsLike] = useState(false);
 
   const handleScroll = (e) => {
     if (navRef.current) {
@@ -33,11 +35,21 @@ const PostContents = (props) => {
     // };
   }, []);
 
+  const onClickHeart = () => {
+    if (isLike) {
+      dispatch(postActions.likePost(postId, 'userId'));
+    } else {
+      dispatch(postActions.dislikePost(postId, 'userId'));
+    }
+
+    setIsLike(!isLike);
+  };
+
   return (
     <React.Fragment>
       <Navbar ref={navRef}>
         <div className="inner">
-          <Icon>
+          <Icon onClick={onClickHeart}>
             <Heart />
           </Icon>
           <span className="number">123</span>
