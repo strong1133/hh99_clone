@@ -7,15 +7,18 @@ import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 
 import search from "../static/search.svg";
-import { getCookie } from "../shared/Cookie";
 
 import Login from "./Login";
 import Signup from "./Signup";
 
 import Modal from "react-modal";
-import { FaBorderAll, FaBorderNone } from "react-icons/fa";
+
+import v_logo from "../static/v_logo.svg";
 
 const Header = (props) => {
+
+  const { author } = props;
+
   const dispatch = useDispatch();
   const is_login = useSelector((state) => state.user.is_login);
 
@@ -33,52 +36,51 @@ const Header = (props) => {
     setIsLoginMode(!isLoginMode);
   };
 
-  if (is_login) {
-    return (
-      <React.Fragment>
-        <HeaderContainer>
-          <Grid>
-            <Grid is_flex padding="16px">
-              <TextLogo size="21pt" onClick={()=>{
-              history.push('/')}}>
-                velog
-              </TextLogo>
-
-              <Grid is_flex width="auto" margin="16px">
-                <LoginButton
-                  onClick={() => {
-                    dispatch(userActions.logOut({}));
-                  }}
-                >
-                  로그아웃
-                </LoginButton>
-                <img width="18px" src={search} />
-                <LoginButton>새 글 작성</LoginButton>
-                <ProfileImg
-                  shape="circle"
-                  src="https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX5559055.jpg"
-                />
-              </Grid>
-            </Grid>
-          </Grid>
-        </HeaderContainer>
-      </React.Fragment>
-    );
-  }
-
-  //  로그인 전
-
   return (
     <React.Fragment>
       <HeaderContainer>
-        <Grid>
-          <Grid is_flex padding="16px">
-            <TextLogo bold size="21pt" onClick={()=>{
-              history.push('/');
-            }}>
+        <Grid is_flex padding="16px">
+
+          { author ? (
+            <Grid>
+              <img
+                width="25px"
+                margin="8px 16px 0px 8px"
+                src={v_logo}
+                onClick={() => {
+                  history.push("/");
+                }}
+              />
+              <TextLogo size="21pt">{author}.log</TextLogo>
+            </Grid>
+          ) : (
+            <TextLogo
+              size="21pt"
+              onClick={() => {
+                history.push("/");
+              }}
+            >
               velog
             </TextLogo>
+          )}
 
+          {is_login ? (
+            <Grid is_flex width="auto" margin="16px">
+              <LoginButton
+                onClick={() => {
+                  dispatch(userActions.logOut({}));
+                }}
+              >
+                로그아웃
+              </LoginButton>
+              <img width="18px" src={search} />
+              <LoginButton>새 글 작성</LoginButton>
+              <ProfileImg
+                shape="circle"
+                src="https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX5559055.jpg"
+              />
+            </Grid>
+          ) : (
             <Grid is_flex width="auto" margin="16px">
               <img width="18px" src={search} />
               <LoginButton onClick={() => setModalIsOpen(true)}>
@@ -89,14 +91,14 @@ const Header = (props) => {
                   <Login onClickModal={onClickModal} />
                 ) : (
                   <Signup onClickModal={onClickModal} />
-                )}{" "}
+                )}
                 <CloseButton
                   src="https://image.flaticon.com/icons/png/512/458/458595.png"
                   onClick={closeModal}
                 />
               </Modal>
             </Grid>
-          </Grid>
+          )}
         </Grid>
       </HeaderContainer>
     </React.Fragment>
@@ -134,10 +136,10 @@ const CloseButton = styled.img`
 
 const HeaderContainer = styled.div`
   @media (max-width: 768px) {
-    width: 70vw;
+    width: 90vw;
   }
   @media all and (min-width: 768px) and (max-width: 1024px) {
-    width: 1024px;
+    width: 768px;
   }
   /* @media (max-width: 768px) {
     width: 95vw;
@@ -152,12 +154,15 @@ const HeaderContainer = styled.div`
   padding: 16px;
   display: flex;
 
-  background-color: ${(props) => props.theme.main_bg_color};
+  /* background-color: ${(props) => props.theme.main_bg_color}; */
 `;
 
 const TextLogo = styled.text`
   font-family: "Fira Mono", monospace;
   font-size: 18pt;
+  margin-left: 16px;
+  position: relative;
+  top: -5px;
   &:hover {
     cursor: pointer;
   }
@@ -184,10 +189,10 @@ const WriteButton = styled.button`
 `;
 
 const LoginButton = styled.button`
-  min-width: "150px";
+  min-width: 90px;
   height: 33px;
   border-radius: 33px;
-  margin: 0px 10px 0px 15px;
+  margin: 0px 0px 0px 15px;
   padding: 1px 16px;
   box-sizing: border-box;
   font-size: 16px;

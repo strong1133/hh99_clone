@@ -30,8 +30,8 @@ public class KakaoOAuth {
         // HttpBody 오브젝트 생성
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("grant_type", "authorization_code");
-        params.add("client_id", "8dddd1a6ee05e121f2b81ea14582123b");
-        params.add("redirect_uri", "http://mypl.shop/user/kakao/callback");
+        params.add("client_id", "86ffa531b8393f91f32230531adbfdff");
+        params.add("redirect_uri", "http://localhost:8080/login/kakao/callback");
         params.add("code", authorizedCode);
 
         // HttpHeader와 HttpBody를 하나의 오브젝트에 담기
