@@ -1,19 +1,19 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-import { Text } from "../elements";
-import { history } from "../redux/configureStore";
+import { Text } from '../elements';
+import { history } from '../redux/configureStore';
 
-import { useDispatch } from "react-redux";
-import { actionCreators as userActions } from "../redux/modules/user";
+import { useDispatch } from 'react-redux';
+import { actionCreators as userActions } from '../redux/modules/user';
 
-import { emailCheck } from "../shared/common";
+import { emailCheck } from '../shared/common';
 
 const Login = (props) => {
   const dispatch = useDispatch();
 
-  const [userName, setUserName] = React.useState("");
-  const [pw, setPw] = React.useState("");
+  const [userName, setUserName] = React.useState('');
+  const [pw, setPw] = React.useState('');
 
   const changeUserName = (e) => {
     setUserName(e.target.value);
@@ -24,14 +24,12 @@ const Login = (props) => {
   const { onClickModal } = props;
 
   const login = () => {
-    // dispatch(userActions.loginAction());
-
-    if (userName === "" || pw === "") {
-      window.alert("이메일 혹은 비밀번호를 입력하지 않으셨습니다.");
+    if (userName === '' || pw === '') {
+      window.alert('이메일 혹은 비밀번호를 입력하지 않으셨습니다.');
       return;
     }
     if (!emailCheck(userName)) {
-      window.alert("잘못된 이메일 형식입니다.");
+      window.alert('잘못된 이메일 형식입니다.');
       return;
     }
     dispatch(userActions.loginAPI(userName, pw));
@@ -80,16 +78,15 @@ const Login = (props) => {
           <SNSLoginButton
             size="12pt"
             onClick={() => {
-              window.location.href=
-                "https://kauth.kakao.com/oauth/authorize?client_id=86ffa531b8393f91f32230531adbfdff&redirect_uri=http://localhost:8080/login/kakao/callback&response_type=code"
-              ;
+              window.location.href =
+                'https://kauth.kakao.com/oauth/authorize?client_id=86ffa531b8393f91f32230531adbfdff&redirect_uri=http://localhost:8080/login/kakao/callback&response_type=code';
             }}
           >
             카카오계정으로 로그인
           </SNSLoginButton>
 
           <Text bold margin="10px 5px 10px 130px" color="#868e96" size="12pt">
-            아직 회원이 아니신가요?{" "}
+            아직 회원이 아니신가요?{' '}
             <TextButton size="12pt" onClick={onClickModal}>
               회원가입
             </TextButton>
@@ -166,6 +163,10 @@ const LoginButton = styled.button`
   font-weight: bold;
   color: ${(props) => props.theme.main_white};
   background-color: ${(props) => props.theme.velog_green};
+  &:hover {
+    cursor: pointer;
+    background-color: ${(props) => props.theme.velog_green_h};
+  }
 `;
 
 const SNSLoginButton = styled.button`
@@ -181,6 +182,10 @@ const SNSLoginButton = styled.button`
   font-weight: bold;
   color: ${(props) => props.theme.main_black};
   background-color: #ffd43b;
+  &:hover {
+    cursor: pointer;
+    background-color: #ffd85a;
+  }
 `;
 
 const TextButton = styled.span`

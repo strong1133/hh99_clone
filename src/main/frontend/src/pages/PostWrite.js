@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { actionCreators as postActions } from '../redux/modules/post';
 import PostWriteHeader from '../components/PostWrite/PostWriteHeader';
 
-// 수정
 const PostWrite = (props) => {
   const articleId = props.match.params.id;
   const dispatch = useDispatch();
@@ -17,7 +16,7 @@ const PostWrite = (props) => {
   const [hashTagList, setHashTagList] = useState([]); //articleId?detailPost.hashTag:[]
   const editorRef = useRef();
   const [title, onChangeTitle] = useInput(articleId && detailPost.title);
-
+  const nickname = useSelector((state) => state.user.user?.nickname);
   const submit = () => {
     /* const contents = editorRef.current
       .getInstance()
@@ -31,18 +30,16 @@ const PostWrite = (props) => {
     const image = contentsHtml.split('=')[1]?.split('"')[1];
 
     if (!title || !contentsMd) return;
-    // TODO : preview 처리
 
     const post = {
       title,
-      contents,
+      contents: contentsMd.replaceAll('#', ''),
       contentsHtml,
       contentsMd,
-      author: 'ouo_',
+      author: nickname,
       hashTag: hashTagList,
       image
     };
-
     if (articleId) {
       dispatch(postActions.updatePost(articleId, post));
     } else {

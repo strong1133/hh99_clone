@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 const CommentWrite = (props) => {
   const { value, _onCancle, _onChange, _onSubmit, type } = props;
@@ -6,7 +7,6 @@ const CommentWrite = (props) => {
   return (
     <CommentInput>
       <textarea
-        defaultValue={value}
         value={value}
         placeholder="댓글을 작성하세요"
         onChange={_onChange}
@@ -64,10 +64,16 @@ const CommentInput = styled.div`
     & button.cancel {
       background-color: gray;
       margin-right: 0.5rem;
+      &:hover {
+        background-color: rgb(118, 118, 118, 0.7);
+      }
     }
 
     & button.submit {
       background-color: ${(props) => props.theme.velog_green};
+      &:hover {
+        background-color: ${(props) => props.theme.velog_green_h};
+      }
     }
   }
   & textarea {

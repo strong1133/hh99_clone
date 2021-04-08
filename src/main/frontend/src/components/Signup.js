@@ -113,7 +113,7 @@ const Box1 = styled.div`
   z-index: 0;
 `;
 const Box2 = styled.div`
-  margin-top: 40px;
+  margin-top: 70px;
   margin-left: 250px;
   z-index: 10;
 `;
@@ -160,6 +160,10 @@ const LoginButton = styled.button`
   font-weight: bold;
   color: ${(props) => props.theme.main_white};
   background-color: ${(props) => props.theme.velog_green};
+  &:hover {
+    cursor: pointer;
+    background-color: ${(props) => props.theme.velog_green_h};
+  }
 `;
 
 const TextButton = styled.span`

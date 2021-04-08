@@ -1,30 +1,25 @@
-import React from "react";
-import styled from "styled-components";
-import { Grid } from "../elements";
+import React from 'react';
+import styled from 'styled-components';
+import { Grid } from '../elements';
 
-import { history } from "../redux/configureStore";
-import { useSelector, useDispatch } from "react-redux";
-import { actionCreators as userActions } from "../redux/modules/user";
+import { history } from '../redux/configureStore';
+import { useSelector, useDispatch } from 'react-redux';
+import { actionCreators as userActions } from '../redux/modules/user';
 
-import search from "../static/search.svg";
+import search from '../static/search.svg';
 
-import Login from "./Login";
-import Signup from "./Signup";
+import Login from './Login';
+import Signup from './Signup';
 
-import Modal from "react-modal";
+import Modal from 'react-modal';
 
-import v_logo from "../static/v_logo.svg";
+import v_logo from '../static/v_logo.svg';
 
 const Header = (props) => {
-  const { author } = props;
-  const { cur_userInfo } = props;
+  const { author, toWrite } = props;
 
   const dispatch = useDispatch();
-  const is_login = useSelector((state) => state.user.is_login);
-  console.log("is_login", is_login);
-
-  const isLogin = dispatch(userActions.isLogin);
-  console.log("isLogin", isLogin);
+  const isLogin = useSelector((state) => state.user.is_login);
 
   const [modalIsOpen, setModalIsOpen] = React.useState(false);
   const openModal = () => {
@@ -51,7 +46,7 @@ const Header = (props) => {
                 margin="16px"
                 src={v_logo}
                 onClick={() => {
-                  history.push("/");
+                  history.push('/');
                 }}
               />
               <TextLogo size="21pt">{author}.log</TextLogo>
@@ -60,7 +55,7 @@ const Header = (props) => {
             <TextLogo
               size="21pt"
               onClick={() => {
-                history.push("/");
+                history.push('/');
               }}
             >
               velog
@@ -75,7 +70,7 @@ const Header = (props) => {
               <SearchContainer to="/search">
                 <img width="18px" src={search} />
               </SearchContainer>
-              <WriteButton>새 글 작성</WriteButton>
+              <WriteButton onClick={toWrite}>새 글 작성</WriteButton>
               <WriteButton
                 onClick={() => {
                   dispatch(userActions.logoutCheck({}));
@@ -118,21 +113,21 @@ const Header = (props) => {
 
 const modalStyle = {
   overlay: {
-    position: "fixed",
+    position: 'fixed',
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: "rgba(247, 247, 247, 0.8)",
-    transition: "opacity 2000ms ease-in-out",
+    backgroundColor: 'rgba(247, 247, 247, 0.8)',
+    transition: 'opacity 2000ms ease-in-out'
   },
   content: {
-    width: "650px",
-    height: "510px",
-    margin: "auto",
-    border: "none",
-    boxShadow: "0 2px 12px 0 rgba(0, 0, 0, 0.1)",
-  },
+    width: '650px',
+    height: '510px',
+    margin: 'auto',
+    border: 'none',
+    boxShadow: '0 2px 12px 0 rgba(0, 0, 0, 0.1)'
+  }
 };
 
 const CloseButton = styled.img`
@@ -158,7 +153,7 @@ const HeaderContainer = styled.div`
 `;
 
 const TextLogo = styled.text`
-  font-family: "Fira Mono", monospace;
+  font-family: 'Fira Mono', monospace;
   font-size: 18pt;
   position: relative;
   top: px;
@@ -186,6 +181,7 @@ const WriteButton = styled.button`
   &:hover {
     background-color: ${(props) => props.theme.main_black};
     color: ${(props) => props.theme.main_white};
+    cursor: pointer;
   }
 `;
 
@@ -205,6 +201,7 @@ const LoginButton = styled.button`
   outline: none;
   &:hover {
     opacity: 0.3;
+    cursor: pointer;
   }
 `;
 
@@ -227,7 +224,7 @@ const ProfileImg = styled.div`
   width: 36px;
   height: 36px;
   border-radius: 30px;
-  background-image: url("${(props) => props.src}");
+  background-image: url('${(props) => props.src}');
   background-size: cover;
   margin-right: 15px;
 `;

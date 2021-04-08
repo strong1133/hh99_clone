@@ -50,6 +50,10 @@ public class UserService {
             throw new IllegalArgumentException("이메일 형식이 올바르지 않습니");
         }
 
+        if (userRepository.findOneWithAuthoritiesByNickname(userDto.getNickname()).orElse(null) != null) {
+            throw new IllegalArgumentException("이미 가입되어 있는 유저입니다.");
+        }
+
         //PW
         String password = userDto.getPassword();
         //정규식 검사

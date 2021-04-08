@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-//생겨라
+
 const HashTag = (props) => {
   return <Tag onClick={props._onClick}>{props.children}</Tag>;
 };
