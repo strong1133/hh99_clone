@@ -8,7 +8,7 @@ import useInput from '../shared/useInput';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionCreators as postActions } from '../redux/modules/post';
 import PostWriteHeader from '../components/PostWrite/PostWriteHeader';
-
+// 수정
 const PostWrite = (props) => {
   const articleId = props.match.params.id;
   const dispatch = useDispatch();
