@@ -145,7 +145,7 @@ const HeaderContainer = styled.div`
   height: 48px;
   padding: 16px;
   display: flex;
-
+  box-sizing: border-box;
 `;
 
 const TextLogo = styled.text`

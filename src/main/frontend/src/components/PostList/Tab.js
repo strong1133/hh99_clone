@@ -12,8 +12,6 @@ const Tab: FC<Tab> = ({
 }) => {
   const tabButtonHandler = (idx= 2) => {
     const newTabItem = tabItems[idx];
-    //console.log(idx);
-    //console.log(newTabItem);
     setTabNum(idx);
     window.history.replaceState(null, newTabItem.title || "", newTabItem.url);
   };
@@ -43,10 +41,10 @@ const Tab: FC<Tab> = ({
 
 const TabContainer = styled.div`
   width: ${(props) => props.tabCount * props.tabWidth + `rem`};
+  max-width: 1024px;
   min-height: min-content;
   display: flex;
   flex-wrap: wrap;
-  margin-left:30px;
   margin-bottom:10px;
 `;
 
