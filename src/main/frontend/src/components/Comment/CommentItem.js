@@ -20,6 +20,8 @@ const CommentItem = (props) => {
   };
 
   const deleteComment = () => {
+    const isConfirmed = window.confirm('정말로 댓글을 삭제하시겠습니까?');
+    if (!isConfirmed) return;
     dispatch(commentActions.deleteComment(id));
   };
   const onCancle = () => {
@@ -95,8 +97,10 @@ const CommentItem = (props) => {
 };
 
 const Container = styled.div`
+  border: 1px solid black;
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+  width: 100%;
 
   ${(props) => props.theme.flex_column};
   align-items: flex-start;

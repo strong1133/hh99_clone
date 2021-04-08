@@ -10,8 +10,35 @@ const PostWrite = (props) => {
   const [title, onChangeTitle] = useInput('');
 
   const submit = () => {
-    //console.log(editorRef.current.getInstance().getHtml());
-    console.log(title);
+    /* const contents = editorRef.current
+      .getInstance()
+      .getTextObject()
+      .setRange(20); */
+
+    const contents = '프리뷰가 들어가야하넌디...';
+
+    const contentsHtml = editorRef.current.getInstance().getHtml();
+    const contentsMd = editorRef.current.getInstance().getMarkdown();
+    const image = contentsHtml.split('=')[1]?.split('"')[1];
+
+    if (!title || !contentsMd) return;
+    // TODO : preview 처리
+
+    const post = {
+      title,
+      contents,
+      contentsHtml,
+      contentsMd,
+      author: 'ouo_',
+      hashTag: hashTagList,
+      image
+    };
+
+    if (articleId) {
+      dispatch(postActions.updatePost(articleId, post));
+    } else {
+      dispatch(postActions.createPost(post));
+    }
   };
   return (
     <React.Fragment>
@@ -21,6 +48,7 @@ const PostWrite = (props) => {
           ref={editorRef}
           previewStyle="vertical"
           initialEditType="markdown"
+          initialValue={articleId && detailPost.contentsMd}
           previewHighlight={false}
           placeholder="당신의 이야기를 적어보세요...."
           height="85vh"
@@ -81,9 +109,48 @@ const Footer = styled.div`
     outline: none;
     font-size: 1.125rem;
 
+    &:hover {
+      background-color: rgb(233, 236, 239);
+    }
+
     & span {
       margin-left: 0.5rem;
       font-weight: 450;
+    }
+  }
+`;
+
+const Buttons = styled.div`
+  display: flex;
+  -webkit-box-pack: end;
+  justify-content: flex-end;
+
+  & button {
+    cursor: pointer;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0px 1.25rem;
+    height: 2.5rem;
+    font-size: 1.125rem;
+    font-weight: bold;
+    outline: none;
+  }
+
+  & button.cancle {
+    margin-right: 0.75rem;
+    background: rgb(233, 236, 239);
+    color: rgb(73, 80, 87);
+
+    &:hover {
+      background-color: rgb(233, 236, 239, 0.7);
+    }
+  }
+
+  & button.submit {
+    background-color: ${(props) => props.theme.velog_green};
+    &:hover {
+      background-color: ${(props) => props.theme.velog_green_h};
     }
   }
 `;

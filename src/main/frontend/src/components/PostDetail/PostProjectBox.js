@@ -28,64 +28,66 @@ const PostProjectBox = () => {
     'Event loop, call stack, task queue'
   ];
   return (
-    <Project>
-      <Icon>
-        <Ribbon />
-      </Icon>
-      <Title>Project</Title>
+    <React.Fragment>
+      <Project>
+        <Icon>
+          <Ribbon />
+        </Icon>
+        <Title>Series</Title>
 
-      <List is_open={isOpen}>
-        <ol>
-          {list.map((i, idx) => {
-            return (
-              <li key={idx}>
-                <a href="#">{i}</a>
-              </li>
-            );
-          })}
-        </ol>
-      </List>
-      <Wrapper jc="space-between">
-        <HiddenController
-          onClick={() => {
-            setIsOpen(!isOpen);
-          }}
-        >
-          {isOpen ? (
-            <span>
-              <FaCaretUp style={{ marginRight: '0.25rem' }} />
-              숨기기
-            </span>
-          ) : (
-            <span>
-              <FaCaretDown style={{ marginRight: '0.25rem' }} />
-              목록 보기
-            </span>
-          )}
-        </HiddenController>
-        <Wrapper>
-          <Page>22/22</Page>
-          <I>
-            <FaAngleLeft />
-          </I>
-          <I>
-            <FaAngleRight />
-          </I>
+        <List is_open={isOpen}>
+          <ol>
+            {list.map((i, idx) => {
+              return (
+                <li key={idx}>
+                  <a href="#">{i}</a>
+                </li>
+              );
+            })}
+          </ol>
+        </List>
+        <Wrapper jc="space-between">
+          <HiddenController
+            onClick={() => {
+              setIsOpen(!isOpen);
+            }}
+          >
+            {isOpen ? (
+              <span>
+                <FaCaretUp style={{ marginRight: '0.25rem' }} />
+                숨기기
+              </span>
+            ) : (
+              <span>
+                <FaCaretDown style={{ marginRight: '0.25rem' }} />
+                목록 보기
+              </span>
+            )}
+          </HiddenController>
+          <Wrapper>
+            <Page>22/22</Page>
+            <I>
+              <FaAngleLeft />
+            </I>
+            <I>
+              <FaAngleRight />
+            </I>
+          </Wrapper>
         </Wrapper>
-      </Wrapper>
-    </Project>
+      </Project>
+    </React.Fragment>
   );
 };
 
 const Project = styled.div`
-  margin-top: 2rem;
-  padding: 2rem 1.5rem;
+  display: block;
+  margin: 2rem 0;
+  padding: 0 1.5rem;
   text-align: left;
-  margin-top: 2rem;
+  margin: 2rem 0;
   background: rgb(248, 249, 250);
   border-radius: 8px;
   box-shadow: rgb(0 0 0 / 6%) 0px 0px 4px 0px;
-  ${(props) => props.theme.default_width};
 
   & ol {
     padding: 0;
@@ -129,16 +131,21 @@ const Title = styled.h2`
   font-weight: bold;
   padding-right: 2rem;
   font-size: 1.5rem;
+  position: relative;
+  top: -30px;
 `;
 
 const List = styled.div`
   display: ${(props) => (props.is_open ? 'block' : 'none')};
+  position: relative;
+  top: -20px;
 `;
 
 const Icon = styled.div`
   position: relative;
-  top: 0;
-  right: -2px;
+  left: 95%;
+
+  display: inline;
   margin-right: 1rem;
 `;
 
@@ -146,7 +153,7 @@ const HiddenController = styled.div`
   padding-top: 3rem;
   ${(props) => props.theme.flex_row}
   justify-content:flex-start;
-  margin: 0;
+  margin-bottom: 1rem;
   padding: 0;
 
   &:hover {
@@ -169,6 +176,7 @@ const I = styled.span`
   border-radius: 50%;
   border: 1px solid #e8e8e8;
   margin: 0 2px;
+  cursor: pointer;
 
   &:hover {
     background-color: ${(props) => props.theme.velog_green};

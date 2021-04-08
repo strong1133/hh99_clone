@@ -52,10 +52,12 @@ const CommentContainer = styled.div`
   ${(props) => props.theme.flex_column};
   align-items: flex-start;
   ${(props) => props.theme.default_width};
+  background-color: pink;
 `;
 
 const CommnetList = styled.div`
   ${(props) => props.theme.default_width};
+  background-color: yellow;
 `;
 
 export default Comment;
