@@ -29,6 +29,7 @@ const Signup = (props) => {
       return;
     }
     dispatch(userActions.signupAPI(userName, nickname, pw));
+    onClickModal()
   };
 
   return (
@@ -75,6 +76,7 @@ const Signup = (props) => {
         <LoginButton
           onClick={() => {
             signup();
+            
           }}
         >
           회원가입

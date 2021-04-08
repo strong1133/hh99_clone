@@ -21,6 +21,10 @@ const Header = (props) => {
 
   const dispatch = useDispatch();
   const is_login = useSelector((state) => state.user.is_login);
+  console.log("is_login",is_login)
+
+  const isLogin = dispatch(userActions.isLogin)
+  console.log("isLogin",isLogin);
 
   const [modalIsOpen, setModalIsOpen] = React.useState(false);
   const openModal = () => {
@@ -35,6 +39,7 @@ const Header = (props) => {
   const onClickModal = () => {
     setIsLoginMode(!isLoginMode);
   };
+  
 
   return (
     <React.Fragment>
@@ -64,11 +69,11 @@ const Header = (props) => {
             </TextLogo>
           )}
 
-          {is_login ? (
+          {isLogin ? (
             <Grid is_flex width="auto" margin="16px">
               <LoginButton
                 onClick={() => {
-                  dispatch(userActions.logOut({}));
+                  dispatch(userActions.logoutCheck({}));
                 }}
               >
                 로그아웃
