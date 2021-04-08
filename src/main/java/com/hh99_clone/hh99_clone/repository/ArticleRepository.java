@@ -5,9 +5,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ArticleRepository extends JpaRepository<Article, Long> {
     List<Article> findAllByOrderByModifiedAtDesc(); // 최신순
-    List<Article> findAllByOrderByLikedDesc();      // 인기순 (좋아요 기준)
+    List<Article> findAllByOrderByTotalLiked();      // 인기순 (좋아요 기준)
+    Optional<Article> findById(Long id);
 }

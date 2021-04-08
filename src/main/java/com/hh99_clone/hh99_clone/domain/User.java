@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -44,4 +45,7 @@ public class User {
 
    @Column(nullable = true)
    private Long kakaoId;
+
+   @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+   private Set<Article> articles = new HashSet<>();
 }

@@ -77,7 +77,7 @@ task installReact(type: Exec) {
         commandLine 'npm', 'install'
     }
 }
-////
+//////
 
 
 

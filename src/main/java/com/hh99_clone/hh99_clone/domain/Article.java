@@ -1,11 +1,12 @@
 package com.hh99_clone.hh99_clone.domain;
 
-import com.hh99_clone.hh99_clone.dto.ArticleLikedDto;
 import com.hh99_clone.hh99_clone.dto.ArticleRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @NoArgsConstructor
@@ -31,21 +32,27 @@ public class  Article extends Timestamped {
     @Column(nullable = false)
     private String image;           // 게시글 사진링크
 
-    @Column(nullable = false)
-    private String author;          // 게시글 작성자
+//    @Column(nullable = false)
+//    private String author;          // 게시글 작성자
 
-    @Column(nullable = false)
-    private int liked;              // 게시글 좋아요 갯수
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @Column(nullable = true)
+    private Long totalLiked;        // 해당 게시물의 좋아요 수
+
+    @OneToMany(mappedBy = "article", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    private Set<Reaction> reactions = new HashSet<>();
+
 
     // Article 더미 데이터 생성자
-    public Article (String title, String contents, String contentsHtml, String contentsMd,String image, String author, int liked){
+    public Article (String title, String contents, String contentsHtml, String contentsMd,String image){
         this.title = title;
         this.contents = contents;
         this.contentsHtml = contentsHtml;
         this.contentsMd = contentsMd;
         this.image = image;
-        this.author = author;
-        this.liked = liked;
     }
 
     // Article DTO 생성자
@@ -55,8 +62,7 @@ public class  Article extends Timestamped {
         this.contentsHtml = articleRequestDto.getContentsHtml();
         this.contentsMd = articleRequestDto.getContentsMd();
         this.image = articleRequestDto.getImage();
-        this.author = articleRequestDto.getAuthor();
-        this.liked = 0;
+        this.user = articleRequestDto.getUser();
     }
 
     // Article 업데이트
@@ -66,13 +72,12 @@ public class  Article extends Timestamped {
         this.contentsHtml = articleRequestDto.getContentsHtml();
         this.contentsMd = articleRequestDto.getContentsMd();
         this.image = articleRequestDto.getImage();
-        this.author = articleRequestDto.getAuthor();
-        this.liked = articleRequestDto.getLiked();
+        this.user = articleRequestDto.getUser();
     }
 
-    //좋아요 업데이트
-    public void updateLiked(ArticleLikedDto articleLikedDto){
-        this.liked = articleLikedDto.getLiked();
+    // 해당 게시물 좋아요 수 업데이트
+    public void updateTotalLiked(Long totalLiked){
+        this.totalLiked = totalLiked;
     }
 
 

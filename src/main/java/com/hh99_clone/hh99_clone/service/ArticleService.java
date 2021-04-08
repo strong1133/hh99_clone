@@ -1,9 +1,13 @@
 package com.hh99_clone.hh99_clone.service;
 
 import com.hh99_clone.hh99_clone.domain.Article;
+import com.hh99_clone.hh99_clone.domain.Reaction;
+import com.hh99_clone.hh99_clone.domain.User;
 import com.hh99_clone.hh99_clone.dto.ArticleLikedDto;
 import com.hh99_clone.hh99_clone.dto.ArticleRequestDto;
 import com.hh99_clone.hh99_clone.repository.ArticleRepository;
+import com.hh99_clone.hh99_clone.repository.ReactionRepository;
+import com.hh99_clone.hh99_clone.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,9 +25,9 @@ public class ArticleService {
         return articleRepository.findAllByOrderByModifiedAtDesc();
     }
 
-    // 아티클 전체조회 인순
+    // 아티클 전체조회 인기순
     public List<Article> getPopArticles() {
-        return articleRepository.findAllByOrderByLikedDesc();
+        return articleRepository.findAllByOrderByTotalLiked();
     }
 
 
@@ -61,29 +65,4 @@ public class ArticleService {
         return article;
     }
 
-    //좋아요
-    @Transactional
-    public Long addLiked(Long id, ArticleLikedDto articleLikedDto) {
-        Article article = articleRepository.findById(id).orElseThrow(
-                () -> new NullPointerException("해당 아이디가 존재하지 않습니다.")
-        );
-        int cul_liked = article.getLiked();
-        int new_liked = cul_liked +1;
-        articleLikedDto.setLiked(new_liked);
-        article.updateLiked(articleLikedDto);
-        return article.getId();
-    }
-
-    //싫어요
-    @Transactional
-    public Long subLiked(Long id, ArticleLikedDto articleLikedDto) {
-        Article article = articleRepository.findById(id).orElseThrow(
-                () -> new IllegalArgumentException("해당 아이디가 존재하지 않습니다.")
-        );
-        int cul_liked = article.getLiked();
-        int new_liked = cul_liked -1;
-        articleLikedDto.setLiked(new_liked);
-        article.updateLiked(articleLikedDto);
-        return article.getId();
-    }
 }

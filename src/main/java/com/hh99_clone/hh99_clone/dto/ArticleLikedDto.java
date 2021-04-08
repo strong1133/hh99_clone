@@ -8,5 +8,6 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 public class ArticleLikedDto {
-    private int liked;
+    private Long UserId;
+    private Long articleId;
 }

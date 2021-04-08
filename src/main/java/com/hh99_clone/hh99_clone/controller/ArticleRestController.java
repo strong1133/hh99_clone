@@ -1,7 +1,6 @@
 package com.hh99_clone.hh99_clone.controller;
 
 import com.hh99_clone.hh99_clone.domain.Article;
-import com.hh99_clone.hh99_clone.dto.ArticleLikedDto;
 import com.hh99_clone.hh99_clone.dto.ArticleRequestDto;
 import com.hh99_clone.hh99_clone.service.ArticleService;
 import lombok.RequiredArgsConstructor;
@@ -52,15 +51,4 @@ public class ArticleRestController {
         return articleService.getDetail(id);
     }
 
-    // 좋아요 카운트 증가
-    @PutMapping("/api/liked/add/{id}")
-    public Long addLiked(@PathVariable Long id, @RequestBody ArticleLikedDto articleLikedDto){
-        return articleService.addLiked(id, articleLikedDto);
-    }
-
-    // 좋아요 카운트 감소
-    @PutMapping("/api/liked/sub/{id}")
-    public Long subLiked(@PathVariable Long id, @RequestBody ArticleLikedDto articleLikedDto){
-        return articleService.subLiked(id, articleLikedDto);
-    }
 }
