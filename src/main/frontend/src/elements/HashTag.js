@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const HashTag = (props) => {
   return <Tag onClick={props._onClick}>{props.children}</Tag>;
 };
-// ㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹ
+
 HashTag.defaultProps = {
   _onClick: () => {}
 };
