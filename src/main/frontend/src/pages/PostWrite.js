@@ -10,7 +10,6 @@ import { actionCreators as postActions } from '../redux/modules/post';
 import PostWriteHeader from '../components/PostWrite/PostWriteHeader';
 
 const PostWrite = (props) => {
-  // 이게원래있어야함망할자식
   const articleId = props.match.params.id;
   const dispatch = useDispatch();
   const detailPost = useSelector((state) => state.post.detailPost);
