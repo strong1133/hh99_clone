@@ -166,7 +166,6 @@ const Icon = styled.div`
 
   & svg {
     width: 1.7rem;
-    fill: white;
   }
 `;
 export default PostContents;
