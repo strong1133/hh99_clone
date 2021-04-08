@@ -21,7 +21,6 @@ const PostDetail = (props) => {
 
   return (
     <Wrapper is_column bg="white">
-
        <Header author={author} />
       <PostHeader />
       <PostContents />

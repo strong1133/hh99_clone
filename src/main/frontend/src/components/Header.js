@@ -46,7 +46,6 @@ const Header = (props) => {
               <img
                 width="25px"
                 margin="8px"
-
                 src={v_logo}
                 onClick={() => {
                   history.push("/");
