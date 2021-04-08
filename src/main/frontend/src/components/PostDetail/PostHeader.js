@@ -11,6 +11,7 @@ import HashTag from '../../elements/HashTag';
 const PostHeader = (props) => {
   const dispatch = useDispatch();
   const [isLike, setIsLike] = useState(false);
+  const nickname = useSelector((state) => state.user.user?.nickname);
   const detailPost = useSelector((state) => state.post.detailPost);
   const { createdAt, author, modifiedAt, image, liked, title, id } = detailPost;
   const toggleLike = () => {
@@ -47,10 +48,12 @@ const PostHeader = (props) => {
             </Text>
           </Like>
         </div>
-        <Buttons>
-          <span onClick={onEdit}>수정</span>
-          <span onClick={onDelete}>삭제</span>
-        </Buttons>
+        {author === nickname && (
+          <Buttons>
+            <span onClick={onEdit}>수정</span>
+            <span onClick={onDelete}>삭제</span>
+          </Buttons>
+        )}
       </Infomation>
 
       <Wrapper jc="flex-start">

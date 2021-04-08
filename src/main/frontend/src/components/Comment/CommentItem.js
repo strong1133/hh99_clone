@@ -3,13 +3,14 @@ import styled from 'styled-components';
 import { Image, Text, Wrapper } from '../../elements';
 import { AiOutlinePlusSquare, AiOutlineMinusSquare } from 'react-icons/ai';
 import moment from 'moment';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { actionCreators as commentActions } from '../../redux/modules/comment';
 import CommentWrite from './CommentWrite';
 import useInput from '../../shared/useInput';
 
 const CommentItem = (props) => {
   const dispatch = useDispatch();
+  const nickname = useSelector((state) => state.user.user?.nickname);
   const { id, username, contents, createdAt, modifiedAt, aricleId } = props;
   const [isOpenReply, setIsOpenReply] = useState(false);
   const [isOpenEdit, setIsOpenEdit] = useState(false);
@@ -40,10 +41,12 @@ const CommentItem = (props) => {
             </span>
           </CommentInfo>
         </Wrapper>
-        <div className="buttons">
-          <span onClick={onCancle}>수정</span>
-          <span onClick={deleteComment}>삭제</span>
-        </div>
+        {nickname === username && (
+          <div className="buttons">
+            <span onClick={onCancle}>수정</span>
+            <span onClick={deleteComment}>삭제</span>
+          </div>
+        )}
       </Header>
       {!isOpenEdit && <Contents>{contents}</Contents>}
       {isOpenEdit && (
@@ -97,12 +100,8 @@ const CommentItem = (props) => {
 const Container = styled.div`
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
-<<<<<<< HEAD
-
-=======
   width: 100%;
   border-bottom: 1px solid rgb(233, 236, 239);
->>>>>>> ykk
   ${(props) => props.theme.flex_column};
   align-items: flex-start;
 `;
