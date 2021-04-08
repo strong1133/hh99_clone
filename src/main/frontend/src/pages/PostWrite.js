@@ -41,12 +41,12 @@ const PostWrite = (props) => {
       hashTag: hashTagList,
       image
     };
-
-    if (articleId) {
+    console.log(contentsMd.replaceAll('#', ' '));
+    /*  if (articleId) {
       dispatch(postActions.updatePost(articleId, post));
     } else {
       dispatch(postActions.createPost(post));
-    }
+    } */
   };
   return (
     <React.Fragment>
