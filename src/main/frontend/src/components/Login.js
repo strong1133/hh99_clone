@@ -163,6 +163,10 @@ const LoginButton = styled.button`
   font-weight: bold;
   color: ${(props) => props.theme.main_white};
   background-color: ${(props) => props.theme.velog_green};
+  &:hover {
+    cursor: pointer;
+    background-color: ${(props) => props.theme.velog_green_h};
+  }
 `;
 
 const SNSLoginButton = styled.button`
@@ -178,6 +182,10 @@ const SNSLoginButton = styled.button`
   font-weight: bold;
   color: ${(props) => props.theme.main_black};
   background-color: #ffd43b;
+  &:hover {
+    cursor: pointer;
+    background-color: #ffd85a;
+  }
 `;
 
 const TextButton = styled.span`

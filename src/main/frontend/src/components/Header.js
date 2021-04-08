@@ -182,6 +182,7 @@ const WriteButton = styled.button`
   &:hover {
     background-color: ${(props) => props.theme.main_black};
     color: ${(props) => props.theme.main_white};
+    cursor: pointer;
   }
 `;
 
@@ -201,6 +202,7 @@ const LoginButton = styled.button`
   outline: none;
   &:hover {
     opacity: 0.3;
+    cursor: pointer;
   }
 `;
 
