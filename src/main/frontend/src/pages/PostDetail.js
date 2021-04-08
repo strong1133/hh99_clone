@@ -21,13 +21,8 @@ const PostDetail = (props) => {
 
   return (
     <Wrapper is_column bg="white">
-<<<<<<< HEAD
-       <Header author={author} />
-      <PostHeader />
-=======
       <Header author={author} />
-      <PostHeader history={props.history} />
->>>>>>> ykk
+      <PostHeader />
       <PostContents />
       <PostFooter author={author} />
       <Comment id={postId} />
