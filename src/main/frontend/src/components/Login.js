@@ -80,9 +80,9 @@ const Login = (props) => {
           <SNSLoginButton
             size="12pt"
             onClick={() => {
-              history.push(
+              window.location.href=
                 "https://kauth.kakao.com/oauth/authorize?client_id=86ffa531b8393f91f32230531adbfdff&redirect_uri=http://localhost:8080/login/kakao/callback&response_type=code"
-              );
+              ;
             }}
           >
             카카오계정으로 로그인

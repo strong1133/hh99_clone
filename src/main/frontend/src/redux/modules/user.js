@@ -26,7 +26,7 @@ const loginAction = (user) => {
   return function (dispatch, getState, { history }) {
     console.log(history);
     dispatch(setUser(user));
-    history.push("/");
+    history.push("");
   };
 };
 
@@ -49,7 +49,7 @@ const signupAPI = (userName, nickname, pw) => {
       .then((response) => response)
       .then((result) => {
         window.alert("회원가입이 되었습니다!");
-        history.push("/login");
+        history.push("/");
       });
   };
 };
@@ -82,12 +82,12 @@ const loginAPI = (id, pw) => {
         if (result.status === 200) {
           let token = result.headers.get("Authorization");
           let tokenken = token.split("Bearer ")[1];
-          localStorage.setItem(tokenken)
-            
-          history.push("/");
+          console.log(tokenken)
+          localStorage.setItem('token',tokenken);
+          window.location.reload();
         } else {
           window.alert("로그인에 실패했습니다.");
-          window.location.reload();
+          // window.location.reload();
         }
       })
       .catch((error) => {
@@ -96,21 +96,54 @@ const loginAPI = (id, pw) => {
   };
 };
 
+const loginCheck = () => {
+  return function (dispatch, getState, { history }) {
+    const token = localStorage.getItem('token');
+    if (token) {
+      dispatch(
+        setUser({
+          username: 'username',
+          nickname: 'nickname',
+          kakaoId: 'kakaoId',
+        })
+      );
+    } else {
+      dispatch(logoutCheck());
+    }
+  };
+};
+const logoutCheck = () => {
+  return function (dispatch, getState, { history }) {
+    localStorage.removeItem('token');
+    dispatch(logOut());
+    history.replace('/');
+  };
+};
 
 
+
+const isLogin = () =>{
+  const token = localStorage.getItem('token');
+    
+  if(!token){
+    return false
+  }
+    return true
+  
+}
+
+console.log(isLogin)
 
 // reducer: handleActions(immer를 통한 불변성 유지)
 export default handleActions(
   {
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
-        setCookie("is_login", "success");
         draft.user = action.payload.user;
         draft.is_login = true;
       }),
     [LOG_OUT]: (state, action) =>
       produce(state, (draft) => {
-        deleteCookie("is_login");
         draft.user = null;
         draft.is_login = false;
       }),
@@ -125,6 +158,9 @@ const actionCreators = {
   loginAction,
   signupAPI,
   loginAPI,
+  isLogin,
+  loginCheck,
+  logoutCheck
 };
 
 export { actionCreators };
