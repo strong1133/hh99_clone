@@ -67,31 +67,22 @@ const loginAPI = (id, pw) => {
         password: pw,
       }),
     })
-    .then(res => res.json())
-    .then(token => {
-        localStorage.setItem(“jwt”,token.accessToken)
-        alert(“로그인 되었습니다“);
+    // .then((response) => response)
+    // .then((result) => {
+    //     let token = result.headers.get("Authorization");
+    //     let tokenken = token.split("Bearer ")[1];
+    //     localStorage.setItem(tokenken)
+    //     window.alert('로그인 되었습니다');
 
 
-      // .then((response) => response)
-      // .then((result) => {
-      //   console.log(result);
+      .then((response) => response)
+      .then((result) => {
+        console.log(result);
 
-      //   if (result.status === 200) {
-      //     let token = result.headers.get("Authorization");
-      //     let tokenken = token.split("Bearer ")[1];
-      //     console.log(tokenken);
-      //     fetch("http://localhost:8080/api/user", {
-      //       method: "GET",
-      //       headers: {
-      //         Authorization: `Bearer ${tokenken}`,
-      //       },
-      //     })
-      //       .then((response) => response.json())
-      //       .then((json) => console.log(json))
-      //       .catch((err) => console.log(err));
-
-
+        if (result.status === 200) {
+          let token = result.headers.get("Authorization");
+          let tokenken = token.split("Bearer ")[1];
+          localStorage.setItem(tokenken)
             
           history.push("/");
         } else {
@@ -101,7 +92,7 @@ const loginAPI = (id, pw) => {
       })
       .catch((error) => {
         console.log(error);
-      });
+        });
   };
 };
 
