@@ -49,7 +49,7 @@ const PostContents = (props) => {
     <React.Fragment>
       <Navbar ref={navRef}>
         <div className="inner">
-          <Icon onClick={onClickHeart}>
+          <Icon is_like={isLike} onClick={onClickHeart}>
             <Heart />
           </Icon>
           <span className="number">123</span>
@@ -157,8 +157,12 @@ const Icon = styled.div`
   border-radius: 1.5rem;
   cursor: pointer;
   z-index: 5;
-  //background: rgb(32, 201, 151);
+  background: ${(props) =>
+    props.is_like ? 'pink' : 'white'}; //rgb(32, 201, 151);
   color: white;
+  &:hover {
+    border-color: black;
+  }
 
   & svg {
     width: 1.7rem;

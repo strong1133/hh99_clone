@@ -109,6 +109,7 @@ const Like = styled.div`
   height: 1.3rem;
   border-radius: 0.75rem;
   font-size: 12px;
+  cursor: pointer;
 
   ${(props) => props.theme.flex_row};
   justify-content: space-between;
