@@ -16,15 +16,15 @@ import Modal from "react-modal";
 import v_logo from "../static/v_logo.svg";
 
 const Header = (props) => {
-
   const { author } = props;
+  const { cur_userInfo } = props;
 
   const dispatch = useDispatch();
   const is_login = useSelector((state) => state.user.is_login);
-  console.log("is_login",is_login)
+  console.log("is_login", is_login);
 
-  const isLogin = dispatch(userActions.isLogin)
-  console.log("isLogin",isLogin);
+  const isLogin = dispatch(userActions.isLogin);
+  console.log("isLogin", isLogin);
 
   const [modalIsOpen, setModalIsOpen] = React.useState(false);
   const openModal = () => {
@@ -39,14 +39,12 @@ const Header = (props) => {
   const onClickModal = () => {
     setIsLoginMode(!isLoginMode);
   };
-  
 
   return (
     <React.Fragment>
       <HeaderContainer>
         <Grid is_flex padding="16px">
-
-          { author ? (
+          {author ? (
             <Grid>
               <img
                 width="25px"
@@ -71,15 +69,20 @@ const Header = (props) => {
 
           {isLogin ? (
             <Grid is_flex width="auto" margin="16px">
-              <LoginButton
+              <text size="14pt" margin="5px">
+                cur_userInfo.nickname
+              </text>
+              <SearchContainer to="/search">
+                <img width="18px" src={search} />
+              </SearchContainer>
+              <WriteButton>새 글 작성</WriteButton>
+              <WriteButton
                 onClick={() => {
                   dispatch(userActions.logoutCheck({}));
                 }}
               >
                 로그아웃
-              </LoginButton>
-              <img width="18px" src={search} />
-              <LoginButton>새 글 작성</LoginButton>
+              </WriteButton>
               <ProfileImg
                 shape="circle"
                 src="https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX5559055.jpg"
@@ -87,7 +90,10 @@ const Header = (props) => {
             </Grid>
           ) : (
             <Grid is_flex width="auto" margin="16px">
-              <img width="18px" src={search} />
+              <SearchContainer to="/search">
+                <img width="18px" src={search} />
+              </SearchContainer>
+
               <LoginButton onClick={() => setModalIsOpen(true)}>
                 로그인
               </LoginButton>
@@ -140,18 +146,7 @@ const CloseButton = styled.img`
 `;
 
 const HeaderContainer = styled.div`
-  @media (max-width: 768px) {
-    width: 90vw;
-  }
-  @media all and (min-width: 768px) and (max-width: 1024px) {
-    width: 768px;
-  }
-  /* @media (max-width: 768px) {
-    width: 95vw;
-  }
-  @media all and (min-width: 768px) and (max-width: 1024px) {
-    width: 95w;
-  } */
+  ${(prop) => prop.theme.responsiveContainer};
   width: 100vw;
   max-width: 1444px;
   margin: auto;
@@ -166,7 +161,8 @@ const TextLogo = styled.text`
   font-family: "Fira Mono", monospace;
   font-size: 18pt;
   position: relative;
-  top: -5px;
+  top: px;
+  margin-left: 10px;
   &:hover {
     cursor: pointer;
   }
@@ -174,10 +170,11 @@ const TextLogo = styled.text`
 
 const WriteButton = styled.button`
   min-width: "150px";
+  min-width: 80px;
   height: 33px;
   border-radius: 33px;
-  margin: 0px 10px 0px 15px;
-  padding: 1px 16px;
+  margin: 0px 12px 0px 0px;
+  padding: 7px;
   box-sizing: border-box;
   font-size: 16px;
   font-weight: bold;
@@ -193,13 +190,13 @@ const WriteButton = styled.button`
 `;
 
 const LoginButton = styled.button`
-  min-width: 90px;
+  min-width: 80px;
   height: 33px;
   border-radius: 33px;
-  margin: 0px 0px 0px 15px;
-  padding: 1px 16px;
+  margin: 5px;
+  padding: 7px;
   box-sizing: border-box;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   color: ${(props) => props.theme.main_white};
   background-color: ${(props) => props.theme.main_black};
@@ -211,12 +208,28 @@ const LoginButton = styled.button`
   }
 `;
 
+const SearchContainer = styled.div`
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px;
+  background-color: inherit;
+  width: 37px;
+  height: 37px;
+  border-radius: 10rem;
+  &:hover {
+    background-color: rgb(240, 240, 240);
+  }
+`;
+
 const ProfileImg = styled.div`
   width: 36px;
   height: 36px;
   border-radius: 30px;
   background-image: url("${(props) => props.src}");
   background-size: cover;
+  margin-right: 15px;
 `;
 
 export default Header;

@@ -2,30 +2,30 @@
 import styled from "styled-components";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { history } from "../redux/configureStore";
+import { history } from "../../redux/configureStore";
 
-import { Grid, Text, Image } from "../elements";
-import Heart_Black from "../static/Heart_Black.svg";
+import { Grid, Text, Image } from "../../elements";
+import Heart_Black from "../../static/Heart_Black.svg";
 
 const Card = (props) => {
   const [users, setUsers] = useState([]);
 
-  const { recentMode } = props;
+  const { trendingMode } = props;
 
   useEffect(() =>{
     fetchUsers();
 
-  }, [ recentMode ])
+  }, [ trendingMode ])
   
   const fetchUsers = async () => {
 
-    if (recentMode) {
-      const response = await axios.get("http://localhost:8080/api/articles/pop");
+    if (trendingMode) {
+      const response = await axios.get("http://localhost:8080/api/articles/");
       setUsers(response.data);
       console.log(response);
     } else {
       const response = await axios.get(
-        "http://localhost:8080/api/articles/"
+        "http://localhost:8080/api/articles/pop"
       );
       setUsers(response.data);
       console.log(response);
@@ -39,7 +39,7 @@ const Card = (props) => {
   return (
     <React.Fragment>
       {users.map((user) => (
-        <CardContainer key={user.id}>
+        <CardContainer key={user.id} >
           <Box1
             src={user.image}
             onClick={() => {
@@ -52,7 +52,7 @@ const Card = (props) => {
                 {user.title}
               </Text>
               <Text size="14px">{user.contents}</Text>
-              <Text size="6px" color="grey">
+              <Text size="8px" color="grey">
                 {user.createAt}
               </Text>
             </Grid>
@@ -89,7 +89,7 @@ const CardContainer = styled.div`
   min-height: 0;
   overflow: hidden;
   padding-bottom: 5%;
-  margin: 0.8rem;
+  margin: 1.1rem;
   position: relative;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 10px 0px;

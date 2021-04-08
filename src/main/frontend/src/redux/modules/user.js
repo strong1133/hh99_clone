@@ -19,6 +19,7 @@ const setUser = createAction(SET_USER, (user) => ({ user }));
 const initialState = {
   user: null,
   is_login: false,
+
 };
 
 // middleware actionsCreators
