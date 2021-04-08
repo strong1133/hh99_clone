@@ -6,11 +6,16 @@ import Card from '../components/Card';
 import Trend from '../static/Trend.svg';
 import Time from '../static/Time.svg';
 import Header from '../components/Header';
+import { useDispatch } from 'react-redux';
+import { actionCreators as userAction } from '../redux/modules/user';
 
 const PostList = (props) => {
+  const dispatch = useDispatch();
   const [isRecentMode, setIsRecentMode] = React.useState(false);
   useEffect(() => {
-    console.log('렌더');
+    if (!localStorage.getItem('token')) return;
+
+    dispatch(userAction.getUserInfo());
   }, []);
   console.log(isRecentMode);
 
