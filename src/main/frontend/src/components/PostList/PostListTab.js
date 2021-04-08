@@ -78,7 +78,6 @@ const TabText = styled.div`
 
 const ListContainer = styled.div`
   width: 100%;
-  max-width: 1444px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
