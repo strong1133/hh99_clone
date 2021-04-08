@@ -14,26 +14,26 @@ const PostContents = (props) => {
   const navRef = useRef(null);
   const [isLike, setIsLike] = useState(false);
 
-  const handleScroll = (e) => {
-    if (navRef.current) {
-      console.log(navRef.current.getBoundingClientRect());
-      if (navRef.current.getBoundingClientRect().top < 0) {
-        navRef.current.style.position = 'relative';
-        navRef.current.style.top = window.scrollY + 'px';
-        navRef.current.style.left = navRef.current.getBoundingClientRect().left;
-      }
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
 
-      if (window.scrollY < 250) {
-        navRef.current.style.position = '';
-      }
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const handleScroll = () => {
+    if (!navRef.current) return;
+
+    const winScroll =
+      document.body.scrollTop || document.documentElement.scrollTop;
+    const { scrollHeight, clientHeight } = document.documentElement;
+    const scrollTop = winScroll / (scrollHeight - clientHeight);
+
+    if (scrollTop * 100 > 60) {
+      navRef.current.style.top = window.scrollY + 'px';
     }
   };
-  useEffect(() => {
-    // window.addEventListener('scroll', handleScroll);
-    // return () => {
-    //   window.removeEventListener('scroll', handleScroll);
-    // };
-  }, []);
 
   const onClickHeart = () => {
     if (isLike) {
@@ -62,7 +62,7 @@ const PostContents = (props) => {
         <PostProjectBox />
         <Contents dangerouslySetInnerHTML={{ __html: contents }}></Contents>
       </Main>
-      <Index>목차</Index>
+      <Index></Index>
     </React.Fragment>
   );
 };
@@ -84,16 +84,16 @@ const Container = styled.div`
 `;
 
 const Navbar = styled.div`
-  position: fixed;
-  top: 0;
-  left: 5%;
+  position: absolute;
 
+  top: 58%;
+  left: 15%;
   width: 4rem;
   margin: 2rem 0;
   background: rgb(248, 249, 250);
   border: 1px solid rgb(241, 243, 245);
   border-radius: 2rem;
-  padding: 0.5rem;
+  padding: 0.5rem 0;
   display: flex;
   flex-direction: column;
   -webkit-box-align: center;
