@@ -49,13 +49,15 @@ const Comment = (props) => {
 };
 
 const CommentContainer = styled.div`
+  ${(props) => props.theme.default_width};
   ${(props) => props.theme.flex_column};
   align-items: flex-start;
-  ${(props) => props.theme.default_width};
 `;
 
 const CommnetList = styled.div`
-  ${(props) => props.theme.default_width};
+  margin: 2rem 0;
+  ${(props) => props.theme.max_width};
+  width: 100%;
 `;
 
 export default Comment;

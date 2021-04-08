@@ -97,7 +97,12 @@ const CommentItem = (props) => {
 const Container = styled.div`
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+<<<<<<< HEAD
 
+=======
+  width: 100%;
+  border-bottom: 1px solid rgb(233, 236, 239);
+>>>>>>> ykk
   ${(props) => props.theme.flex_column};
   align-items: flex-start;
 `;
@@ -141,6 +146,7 @@ const Contents = styled.div`
 const ReplyWrapper = styled.div`
   box-sizing: border-box;
   ${(props) => props.theme.max_width};
+  width: 100%;
   padding: 0 0.4rem;
   cursor: pointer;
   ${(props) => props.theme.flex_column};
@@ -170,6 +176,6 @@ const InputWrapper = styled.div`
   margin-top: 1.3125rem;
   width: 100%;
   ${(props) => props.theme.max_width};
-  ${(props) => props.theme.flex_column}
+  //${(props) => props.theme.flex_column}
 `;
 export default CommentItem;
