@@ -20,12 +20,12 @@ const Card = (props) => {
   const fetchUsers = async () => {
 
     if (trendingMode) {
-      const response = await axios.get("http://localhost:8080/api/articles/");
+      const response = await axios.get("http://strong1133.shop/api/articles/");
       setUsers(response.data);
       console.log(response);
     } else {
       const response = await axios.get(
-        "http://localhost:8080/api/articles/pop"
+        "http://strong1133.shop/api/articles/pop"
       );
       setUsers(response.data);
       console.log(response);

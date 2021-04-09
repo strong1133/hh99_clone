@@ -23,7 +23,7 @@ const initialState = {
 const signupAPI = (userName, nickname, pw) => {
   return function (dispatch, getState, { history }) {
     console.log(userName, nickname, pw);
-    const API = 'http://localhost:8080/api/signup';
+    const API = 'http://strong1133.shop/api/singup';
     console.log(API);
     fetch(API, {
       method: 'POST',
@@ -46,10 +46,10 @@ const signupAPI = (userName, nickname, pw) => {
 
 const loginAPI = (id, pw) => {
   return function (dispatch, getState, { history }) {
-    const API = 'http://localhost:8080/api/authenticate';
+    const API = 'http://strong1133.shop/api/authenticate';
 
     axios({
-      url: 'http://localhost:8080/api/authenticate',
+      url: 'http://strong1133.shop/api/authenticate',
       method: 'post',
       data: { username: id, password: pw },
       withCredentials: true

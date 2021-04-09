@@ -12,6 +12,12 @@ public class WebConfig implements WebMvcConfigurer {
         corsRegistry
                     .addMapping("/api/**")
                     .allowedOrigins("http://localhost:3000")
+                    .allowedOrigins("http://localhost:3000")
+                    .allowedOrigins("http://localhost:8080")
+                    .allowedOrigins("http://localhost:3306")
+                    .allowedOrigins("http://strong1133.shop")
+                    .allowedOrigins("http://**")
+                    .allowedOrigins("https://**")
                 .allowedMethods(
                         HttpMethod.GET.name(),
                         HttpMethod.HEAD.name(),
