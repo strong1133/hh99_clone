@@ -16,7 +16,7 @@ import Modal from 'react-modal';
 import v_logo from '../static/v_logo.svg';
 
 const Header = (props) => {
-  const { author, toWrite } = props;
+  const { author } = props;
 
   const dispatch = useDispatch();
   const isLogin = useSelector((state) => state.user.is_login);
@@ -67,7 +67,7 @@ const Header = (props) => {
               <SearchContainer to="/search">
                 <img width="18px" src={search} />
               </SearchContainer>
-              <WriteButton onClick={toWrite}>새 글 작성</WriteButton>
+              <WriteButton onClick={()=>history.push('/write')}>새 글 작성</WriteButton>
               <WriteButton
                 onClick={() => {
                   dispatch(userActions.logoutCheck({}));
@@ -139,7 +139,7 @@ const CloseButton = styled.img`
 
 const HeaderContainer = styled.div`
   ${(prop) => prop.theme.responsiveContainer};
-  width: 100vw;
+  width: 100%;
   max-width: 1444px;
   margin: auto;
   height: 48px;

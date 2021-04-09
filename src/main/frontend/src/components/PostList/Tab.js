@@ -41,7 +41,7 @@ const Tab: FC<Tab> = ({
 
 const TabContainer = styled.div`
   width: ${(props) => props.tabCount * props.tabWidth + `rem`};
-  max-width: 1024px;
+  max-width: 1440px;
   min-height: min-content;
   display: flex;
   flex-wrap: wrap;
