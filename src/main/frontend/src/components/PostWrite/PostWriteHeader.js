@@ -7,7 +7,7 @@ const PostWriteHeader = (props) => {
   const { title, _onChange, hashTagList, setHashTagList } = props;
 
   const [value, onChangeValue, setValue] = useInput('');
-
+  // 해쉬태그 입력 이벤트, 중복값은 입력불가
   const onEnter = (e) => {
     if (e.key === 'Enter') {
       if (hashTagList.indexOf(value) < 0) {
@@ -16,6 +16,8 @@ const PostWriteHeader = (props) => {
       setValue('');
     }
   };
+
+  // 클릭하면 삭제
   const removeHashTag = (e) => {
     const idx = hashTagList.indexOf(e.target.innerHTML);
 

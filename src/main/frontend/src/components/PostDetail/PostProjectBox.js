@@ -7,10 +7,13 @@ import {
   FaAngleLeft,
   FaAngleRight
 } from 'react-icons/fa';
-
 import { Wrapper } from '../../elements/index';
+// series
 const PostProjectBox = () => {
+  // 리스트 열고 닫기
   const [isOpen, setIsOpen] = useState(false);
+
+  // series 목록은 구현하지 않아서 list hard codking
   const list = [
     'Security policy',
     'DocType',
@@ -21,12 +24,13 @@ const PostProjectBox = () => {
     'async',
     'defer',
     'svg, canvas의 차이',
-    '[Javascript]OOP vs FP',
+    '[Javascript]LOOP vs FP',
     'Stack vs Queue',
     ' Hoisting',
     'SPA, CSR, SSR',
     'Event loop, call stack, task queue'
   ];
+
   return (
     <React.Fragment>
       <Project>
@@ -34,7 +38,7 @@ const PostProjectBox = () => {
           <Ribbon />
         </Icon>
         <Title>Series</Title>
-
+        {/* 프로젝트 목록 */}
         <List is_open={isOpen}>
           <ol>
             {list.map((i, idx) => {
@@ -65,6 +69,7 @@ const PostProjectBox = () => {
             )}
           </HiddenController>
           <Wrapper>
+            {/* 포스트 개수 */}
             <Page>22/22</Page>
             <I>
               <FaAngleLeft />
@@ -96,7 +101,7 @@ const Project = styled.div`
     & li {
       list-style: none;
       margin: 3px 0;
-
+      // 목록 번호에 기울임 효과 적용
       &::before {
         counter-increment: item;
         content: counter(item) '. ';

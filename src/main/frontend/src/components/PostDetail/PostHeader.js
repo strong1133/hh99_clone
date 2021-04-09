@@ -10,26 +10,38 @@ import HashTag from '../../elements/HashTag';
 
 const PostHeader = (props) => {
   const dispatch = useDispatch();
+
+  // 좋아요 바꿀 버튼
   const [isLike, setIsLike] = useState(false);
+
+  // store에서 user nickname 가져오기
   const nickname = useSelector((state) => state.user.user?.nickname);
+
+  // store에서 포스트 상세정보 가져오기
   const detailPost = useSelector((state) => state.post.detailPost);
   const { createdAt, author, modifiedAt, image, liked, title, id } = detailPost;
+
+  // 좋아요 이벤트
   const toggleLike = () => {
     setIsLike(!isLike);
   };
+
+  // 게시글 수정
   const onEdit = (e) => {
     props.history.push(`/write/${id}`);
   };
 
+  // 게시글 삭제
   const onDelete = () => {
     const isConfirmed = window.confirm('정말로 게시물을 삭제하시겠습니까?');
     if (!isConfirmed) return;
     dispatch(postActions.deletePost(id));
   };
+
   return (
     <Header bg="white" is_column ai="flex-start">
       <Title>{title}</Title>
-
+      {/* 날짜, 좋아요, 수정/삭제 버튼 */}
       <Infomation>
         <div className="line">
           <span>
@@ -48,6 +60,7 @@ const PostHeader = (props) => {
             </Text>
           </Like>
         </div>
+        {/* 내가 쓴 글만 수정/삭제 가능 */}
         {author === nickname && (
           <Buttons>
             <span onClick={onEdit}>수정</span>
@@ -55,7 +68,7 @@ const PostHeader = (props) => {
           </Buttons>
         )}
       </Infomation>
-
+      {/* 해시태그 */}
       <Wrapper jc="flex-start">
         <HashTag> 해시태그</HashTag>
       </Wrapper>
