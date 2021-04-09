@@ -18,6 +18,12 @@ public class CorsConfig {
       CorsConfiguration config = new CorsConfiguration();
       config.setAllowCredentials(true);
       config.addAllowedOrigin("http://localhost:3000");
+      config.addAllowedOrigin("http://localhost:8080");
+      config.addAllowedOrigin("http://localhost:3306");
+      config.addAllowedOrigin("http://strong1133.shop");
+      config.addAllowedOrigin("http://**");
+      config.addAllowedOrigin("https://**");
+
       config.addAllowedHeader("*");
       config.addAllowedMethod("*");
 

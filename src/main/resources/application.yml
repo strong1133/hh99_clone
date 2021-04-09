@@ -1,23 +1,16 @@
 spring:
 
-  h2:
-    console:
-      enabled: true
-
   datasource:
-    url: jdbc:h2:mem:testdb
-    driver-class-name: org.h2.Driver
-    username: sa
-    password:
+    url: jdbc:mysql://strong1133.cbjuszxcuvu0.ap-northeast-2.rds.amazonaws.com/velog_clone
+    username : strong1133
+    password : tjrwls455
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    hibernate:
-      ddl-auto: create-drop
-    properties:
-      hibernate:
-        format_sql: true
-#        show_sql: true
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    generate-ddl: true
+#    show-sql: true
 
 jwt:
   header: Authorization
@@ -29,3 +22,4 @@ jwt:
 logging:
   level:
     me.silvernine: DEBUG
+
