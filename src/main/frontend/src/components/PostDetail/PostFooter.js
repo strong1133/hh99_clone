@@ -6,16 +6,18 @@ const PostFooter = (props) => {
   const { author } = props;
   return (
     <FooterWrapper>
+      {/* 게시글 쓴 유저의 정보 */}
       <UserInfo>
         <div className="header">
           <Image shape="circle" size="8rem" margin="0 4px 0 0"></Image>
           <div className="meta">
             <span className="name">{author}</span>
-            <span className="userInfo">User 소개글같은거</span>
+            <span className="userInfo">성장하는 개발자입니다</span>
           </div>
         </div>
         <div className="line"></div>
       </UserInfo>
+      {/* 이전포스트, 다음포스트 박스 */}
       <NextPrevWrapper width="100%" jc="space-between">
         <Prev className="box left">
           <I className="icon">
@@ -23,16 +25,15 @@ const PostFooter = (props) => {
           </I>
           <div className="info">
             <p>이전 포스트</p>
-            <h3>프론트 개발자 면접 정리</h3>
+            <h3>Stack vs Queue</h3>
           </div>
           <hr />
         </Prev>
         <Next className="box right">
           <div className="info">
             <p>다음 포스트</p>
-            <h3>프론트 개발자 면접 정리</h3>
+            <h3>svg, canvas의 차이</h3>
           </div>
-
           <I className="icon">
             <FaArrowRight />
           </I>
@@ -87,7 +88,7 @@ const UserInfo = styled.div`
     margin-bottom: 1.5rem;
   }
 `;
-
+// 화살표 hover 움직이는 animation
 const moveRight = keyframes`
 0%{
     transform:translateX(0px);

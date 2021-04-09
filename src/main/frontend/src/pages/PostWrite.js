@@ -17,14 +17,14 @@ const PostWrite = (props) => {
   const editorRef = useRef();
   const [title, onChangeTitle] = useInput(articleId && detailPost.title);
   const nickname = useSelector((state) => state.user.user?.nickname);
+
+  // 글등록
   const submit = () => {
     /* const contents = editorRef.current
       .getInstance()
       .getTextObject()
       .setRange(20); */
-
-    const contents = '프리뷰가 들어가야하넌디...';
-
+    // toast editor 제공 api -
     const contentsHtml = editorRef.current.getInstance().getHtml();
     const contentsMd = editorRef.current.getInstance().getMarkdown();
     const image = contentsHtml.split('=')[1]?.split('"')[1];
@@ -40,9 +40,12 @@ const PostWrite = (props) => {
       hashTag: hashTagList,
       image
     };
+
     if (articleId) {
+      // write/id가 있으면 수정
       dispatch(postActions.updatePost(articleId, post));
     } else {
+      // write/id가 없으면 새글 등록
       dispatch(postActions.createPost(post));
     }
   };
@@ -55,6 +58,7 @@ const PostWrite = (props) => {
           title={title}
           _onChange={onChangeTitle}
         />
+        {/* editor는 토스트 ui사용 */}
         <Editor
           ref={editorRef}
           previewStyle="vertical"

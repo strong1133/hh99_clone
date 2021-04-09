@@ -11,22 +11,28 @@ import PostFooter from '../components/PostDetail/PostFooter';
 
 const PostDetail = (props) => {
   const dispatch = useDispatch();
+
+  // article/:postId
   const postId = props.match.params.id;
 
   const detailPost = useSelector((state) => state.post.detailPost);
   const { author, image } = detailPost;
+
+  // postId로 상세포스트 데이터를 가져와 store에 저장
   useEffect(() => {
     dispatch(postActions.fetchPostById(postId));
   }, []);
 
   return (
     <Wrapper is_column bg="white">
+      {/* header에 글쓰기버튼 헤더에 전달 */}
       <Header
         toWrite={() => {
           props.history.push('/write');
         }}
         author={author}
       />
+      {/* 포스트 헤더, 본문내용, 댓글 */}
       <PostHeader history={props.history} />
       <PostContents />
       <PostFooter author={author} />
