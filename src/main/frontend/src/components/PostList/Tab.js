@@ -1,8 +1,6 @@
+// Tab에 반응하는 애니메이션 효과
 import React, { FC } from "react";
 import styled from "styled-components";
-import { Helmet } from "react-helmet";
-
-
 
 const Tab: FC<Tab> = ({
   tabNum,
@@ -13,14 +11,12 @@ const Tab: FC<Tab> = ({
   const tabButtonHandler = (idx= 2) => {
     const newTabItem = tabItems[idx];
     setTabNum(idx);
-    window.history.replaceState(null, newTabItem.title || "", newTabItem.url);
   };
 
+
   return (
+
     <nav>
-      <Helmet>
-        <title>{tabItems[tabNum].title}</title>
-      </Helmet>
       <TabContainer tabCount={tabItems.length} tabWidth={tabWidth || 7}>
         {tabItems.map((tab, idx) => (
           <TabButton
@@ -29,9 +25,11 @@ const Tab: FC<Tab> = ({
             tabWidth={tabWidth || 7}
             onClick={() => tabButtonHandler(idx)}
           >
-            {tabItems[idx].component}
+            {tabItems[idx]}
           </TabButton>
         ))}
+
+        {/* Tab 할 때마다 움직이는 Focus Bar */}
         <FocusBar tabNum={tabNum} tabCount={tabItems.length} />
       </TabContainer>
     </nav>
@@ -64,7 +62,6 @@ const TabButton = styled.div`
   color: rgb(134, 142, 150);
   cursor: pointer;
 `;
-
 
 const FocusBar = styled.div`
   width: ${(props) => (props.tabCount === 0 ? 0 : 100 / props.tabCount + `%`)};

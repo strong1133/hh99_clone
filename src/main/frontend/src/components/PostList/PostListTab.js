@@ -1,7 +1,9 @@
+// PostListTab의 구조
+// 탭에 따라서 리스트 정렬 바꾸기
 import styled from "styled-components";
+import { Grid } from "../../elements";
+
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { history } from "../../redux/configureStore";
 import { useLocation } from "react-router-dom";
 
 import Trend from "../../static/Trend.svg";
@@ -9,49 +11,43 @@ import Time from "../../static/Time.svg";
 import Tab from "./Tab";
 import Card from "./Card";
 
+
 const PostListTab = () => {
   const location = useLocation();
-  const [tabNum, setTabNum] = useState(location.pathname === "/recent" ? 1 : 0);
+
+  const [tabNum, setTabNum] = useState(location.pathname === "mode");
 
   const [isTrendingMode, setIsTrendingMode] = React.useState(true);
 
+  //  무한 루프에 빠지지 않도록
   useEffect(() => {
     return () => {};
   }, []);
+
 
   return (
     <TabContainer>
       <Tab
         {...{ tabNum, setTabNum }}
         tabItems={[
-          {
-            component: (
-              <>
+          
+              <Grid is_flex padding="16px">
                 <img width="20px" src={Trend} />
-                <TabText
-                  onClick={() => {
-                    setIsTrendingMode(true);
-                  }}
+                <text
+                  onClick={() => {setIsTrendingMode(true);}}
                 >
                   트렌딩
-                </TabText>
-              </>
-            ),
-          },
-          {
-            component: (
-              <>
+                </text>
+              </Grid>
+            ,
+              <Grid is_flex padding="25px">
                 <img width="20px" src={Time} />
-                <TabText
-                  onClick={() => {
-                    setIsTrendingMode(false);
-                  }}
+                <text
+                  onClick={() => {setIsTrendingMode(false);}}
                 >
                   최신
-                </TabText>
-              </>
-            ),
-          },
+                </text>
+              </Grid>
         ]}
       />
 
@@ -62,6 +58,7 @@ const PostListTab = () => {
   );
 };
 
+
 const TabContainer = styled.div`
   display: flex;
   width: 93%;
@@ -69,11 +66,6 @@ const TabContainer = styled.div`
   flex-direction: column;
   height: 100%;
   margin-top: 2rem;
-  
-`;
-
-const TabText = styled.div`
-  margin-left: 0.5rem;
 `;
 
 const ListContainer = styled.div`

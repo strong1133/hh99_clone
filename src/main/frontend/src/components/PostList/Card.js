@@ -1,4 +1,4 @@
-// import React from "react";
+// PostList의 카드 정렬
 import styled from "styled-components";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
@@ -8,27 +8,30 @@ import { Grid, Text, Image } from "../../elements";
 import Heart_Black from "../../static/Heart_Black.svg";
 
 const Card = (props) => {
+
   const [users, setUsers] = useState([]);
 
+  // PostList의 탭을 눌렀을 때 트렌딩 기준으로 true/false 값 가져오기
+  // '최근' 탭 눌렀을 때 trendingMode false 값 반환
   const { trendingMode } = props;
 
-  useEffect(() =>{
+  useEffect(() => {
     fetchUsers();
+  }, [trendingMode]);
 
-  }, [ trendingMode ])
-  
   const fetchUsers = async () => {
-
+    // '트렌딩' 탭을 눌렀을 때
     if (trendingMode) {
-      const response = await axios.get("http://strong1133.shop/api/articles/");
+      const response = await axios.get(
+        "http://strong1133.shop/api/articles/"
+        );
       setUsers(response.data);
-      console.log(response);
     } else {
+      // '최근' 탭을 눌렀을 때
       const response = await axios.get(
         "http://strong1133.shop/api/articles/pop"
       );
       setUsers(response.data);
-      console.log(response);
     }
   };
 
@@ -36,10 +39,11 @@ const Card = (props) => {
     fetchUsers();
   }, []);
 
+  
   return (
     <React.Fragment>
       {users.map((user) => (
-        <CardContainer key={user.id} >
+        <CardContainer key={user.id}>
           <Box1
             src={user.image}
             onClick={() => {

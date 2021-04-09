@@ -1,26 +1,29 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Grid } from '../elements';
+import React from "react";
+import styled from "styled-components";
+import { Grid } from "../elements";
 
-import { history } from '../redux/configureStore';
-import { useSelector, useDispatch } from 'react-redux';
-import { actionCreators as userActions } from '../redux/modules/user';
+import { history } from "../redux/configureStore";
+import { useSelector, useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
 
-import search from '../static/search.svg';
+import search from "../static/search.svg";
+import v_logo from "../static/v_logo.svg";
 
-import Login from './Login';
-import Signup from './Signup';
-
-import Modal from 'react-modal';
-
-import v_logo from '../static/v_logo.svg';
+import Login from "./Login";
+import Signup from "./Signup";
+import Modal from "react-modal";
 
 const Header = (props) => {
-  const { author } = props;
-
   const dispatch = useDispatch();
+
+  // PostDetail 페이지 Post 작가 이름 불러오기
+  const { author } = props;
+  // 로그인 유무
   const isLogin = useSelector((state) => state.user.is_login);
 
+  const [isLoginMode, setIsLoginMode] = React.useState(true);
+
+  // 로그인/회원가입 모달창
   const [modalIsOpen, setModalIsOpen] = React.useState(false);
   const openModal = () => {
     setModalIsOpen(true);
@@ -29,16 +32,17 @@ const Header = (props) => {
     setModalIsOpen(false);
   };
 
-  const [isLoginMode, setIsLoginMode] = React.useState(true);
-
   const onClickModal = () => {
     setIsLoginMode(!isLoginMode);
   };
 
   return (
     <React.Fragment>
+     
       <HeaderContainer>
         <Grid is_flex padding="16px">
+          
+           {/* 메인페이지 일 때 : 상세 페이지 일 때 => 로고 부분 변함*/}
           {author ? (
             <Grid>
               <img
@@ -46,7 +50,7 @@ const Header = (props) => {
                 margin="16px"
                 src={v_logo}
                 onClick={() => {
-                  history.push('/');
+                  history.push("/");
                 }}
               />
               <TextLogo size="21pt">{author}.log</TextLogo>
@@ -55,19 +59,22 @@ const Header = (props) => {
             <TextLogo
               size="21pt"
               onClick={() => {
-                history.push('/');
+                history.push("/");
               }}
             >
               velog
             </TextLogo>
           )}
 
+          {/* 로그인 전 : 로그인 후 */}
           {isLogin ? (
             <Grid is_flex width="auto" margin="16px">
               <SearchContainer to="/search">
                 <img width="18px" src={search} />
               </SearchContainer>
-              <WriteButton onClick={()=>history.push('/write')}>새 글 작성</WriteButton>
+              <WriteButton onClick={() => history.push("/write")}>
+                새 글 작성
+              </WriteButton>
               <WriteButton
                 onClick={() => {
                   dispatch(userActions.logoutCheck({}));
@@ -110,21 +117,21 @@ const Header = (props) => {
 
 const modalStyle = {
   overlay: {
-    position: 'fixed',
+    position: "fixed",
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'rgba(247, 247, 247, 0.8)',
-    transition: 'opacity 2000ms ease-in-out'
+    backgroundColor: "rgba(247, 247, 247, 0.8)",
+    transition: "opacity 2000ms ease-in-out",
   },
   content: {
-    width: '650px',
-    height: '510px',
-    margin: 'auto',
-    border: 'none',
-    boxShadow: '0 2px 12px 0 rgba(0, 0, 0, 0.1)'
-  }
+    width: "650px",
+    height: "510px",
+    margin: "auto",
+    border: "none",
+    boxShadow: "0 2px 12px 0 rgba(0, 0, 0, 0.1)",
+  },
 };
 
 const CloseButton = styled.img`
@@ -149,7 +156,7 @@ const HeaderContainer = styled.div`
 `;
 
 const TextLogo = styled.text`
-  font-family: 'Fira Mono', monospace;
+  font-family: "Fira Mono", monospace;
   font-size: 20pt;
   position: relative;
   top: -5px;
@@ -219,7 +226,7 @@ const ProfileImg = styled.div`
   width: 36px;
   height: 36px;
   border-radius: 30px;
-  background-image: url('${(props) => props.src}');
+  background-image: url("${(props) => props.src}");
   background-size: cover;
   margin-right: 15px;
 `;
