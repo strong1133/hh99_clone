@@ -23,7 +23,7 @@ const CommentItem = (props) => {
   const deleteComment = () => {
     dispatch(commentActions.deleteComment(id));
   };
-  const onCancle = () => {
+  const onEdit = () => {
     setValue(contents);
     setIsOpenEdit(!isOpenEdit);
   };
@@ -43,7 +43,7 @@ const CommentItem = (props) => {
         </Wrapper>
         {nickname === username && (
           <div className="buttons">
-            <span onClick={onCancle}>수정</span>
+            <span onClick={onEdit}>수정</span>
             <span onClick={deleteComment}>삭제</span>
           </div>
         )}
@@ -54,7 +54,7 @@ const CommentItem = (props) => {
           type="3"
           value={value}
           _onChange={onChangeValue}
-          _onCancle={onCancle}
+          _onCancle={onEdit}
           _onSubmit={editComment}
         />
       )}

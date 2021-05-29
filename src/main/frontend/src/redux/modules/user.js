@@ -1,95 +1,80 @@
-import { createAction, handleActions } from 'redux-actions';
-import { produce } from 'immer';
-import axios from 'axios';
+import { createAction, handleActions } from "redux-actions";
+import { produce } from "immer";
+import axios from "axios";
 
 // actions
-// const LOG_IN = "LOG_IN";
-const LOG_OUT = 'LOG_OUT';
-const GET_USER = 'GET_user';
-const SET_USER = 'SET_USER';
+const LOG_OUT = "LOG_OUT";
+const SET_USER = "SET_USER";
 
 // actionCreators: createAction
-// const logIn = createAction(LOG_IN, (user) => ({ user }));
 const logOut = createAction(LOG_OUT, (user) => ({ user }));
-const getUser = createAction(GET_USER, (user) => ({ user }));
 const setUser = createAction(SET_USER, (user) => ({ user }));
 
 // initialState
 const initialState = {
   user: null,
-  is_login: false
+  is_login: false,
 };
 
 const signupAPI = (userName, nickname, pw) => {
   return function (dispatch, getState, { history }) {
-    console.log(userName, nickname, pw);
-    const API = 'http://strong1133.shop/api/singup';
-    console.log(API);
-    fetch(API, {
-      method: 'POST',
+    const API = "http://strong1133.shop/api/singup";
+
+    axios({
+      url: API,
+      method: "POST",
+      data: { username: userName, password: pw, nickname: nickname },
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        username: userName,
-        password: pw,
-        nickname: nickname
-      })
-    })
-      .then((response) => response)
-      .then((result) => {
-        window.alert('회원가입이 되었습니다!');
-        history.push('/');
-      });
+      withCredentials: true,
+    }).then((res) => {
+      window.alert("회원가입이 되었습니다!");
+      history.push("/");
+    });
   };
 };
 
 const loginAPI = (id, pw) => {
   return function (dispatch, getState, { history }) {
-    const API = 'http://strong1133.shop/api/authenticate';
+    const API = "http://strong1133.shop/api/authenticate";
 
     axios({
-      url: 'http://strong1133.shop/api/authenticate',
-      method: 'post',
+      url: API,
+      method: "POST",
       data: { username: id, password: pw },
-      withCredentials: true
+      withCredentials: true,
     })
       .then((res) => {
-        console.log('로그인', res.data.token);
-        axios.defaults.headers.common[
-          'Authorization'
-        ] = `Bearer ${res.data.token}`;
-
-        dispatch(getUserInfo());
+        localStorage.setItem(res.data.token);
+        dispatch(getUserInfoAPI());
       })
       .catch((err) => {
-        console.error(err);
-        alert('로그인에 실패했습니다');
+        alert("로그인에 실패했습니다");
       });
   };
 };
 
-const getUserInfo = () => {
+const getUserInfoAPI = () => {
   return function (dispatch, getState, { history }) {
-    axios.get('/api/user').then((res) => {
-      console.log('getUserInfo', res);
+    axios.get("/api/user").then((res) => {
       dispatch(
         setUser({ username: res.data.username, nickname: res.data.nickname })
       );
-      history.replace('/');
+      history.replace("/");
     });
   };
 };
 
 const loginCheck = () => {
   return function (dispatch, getState, { history }) {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (token) {
       dispatch(
         setUser({
-          username: 'username',
-          nickname: 'nickname',
-          kakaoId: 'kakaoId'
+          username: "username",
+          nickname: "nickname",
+          kakaoId: "kakaoId",
         })
       );
     } else {
@@ -97,24 +82,15 @@ const loginCheck = () => {
     }
   };
 };
+
 const logoutCheck = () => {
   return function (dispatch, getState, { history }) {
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
     dispatch(logOut());
-    history.replace('/');
+    history.replace("/");
   };
 };
 
-const isLogin = () => {
-  const token = localStorage.getItem('token');
-
-  if (!token) {
-    return false;
-  }
-  return true;
-};
-
-console.log(isLogin);
 
 // reducer: handleActions(immer를 통한 불변성 유지)
 export default handleActions(
@@ -128,7 +104,7 @@ export default handleActions(
       produce(state, (draft) => {
         draft.user = null;
         draft.is_login = false;
-      })
+      }),
   },
   initialState
 );
@@ -136,13 +112,10 @@ export default handleActions(
 // actionCreator export
 const actionCreators = {
   logOut,
-  getUser,
   signupAPI,
   loginAPI,
-  isLogin,
   loginCheck,
   logoutCheck,
-  getUserInfo
 };
 
 export { actionCreators };

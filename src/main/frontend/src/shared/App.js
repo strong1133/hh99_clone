@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Navbar } from 'react-bootstrap';
-import CustomAxious from '../CustomAxios';
+import React from 'react';
 import './App.css';
 import styled from 'styled-components';
 
 import { Route } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
-import { PostList, PostDetail, Login, Signup } from '../pages';
+import { PostList, PostDetail } from '../pages';
 import { history } from '../redux/configureStore';
 import PostWrite from '../pages/PostWrite';
 

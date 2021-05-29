@@ -3,8 +3,6 @@ import { produce } from 'immer';
 import axios from 'axios';
 
 axios.defaults.baseURL = 'http://strong1133.shop';
-/* import 'moment';
-import moment from 'moment'; */
 
 // initialState
 const initialState = {
@@ -68,18 +66,16 @@ const updatePost = (postId, post) => {
 @DeleteMapping("/api/liked/delete") */
 const likePost = (postId, userId) => {
   return function (dispatch, getState, { history }) {
-    console.log('좋아요', postId, userId);
+    // console.log('좋아요', postId, userId);
     /* axios.post(`/api/liked/add"`, { postId, userId }).then((res) => {
-      console.log('라이크완료, 여기처리해야함');
     }); */
   };
 };
 
 const dislikePost = (postId, userId) => {
   return function (dispatch, getState, { history }) {
-    console.log('좋아요 취소', postId, userId);
+    // console.log('좋아요 취소', postId, userId);
     /* axios.post(`/api/liked/delete"`, { postId, userId }).then((res) => {
-      console.log('디스라이크완료, 여기처리해야함');
     }); */
   };
 };
@@ -94,7 +90,6 @@ export default handleActions(
     [SET_DETAIL_POST]: (state, action) =>
       produce(state, (draft) => {
         draft.detailPost = action.payload.post;
-        //draft.list.unshift(action.payload.post);
       })
   },
   initialState

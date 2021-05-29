@@ -1,12 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-
 import { Text } from '../elements';
-import { history } from '../redux/configureStore';
-
 import { useDispatch } from 'react-redux';
 import { actionCreators as userActions } from '../redux/modules/user';
-
 import { emailCheck } from '../shared/common';
 
 const Login = (props) => {

@@ -31,7 +31,6 @@ const Header = (props) => {
   const closeModal = () => {
     setModalIsOpen(false);
   };
-
   const onClickModal = () => {
     setIsLoginMode(!isLoginMode);
   };
@@ -93,7 +92,7 @@ const Header = (props) => {
                 <img width="18px" src={search} />
               </SearchContainer>
 
-              <LoginButton onClick={() => setModalIsOpen(true)}>
+              <LoginButton onClick={openModal}>
                 로그인
               </LoginButton>
               <Modal isOpen={modalIsOpen} close={closeModal} style={modalStyle}>

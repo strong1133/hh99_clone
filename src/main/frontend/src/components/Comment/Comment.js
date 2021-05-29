@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import useInput from '../../shared/useInput';
@@ -19,7 +19,7 @@ const Comment = (props) => {
 
   const registComment = (e) => {
     if (!nickname) {
-      return alert('먼저 로그인해주세요');
+      return alert('로그인 후 이용할 수 있습니다');
     }
     const data = {
       username: nickname, //TODO : user
@@ -30,9 +30,7 @@ const Comment = (props) => {
     setComment('');
   };
 
-  /*   const resize = (e) => {
-    console.log(e.target.style.height);
-  }; */
+  
   return (
     <CommentContainer>
       <h3>{commentList.length}개의 댓글</h3>

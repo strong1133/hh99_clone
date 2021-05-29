@@ -8,41 +8,35 @@ import { Grid, Text, Image } from "../../elements";
 import Heart_Black from "../../static/Heart_Black.svg";
 
 const Card = (props) => {
-
-  const [users, setUsers] = useState([]);
-
   // PostList의 탭을 눌렀을 때 트렌딩 기준으로 true/false 값 가져오기
-  // '최근' 탭 눌렀을 때 trendingMode false 값 반환
   const { trendingMode } = props;
 
-  useEffect(() => {
-    fetchUsers();
-  }, [trendingMode]);
+  const [posts, setPosts] = useState([]);
 
-  const fetchUsers = async () => {
-    // '트렌딩' 탭을 눌렀을 때
+  const fetchPosts = async () => {
+    // trendingMode(true) : 트렌딩 순 정렬
     if (trendingMode) {
       const response = await axios.get(
         "http://strong1133.shop/api/articles/"
         );
-      setUsers(response.data);
+      setPosts(response.data);
     } else {
-      // '최근' 탭을 눌렀을 때
+      // trending(false) : 최신순 정렬
       const response = await axios.get(
         "http://strong1133.shop/api/articles/pop"
       );
-      setUsers(response.data);
+      setPosts(response.data);
     }
   };
 
   useEffect(() => {
-    fetchUsers();
-  }, []);
+    fetchPosts();
+  }, [trendingMode]); // trendingMode가 바뀔 때마다 리스트 값을 변경합니다.
 
-  
+
   return (
     <React.Fragment>
-      {users.map((user) => (
+      {posts.map((user) => (
         <CardContainer key={user.id}>
           <Box1
             src={user.image}
